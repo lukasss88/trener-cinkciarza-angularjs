@@ -1,0 +1,16 @@
+td, tr {
+    padding: 6px;
+}
+.row {
+    margin-top: 30px;
+}
+button {
+    width: 100%;
+}
+input {
+    width: 130px !important;
+}
+
+.currency h3 {
+    margin-bottom: 40px;
+}

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="treningCinkciarza">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Trener Cinkciarza</title>
+
+    <!-- BOOTSTRAP CORE STYLE CSS -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
+    <!-- CUSTOM STYLE CSS -->
+    <link href="css/main.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container" >
+    <h1>Trener Cinkciarza</h1>
+</div>
+
+<div class="container"  ng-controller="MainController">
+
+
+    <div class="col-md-6" >
+        <div class="form-group row start-value" >
+            <label for="start-number-input" class="col-xs-4 col-form-label">Kwota startowa</label>
+            <div class="col-xs-3 col-md-offset-3">
+                <input class="form-control" type="number" id="start-number-input" ng-model="moneyStart.value" >
+            </div>
+            <p class="pln">PLN</p>
+            <button class="btn btn-info" ng-click="apply(moneyStart.value)">Zatwierdź</button>
+        </div>
+
+        <div class="form-group row well currency">
+            <h3>Stan portfela</h3>
+            <span>
+                PLN:
+                {{$storage.wallet.PLN}}
+            </span>
+        </div>
+
+        <div class="row well">
+            <h3>Transakcje finansowe</h3>
+            <div class="row second-title">
+                <div class="col-md-4">
+                    <h3>Waluta</h3>
+                </div>
+                <div class="col-md-4">
+                    <h3>Kupno</h3>
+                </div>
+                <div class="col-md-4">
+                    <h3>Sprzedaż</h3>
+                </div>
+            </div>
+
+            <div class="row currency-state">
+                <div class="col-md-4">
+                    <h4>USD</h4>
+                </div>
+                <div class="col-md-3">
+                    <button class='btn btn-success btn-buy-usd' >Kup</button>
+                </div>
+                <div class="col-md-3 col-md-offset-1">
+                    <button class="btn btn-primary btn-sell-usd" ng-click="sellUsd=!sellUsd">Sprzedaj</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div ng-show="sellUsd" ng-include="'templates/plnToUsd/index.html'">
+
+        </div>
+    </div>
+</div>
+
+
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/ngstorage/ngStorage.min.js"></script>
+<script src="javascript/app.js"></script>
+<script src="javascript/controllers/main.js"></script>
+<script src="javascript/services/main.js"></script>
+</body>
+</html>
