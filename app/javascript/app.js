@@ -1,2 +1,5 @@
-angular.module('treningCinkciarza', ['ngStorage']);
-
+(function()
+{
+    'use strict';
+    angular.module('treningCinkciarza', ['ngStorage']);
+})();
