@@ -15,6 +15,12 @@
                     }
                 });
 
+                function reset() {
+
+                    $localStorage.$reset();
+
+                }
+
                 $scope.apply = function (value)
                 {
                     $scope.$storage.wallet.PLN = value;
@@ -26,15 +32,14 @@
                 });
 
 
+
                 $scope.moneyUsd = {value: null};
                 $scope.applyUsd = function (value, currencySellUsd)
                 {
                     currencySellUsd = $scope.getUsd.rates[0].ask;
                     $scope.$storage.wallet.USD += $scope.moneyUsd.value / currencySellUsd;
                     $scope.$storage.wallet.PLN -= $scope.moneyUsd.value;
-                    console.log($scope.$storage.wallet.USD);
-                    console.log(currencySellUsd);
-                    console.log($scope.moneyUsd);
+
                 };
 
             });

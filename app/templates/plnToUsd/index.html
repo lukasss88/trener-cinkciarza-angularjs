@@ -9,5 +9,5 @@
             <span class="error" ng-show="sellToUsd.sellUsdValue.$error.max">Too much!</span>
         </div>
     </div>
-    <button class="btn btn-primary apply-btn" ng-click="applyUsd(moneyUsd.value); walletUsd = !walletUsd; ">Zatwierdź</button>
+    <button class="btn btn-primary apply-btn" ng-click="applyUsd(moneyUsd.value); walletUsd = !walletUsd; " ng-disabled="sellToUsd.sellUsdValue.$error.maxn">Zatwierdź</button>
 </div>

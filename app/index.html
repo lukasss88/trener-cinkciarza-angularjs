@@ -38,7 +38,8 @@
             <span ng-show="walletUsd">
                 USD:
                     {{$storage.wallet.USD | number:2}}
-            </span>
+            </span><br>
+            <button class="btn btn-danger" ng-click="reset()">Reset</button>
         </div>
 
         <div class="row well">
