@@ -5,7 +5,7 @@
     <div class="transaction row" ng-form name="buyToGbp">
         <label for="gbpToPln" class="col-xs-4 col-form-label">Kwota wymiany</label>
         <div class="col-xs-3 col-md-offset-3">
-            <input class="form-control" type="number" id="gbpToPln" ng-max="{{$storage.wallet.GBP}}" ng-model="moneyGbp.value" name="buyGbpValue">
+            <input class="form-control" type="number" id="gbpToPln" ng-max="{{wallet.GBP}}" ng-model="moneyGbp.value" name="buyGbpValue">
             <span class="error" ng-show="buyToGbp.buyGbpValue.$error.max">Too much!</span>
         </div>
     </div>

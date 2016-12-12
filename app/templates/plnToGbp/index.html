@@ -1,11 +1,11 @@
 <div class="row well transaction-box">
     <h4>Wymiana PLN na GBP</h4>
-    <p>Dostepne srodki: {{$storage.wallet.PLN | number:2}} PLN</p>
+    <p>Dostepne srodki: {{wallet.PLN | number:2}} PLN</p>
     <p>Kurs sprzedazy: {{getGbp.rates[0].ask}} zl</p>
     <div class="transaction row" ng-form name="sellToGbp">
         <label for="plnToGbp" class="col-xs-4 col-form-label">Kwota wymiany</label>
         <div class="col-xs-3 col-md-offset-3">
-            <input class="form-control" type="number" id="plnToGbp" ng-max="{{$storage.wallet.PLN}}" ng-model="moneyGbp.value" name="sellGbpValue">
+            <input class="form-control" type="number" id="plnToGbp" ng-max="{{wallet.PLN}}" ng-model="moneyGbp.value" name="sellGbpValue">
             <span class="error" ng-show="sellToGbp.sellGbpValue.$error.max">Too much!</span>
         </div>
     </div>

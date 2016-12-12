@@ -1,12 +1,57 @@
-td, tr {
-    padding: 6px;
-}
+/*=======================================
+    GENERAL STYLES
+==================================================*/
 
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+}
 .row {
     margin-top: 30px;
 }
+.apply-btn {
+    width: 100%;
+    margin-top: 20px;
+}
 
 
+
+/*=======================================
+    WALLET STYLES
+==================================================*/
+.currency span {
+    display: block;
+    font-size: 20px;
+}
+.pln {
+    text-align: right;
+}
+
+.currencyType {
+    font-size: 20px;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+.otherCurrency {
+    padding-bottom: 75px;
+    border: 1px solid #0f0f0f;
+    height: 100px;
+    margin-top: 20px;
+}
+.otherCurrency button {
+    width: 100%;
+}
+.resetButton {
+    width: 100%;
+    margin-top:20px;
+}
+
+/*=======================================
+    TRANSACTION STYLES
+==================================================*/
+.currency-state button {
+    width: 100%;
+}
 
 input {
     width: 130px !important;
@@ -15,12 +60,7 @@ input {
 .currency h3 {
     margin-bottom: 40px;
 }
-.apply-btn {
-    width: 30%;
-    margin: 0 auto;
-    margin-top: 40px;
-    margin-left: 35%;
-}
+
 .transaction-box {
     margin-left: 20px;
 }
@@ -30,10 +70,5 @@ input {
     padding-bottom: 30px;
 }
 
-.pln {
-    text-align: right;
-}
-h1 {
-    text-align: center;
-    margin-bottom: 40px;
-}
+
+
