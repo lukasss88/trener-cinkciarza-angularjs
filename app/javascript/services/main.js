@@ -11,7 +11,6 @@
                                 .then(function (response)
                                 {
                                     var usdCurrency = response.data;
-
                                     return usdCurrency;
                                 });
                     },
@@ -21,7 +20,6 @@
                                 .then(function (respone)
                                 {
                                     var eurCurrency = respone.data;
-                                    console.log(eurCurrency);
                                     return eurCurrency;
                                 });
                     },
@@ -30,8 +28,7 @@
                         return $http.get('http://api.nbp.pl/api/exchangerates/rates/c/gbp/today/?format=json')
                                 .then(function (respone)
                                 {
-                                    var gbpCurrency = respone.data;
-                                    console.log(gbpCurrency);
+                                    var gbpCurrency = respone.data;;
                                     return gbpCurrency;
                                 });
                     }

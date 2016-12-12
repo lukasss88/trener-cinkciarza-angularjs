@@ -1,4 +1,4 @@
-<div class="row well transaction-box">
+<div class="row well transaction-box" data-ng-class="{'asd': wallet.PLN === 500}">
     <h4>Wymiana PLN na USD</h4>
     <p>Dostepne srodki: {{wallet.PLN | number:2}} PLN</p>
     <p>Kurs sprzedazy: {{getUsd.rates[0].ask}} zl</p>
@@ -11,4 +11,5 @@
         </div>
     </div>
     <button class="btn btn-primary apply-btn" ng-click="applySellUsd(moneyUsd.value); walletUsd = !walletUsd; " ng-disabled="sellToUsd.sellUsdValue.$error.max">Zatwierdź</button>
+    <button class="btn btn-default cancel-btn"></button>
 </div>
