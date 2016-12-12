@@ -33,11 +33,19 @@
             <h3>Stan portfela</h3>
             <span>
                 PLN:
-                {{$storage.wallet.PLN}}
+                {{$storage.wallet.PLN | number:2}}
             </span><br>
             <span ng-show="walletUsd">
                 USD:
                     {{$storage.wallet.USD | number:2}}
+            </span><br>
+            <span ng-show="walletEur">
+                EUR:
+                    {{$storage.wallet.EUR | number:2}}
+            </span><br>
+            <span ng-show="walletGbp">
+                GBP:
+                    {{$storage.wallet.GBP| number:2}}
             </span><br>
             <button class="btn btn-danger" ng-click="reset()">Reset</button>
         </div>
@@ -61,19 +69,49 @@
                     <h4>USD</h4>
                 </div>
                 <div class="col-md-3">
-                    <button class='btn btn-success btn-buy-usd'>Kup</button>
+                    <button class='btn btn-success btn-buy-usd' ng-click="buyUsd=!buyUsd">Kup</button>
                 </div>
                 <div class="col-md-3 col-md-offset-1">
                     <button class="btn btn-primary btn-sell-usd" ng-click="sellUsd=!sellUsd">Sprzedaj</button>
+                </div>
+            </div>
+
+            <div class="row currency-state">
+                <div class="col-md-4">
+                    <h4>EUR</h4>
+                </div>
+                <div class="col-md-3">
+                    <button class='btn btn-success btn-buy-eur' ng-click="buyEur=!buyEur">Kup</button>
+                </div>
+                <div class="col-md-3 col-md-offset-1">
+                    <button class="btn btn-primary btn-sell-eur" ng-click="sellEur=!sellEur">Sprzedaj</button>
+                </div>
+            </div>
+
+            <div class="row currency-state">
+                <div class="col-md-4">
+                    <h4>GBP</h4>
+                </div>
+                <div class="col-md-3">
+                    <button class='btn btn-success btn-buy-gbp' ng-click="buyGbp=!buyGbp">Kup</button>
+                </div>
+                <div class="col-md-3 col-md-offset-1">
+                    <button class="btn btn-primary btn-sell-gbp" ng-click="sellGbp=!sellGbp">Sprzedaj</button>
                 </div>
             </div>
         </div>
     </div>
 
     <div class="col-md-6">
-        <div ng-show="sellUsd" ng-include="'templates/plnToUsd/index.html'">
+        <div ng-show="sellUsd" ng-include="'templates/plnToUsd/index.html'"></div>
+        <div ng-show="buyUsd" ng-include="'templates/usdToPln/index.html'"></div>
 
-        </div>
+        <div ng-show="sellEur" ng-include="'templates/plnToEur/index.html'"></div>
+        <div ng-show="buyEur" ng-include="'templates/eurToPln/index.html'"></div>
+
+        <div ng-show="sellGbp" ng-include="'templates/plnToGbp/index.html'"></div>
+        <div ng-show="buyGbp" ng-include="'templates/gbpToPln/index.html'"></div>
+
     </div>
 </div>
 

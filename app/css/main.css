@@ -21,11 +21,11 @@ input {
     margin-top: 40px;
     margin-left: 35%;
 }
-.sellUsd {
+.transaction-box {
     margin-left: 20px;
 }
 
-.sellUsd h4 {
+.transaction-box h4 {
     text-align: center;
     padding-bottom: 30px;
 }

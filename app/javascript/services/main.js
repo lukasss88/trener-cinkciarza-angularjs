@@ -14,6 +14,26 @@
 
                                     return usdCurrency;
                                 });
+                    },
+                    getEur: function ()
+                    {
+                        return $http.get('http://api.nbp.pl/api/exchangerates/rates/c/eur/today/?format=json')
+                                .then(function (respone)
+                                {
+                                    var eurCurrency = respone.data;
+                                    console.log(eurCurrency);
+                                    return eurCurrency;
+                                });
+                    },
+                    getGbp: function ()
+                    {
+                        return $http.get('http://api.nbp.pl/api/exchangerates/rates/c/gbp/today/?format=json')
+                                .then(function (respone)
+                                {
+                                    var gbpCurrency = respone.data;
+                                    console.log(gbpCurrency);
+                                    return gbpCurrency;
+                                });
                     }
                 };
             });
