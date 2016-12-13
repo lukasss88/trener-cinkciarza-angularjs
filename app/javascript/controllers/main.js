@@ -171,6 +171,5 @@
                 $scope.toggleBuyGbp = function() {
                     $scope.buyGbp = !$scope.buyGbp;
                 };
-
             });
 })();
