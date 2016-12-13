@@ -5,6 +5,7 @@
             .controller('MainController', function ($scope, $localStorage, CurrenciesService)
             {
                 $scope.moneyStart = {value: null};
+
                 $scope.sellUsd = false;
                 $scope.buyUsd = false;
                 $scope.walletUsd = true;
@@ -134,5 +135,41 @@
 
                 };
 
+                $scope.myClass = {expose:false};
+                $scope.addClass = function() {
+                    $scope.myClass.expose = true;
+                };
+                $scope.removeClass = function() {
+                    $scope.myClass.expose = false;
+                };
+
+
+
+
+                $scope.toggleSellUsd = function() {
+                    $scope.sellUsd = !$scope.sellUsd;
+                };
+                $scope.toggleBuyUsd = function() {
+                    $scope.buyUsd = !$scope.buyUsd;
+                };
+
+                $scope.toggleSellEur = function() {
+                    $scope.sellEur = !$scope.sellEur;
+                };
+                $scope.toggleBuyEur = function() {
+                    $scope.buyEur = !$scope.buyEur;
+
+                };
+
+                $scope.toggleSellGbp = function() {
+                    $scope.sellGbp = !$scope.sellGbp;
+                };
+                $scope.toggleBuyGbp = function() {
+                    $scope.buyGbp = !$scope.buyGbp;
+                };
             });
+
+
+
+
 })();

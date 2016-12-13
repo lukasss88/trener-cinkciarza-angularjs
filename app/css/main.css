@@ -9,12 +9,16 @@ h1 {
 .row {
     margin-top: 30px;
 }
-.apply-btn {
-    width: 100%;
-    margin-top: 20px;
+
+.expose {
+    opacity: 0.5;
+    z-index: -1000;
 }
-
-
+/*.expose2 {*/
+    /*opacity: 0 !important;*/
+    /*background-color: white !important;*/
+    /*z-index:222 !important;*/
+/*}*/
 
 
 
@@ -71,6 +75,9 @@ input {
     text-align: center;
     padding-bottom: 30px;
 }
-
+.transaction-box button {
+    width: 100%;
+    margin-top: 20px;
+}
 
 

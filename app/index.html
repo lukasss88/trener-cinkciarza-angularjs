@@ -15,9 +15,9 @@
     <h1>Trener Cinkciarza</h1>
 </div>
 
-<div class="container" ng-controller="MainController">
+<div class="container" ng-controller="MainController" >
 
-    <div class="col-md-6">
+    <div class="col-md-6" data-ng-class="myClass">
 
         <!-- ENTER MONEY SECTION -->
         <div class="form-group row start-value">
@@ -48,10 +48,10 @@
                     {{wallet.USD | number:2}}
                 </div>
                 <div class="col-md-3 col-md-offset-3">
-                    <button class='btn btn-success btn-buy-usd' ng-click="buyUsd=!buyUsd">Kup</button>
+                    <button class='btn btn-success btn-buy-usd' ng-click="toggleBuyUsd(); addClass()">Kup</button>
                 </div>
                 <div class="col-md-3 ">
-                    <button class="btn btn-primary btn-sell-usd" ng-click="sellUsd=!sellUsd">Sprzedaj</button>
+                    <button class="btn btn-primary btn-sell-usd" ng-click="toggleSellUsd(); addClass()">Sprzedaj</button>
                 </div>
 
             </div>
@@ -63,10 +63,10 @@
                     {{wallet.EUR | number:2}}
                 </div>
                 <div class="col-md-3 col-md-offset-3">
-                    <button class='btn btn-success btn-buy-eur' ng-click="buyEur=!buyEur">Kup</button>
+                    <button class='btn btn-success btn-buy-eur' ng-click="toggleBuyEur(); addClass()">Kup</button>
                 </div>
                 <div class="col-md-3">
-                    <button class="btn btn-primary btn-sell-eur" ng-click="sellEur=!sellEur">Sprzedaj</button>
+                    <button class="btn btn-primary btn-sell-eur" ng-click="toggleSellEur(); addClass()">Sprzedaj</button>
                 </div>
 
             </div>
@@ -78,10 +78,10 @@
                     {{wallet.GBP| number:2}}
                 </div>
                 <div class="col-md-3 col-md-offset-3">
-                    <button class='btn btn-success btn-buy-gbp' ng-click="buyGbp=!buyGbp">Kup</button>
+                    <button class='btn btn-success btn-buy-gbp' ng-click="toggleBuyGbp(); addClass()">Kup</button>
                 </div>
                 <div class="col-md-3 ">
-                    <button class="btn btn-primary btn-sell-gbp" ng-click="sellGbp=!sellGbp">Sprzedaj</button>
+                    <button class="btn btn-primary btn-sell-gbp" ng-click="toggleSellGbp(); addClass()">Sprzedaj</button>
                 </div>
 
             </div>
@@ -92,7 +92,6 @@
 
         </div>
         <!-- END WALLET SECTION -->
-
     </div>
 
     <!-- CURRENCY EXCHANGE SECTION -->

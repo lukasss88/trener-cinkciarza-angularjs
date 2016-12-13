@@ -9,5 +9,12 @@
             <span class="error" ng-show="buyToGbp.buyGbpValue.$error.max">Too much!</span>
         </div>
     </div>
-    <button class="btn btn-primary apply-btn" ng-click="applyBuyGbp(moneyGbp.value); walletGbp = !walletGbp; " ng-disabled="buyToGbp.buyGbpValue.$error.max">Zatwierdź</button>
+    <div class="col-md-offset-2 col-md-4">
+        <button class="btn btn-primary apply-btn" ng-click="applyBuyGbp(moneyGbp.value); walletGbp = !walletGbp; toggleBuyGbp(); removeClass()"
+                ng-disabled="buyToGbp.buyGbpValue.$error.max">Zatwierdź
+        </button>
+    </div>
+    <div class=" col-md-4">
+        <button class="btn btn-default cancel-btn" ng-click="toggleBuyGbp(); removeClass()">Anuluj</button>
+    </div>
 </div>
