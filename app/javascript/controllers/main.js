@@ -71,6 +71,10 @@
                     $scope.getGbp = data;
                 });
 
+
+                /*=======================================
+                 CURRENCIES EXCHANGE SCRIPTS
+                 ==================================================*/
                 $scope.moneyUsd = {value: null};
                 $scope.applySellUsd = function (currencySellUsd)
                 {
@@ -81,7 +85,6 @@
                     updateCurrency('PLN', $scope.wallet.PLN);
 
                 };
-
                 $scope.applyBuyUsd = function (currencyBuyUsd)
                 {
                     currencyBuyUsd = $scope.getUsd.rates[0].bid;
@@ -92,6 +95,7 @@
 
                 };
 
+
                 $scope.moneyEur = {value: null};
                 $scope.applySellEur = function (currencySellEur)
                 {
@@ -100,10 +104,7 @@
                     $scope.wallet.PLN -= $scope.moneyEur.value;
                     updateCurrency('EUR', $scope.wallet.EUR);
                     updateCurrency('PLN', $scope.wallet.PLN);
-
-
                 };
-
                 $scope.applyBuyEur = function (currencyBuyEur)
                 {
                     currencyBuyEur = $scope.getEur.rates[0].bid;
@@ -111,8 +112,8 @@
                     $scope.wallet.PLN += $scope.moneyEur.value * currencyBuyEur;
                     updateCurrency('EUR', $scope.wallet.EUR);
                     updateCurrency('PLN', $scope.wallet.PLN);
-
                 };
+
 
                 $scope.moneyGbp = {value: null};
                 $scope.applySellGbp = function (currencySellGbp)
@@ -124,7 +125,6 @@
                     updateCurrency('PLN', $scope.wallet.PLN);
 
                 };
-
                 $scope.applyBuyGbp = function (currencyBuyGbp)
                 {
                     currencyBuyGbp = $scope.getGbp.rates[0].bid;
@@ -132,9 +132,12 @@
                     $scope.wallet.PLN += $scope.moneyGbp.value * currencyBuyGbp;
                     updateCurrency('GBP', $scope.wallet.GBP);
                     updateCurrency('PLN', $scope.wallet.PLN);
-
                 };
 
+
+                /*=======================================
+                 ADD OPACITY TO WALLET
+                 ==================================================*/
                 $scope.myClass = {expose:false};
                 $scope.addClass = function() {
                     $scope.myClass.expose = true;
@@ -145,7 +148,9 @@
 
 
 
-
+                /*=======================================
+                 SHOW/HIDE TRANSACTION BOXES SCRIPTS
+                 ==================================================*/
                 $scope.toggleSellUsd = function() {
                     $scope.sellUsd = !$scope.sellUsd;
                 };
@@ -158,7 +163,6 @@
                 };
                 $scope.toggleBuyEur = function() {
                     $scope.buyEur = !$scope.buyEur;
-
                 };
 
                 $scope.toggleSellGbp = function() {
@@ -167,9 +171,6 @@
                 $scope.toggleBuyGbp = function() {
                     $scope.buyGbp = !$scope.buyGbp;
                 };
+
             });
-
-
-
-
 })();

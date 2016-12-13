@@ -14,13 +14,10 @@ h1 {
     opacity: 0.5;
     z-index: -1000;
 }
-/*.expose2 {*/
-    /*opacity: 0 !important;*/
-    /*background-color: white !important;*/
-    /*z-index:222 !important;*/
-/*}*/
-
-
+.apply-btn {
+    width: 100%;
+    margin-top: 20px;
+}
 
 /*=======================================
     WALLET STYLES
