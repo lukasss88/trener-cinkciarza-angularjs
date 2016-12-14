@@ -6,20 +6,20 @@
             {
                 $scope.moneyStart = {value: null};
 
-                $scope.sellUsd = false;
-                $scope.buyUsd = false;
-                $scope.walletUsd = true;
-                $scope.usd = 'usd';
+                // $scope.sellUsd = false;
+                // $scope.buyUsd = false;
+                // $scope.walletUsd = true;
+                // $scope.usd = 'usd';
 
-                $scope.sellEur = false;
-                $scope.buyEur = false;
-                $scope.walletEur = true;
-                $scope.eur = 'eur';
+                // $scope.sellEur = false;
+                // $scope.buyEur = false;
+                // $scope.walletEur = true;
+                // $scope.eur = 'eur';
 
-                $scope.sellGbp = false;
-                $scope.buyGbp = false;
-                $scope.walletGbp = true;
-                $scope.gbp = 'gbp';
+                // $scope.sellGbp = false;
+                // $scope.buyGbp = false;
+                // $scope.walletGbp = true;
+                // $scope.gbp = 'gbp';
 
                 $scope.wallet = {};
 
@@ -76,63 +76,63 @@
                  CURRENCIES EXCHANGE SCRIPTS
                  ==================================================*/
                 $scope.moneyUsd = {value: null};
-                $scope.applySellUsd = function (currencySellUsd)
-                {
-                    currencySellUsd = $scope.getUsd.rates[0].ask;
-                    $scope.wallet.USD += $scope.moneyUsd.value / currencySellUsd;
-                    $scope.wallet.PLN -= $scope.moneyUsd.value;
-                    updateCurrency('USD', $scope.wallet.USD);
-                    updateCurrency('PLN', $scope.wallet.PLN);
-
-                };
-                $scope.applyBuyUsd = function (currencyBuyUsd)
-                {
-                    currencyBuyUsd = $scope.getUsd.rates[0].bid;
-                    $scope.wallet.USD -= $scope.moneyUsd.value;
-                    $scope.wallet.PLN += $scope.moneyUsd.value * currencyBuyUsd;
-                    updateCurrency('USD', $scope.wallet.USD);
-                    updateCurrency('PLN', $scope.wallet.PLN);
-
-                };
+                // $scope.applySellUsd = function (currencySellUsd)
+                // {
+                //     currencySellUsd = $scope.getUsd.rates[0].ask;
+                //     $scope.wallet.USD += $scope.moneyUsd.value / currencySellUsd;
+                //     $scope.wallet.PLN -= $scope.moneyUsd.value;
+                //     updateCurrency('USD', $scope.wallet.USD);
+                //     updateCurrency('PLN', $scope.wallet.PLN);
+                //
+                // };
+                // $scope.applyBuyUsd = function (currencyBuyUsd)
+                // {
+                //     currencyBuyUsd = $scope.getUsd.rates[0].bid;
+                //     $scope.wallet.USD -= $scope.moneyUsd.value;
+                //     $scope.wallet.PLN += $scope.moneyUsd.value * currencyBuyUsd;
+                //     updateCurrency('USD', $scope.wallet.USD);
+                //     updateCurrency('PLN', $scope.wallet.PLN);
+                //
+                // };
 
 
                 $scope.moneyEur = {value: null};
-                $scope.applySellEur = function (currencySellEur)
-                {
-                    currencySellEur = $scope.getEur.rates[0].ask;
-                    $scope.wallet.EUR += $scope.moneyEur.value / currencySellEur;
-                    $scope.wallet.PLN -= $scope.moneyEur.value;
-                    updateCurrency('EUR', $scope.wallet.EUR);
-                    updateCurrency('PLN', $scope.wallet.PLN);
-                };
-                $scope.applyBuyEur = function (currencyBuyEur)
-                {
-                    currencyBuyEur = $scope.getEur.rates[0].bid;
-                    $scope.wallet.EUR -= $scope.moneyEur.value;
-                    $scope.wallet.PLN += $scope.moneyEur.value * currencyBuyEur;
-                    updateCurrency('EUR', $scope.wallet.EUR);
-                    updateCurrency('PLN', $scope.wallet.PLN);
-                };
+                // $scope.applySellEur = function (currencySellEur)
+                // {
+                //     currencySellEur = $scope.getEur.rates[0].ask;
+                //     $scope.wallet.EUR += $scope.moneyEur.value / currencySellEur;
+                //     $scope.wallet.PLN -= $scope.moneyEur.value;
+                //     updateCurrency('EUR', $scope.wallet.EUR);
+                //     updateCurrency('PLN', $scope.wallet.PLN);
+                // };
+                // $scope.applyBuyEur = function (currencyBuyEur)
+                // {
+                //     currencyBuyEur = $scope.getEur.rates[0].bid;
+                //     $scope.wallet.EUR -= $scope.moneyEur.value;
+                //     $scope.wallet.PLN += $scope.moneyEur.value * currencyBuyEur;
+                //     updateCurrency('EUR', $scope.wallet.EUR);
+                //     updateCurrency('PLN', $scope.wallet.PLN);
+                // };
 
 
                 $scope.moneyGbp = {value: null};
-                $scope.applySellGbp = function (currencySellGbp)
-                {
-                    currencySellGbp = $scope.getGbp.rates[0].ask;
-                    $scope.wallet.GBP += $scope.moneyGbp.value / currencySellGbp;
-                    $scope.wallet.PLN -= $scope.moneyGbp.value;
-                    updateCurrency('GBP', $scope.wallet.GBP);
-                    updateCurrency('PLN', $scope.wallet.PLN);
-
-                };
-                $scope.applyBuyGbp = function (currencyBuyGbp)
-                {
-                    currencyBuyGbp = $scope.getGbp.rates[0].bid;
-                    $scope.wallet.GBP -= $scope.moneyGbp.value;
-                    $scope.wallet.PLN += $scope.moneyGbp.value * currencyBuyGbp;
-                    updateCurrency('GBP', $scope.wallet.GBP);
-                    updateCurrency('PLN', $scope.wallet.PLN);
-                };
+                // $scope.applySellGbp = function (currencySellGbp)
+                // {
+                //     currencySellGbp = $scope.getGbp.rates[0].ask;
+                //     $scope.wallet.GBP += $scope.moneyGbp.value / currencySellGbp;
+                //     $scope.wallet.PLN -= $scope.moneyGbp.value;
+                //     updateCurrency('GBP', $scope.wallet.GBP);
+                //     updateCurrency('PLN', $scope.wallet.PLN);
+                //
+                // };
+                // $scope.applyBuyGbp = function (currencyBuyGbp)
+                // {
+                //     currencyBuyGbp = $scope.getGbp.rates[0].bid;
+                //     $scope.wallet.GBP -= $scope.moneyGbp.value;
+                //     $scope.wallet.PLN += $scope.moneyGbp.value * currencyBuyGbp;
+                //     updateCurrency('GBP', $scope.wallet.GBP);
+                //     updateCurrency('PLN', $scope.wallet.PLN);
+                // };
 
 
                 /*=======================================
@@ -147,29 +147,31 @@
                 };
 
 
-
                 /*=======================================
                  SHOW/HIDE TRANSACTION BOXES SCRIPTS
                  ==================================================*/
-                $scope.toggleSellUsd = function() {
-                    $scope.sellUsd = !$scope.sellUsd;
-                };
-                $scope.toggleBuyUsd = function() {
-                    $scope.buyUsd = !$scope.buyUsd;
-                };
+                // $scope.toggleSellUsd = function() {
+                //     $scope.sellUsd = !$scope.sellUsd;
+                // };
+                // $scope.toggleBuyUsd = function() {
+                //     $scope.buyUsd = !$scope.buyUsd;
+                // };
 
-                $scope.toggleSellEur = function() {
-                    $scope.sellEur = !$scope.sellEur;
-                };
-                $scope.toggleBuyEur = function() {
-                    $scope.buyEur = !$scope.buyEur;
-                };
+                // $scope.toggleSellEur = function() {
+                //     $scope.sellEur = !$scope.sellEur;
+                // };
+                // $scope.toggleBuyEur = function() {
+                //     $scope.buyEur = !$scope.buyEur;
+                // };
 
-                $scope.toggleSellGbp = function() {
-                    $scope.sellGbp = !$scope.sellGbp;
-                };
-                $scope.toggleBuyGbp = function() {
-                    $scope.buyGbp = !$scope.buyGbp;
-                };
+                // $scope.toggleSellGbp = function() {
+                //     $scope.sellGbp = !$scope.sellGbp;
+                // };
+                // $scope.toggleBuyGbp = function() {
+                //     $scope.buyGbp = !$scope.buyGbp;
+                // };
+
             });
+
+
 })();

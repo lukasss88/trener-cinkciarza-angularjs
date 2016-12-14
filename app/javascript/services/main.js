@@ -28,7 +28,7 @@
                         return $http.get('http://api.nbp.pl/api/exchangerates/rates/c/gbp/today/?format=json')
                                 .then(function (respone)
                                 {
-                                    var gbpCurrency = respone.data;;
+                                    var gbpCurrency = respone.data;
                                     return gbpCurrency;
                                 });
                     }

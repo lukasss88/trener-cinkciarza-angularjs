@@ -10,13 +10,11 @@
         </div>
     </div>
     <div class="col-md-4 col-md-offset-2">
-        <button class="btn btn-primary apply-btn" ng-click="applySellEur(moneyEur.value); walletEur = !walletEur; toggleSellEur(); removeClass()"
+        <button class="btn btn-primary apply-btn" ng-click="applySellEur(moneyEur.value); toggleSellEur(); removeClass()"
                 ng-disabled="sellToEur.sellEurValue.$error.max">Zatwierdź
         </button>
     </div>
     <div class=" col-md-4">
         <button class="btn btn-default cancel-btn" ng-click="toggleSellEur(); removeClass()">Anuluj</button>
     </div>
-
-
 </div>

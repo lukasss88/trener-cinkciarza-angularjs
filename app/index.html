@@ -42,7 +42,6 @@
             </span><br>
 
             <div ng-show="walletUsd" class="otherCurrency">
-
                 <div class="col-md-12 currencyType">
                     USD:
                     {{wallet.USD | number:2}}
@@ -53,11 +52,9 @@
                 <div class="col-md-3 ">
                     <button class="btn btn-primary btn-sell-usd" ng-click="toggleSellUsd(); addClass()" ng-disabled="wallet.PLN == 0">Sprzedaj</button>
                 </div>
-
             </div>
 
             <div ng-show="walletEur" class="otherCurrency">
-
                 <div class="col-md-12 currencyType">
                     EUR:
                     {{wallet.EUR | number:2}}
@@ -68,11 +65,9 @@
                 <div class="col-md-3">
                     <button class="btn btn-primary btn-sell-eur" ng-click="toggleSellEur(); addClass()" ng-disabled="wallet.PLN == 0">Sprzedaj</button>
                 </div>
-
             </div>
 
             <div ng-show="walletGbp" class="otherCurrency">
-
                 <div class="col-md-12 currencyType">
                     GBP:
                     {{wallet.GBP| number:2}}
@@ -83,7 +78,6 @@
                 <div class="col-md-3 ">
                     <button class="btn btn-primary btn-sell-gbp" ng-click="toggleSellGbp(); addClass()" ng-disabled="wallet.PLN == 0">Sprzedaj</button>
                 </div>
-
             </div>
 
             <div class="col-md-4 col-md-offset-4">
@@ -96,14 +90,21 @@
 
     <!-- CURRENCY EXCHANGE SECTION -->
     <div class="col-md-6">
-        <div ng-show="sellUsd" ng-include="'templates/plnToUsd/index.html'"></div>
-        <div ng-show="buyUsd" ng-include="'templates/usdToPln/index.html'"></div>
 
-        <div ng-show="sellEur" ng-include="'templates/plnToEur/index.html'"></div>
-        <div ng-show="buyEur" ng-include="'templates/eurToPln/index.html'"></div>
+        <!--<div ng-show="sellUsd" ng-include="'templates/plnToUsd/index.html'"></div>-->
+        <sell-usd ng-show="sellUsd"></sell-usd>
+        <!--<div ng-show="buyUsd" ng-include="'templates/usdToPln/index.html'"></div>-->
+        <buy-usd ng-show="buyUsd"></buy-usd>
 
-        <div ng-show="sellGbp" ng-include="'templates/plnToGbp/index.html'"></div>
-        <div ng-show="buyGbp" ng-include="'templates/gbpToPln/index.html'"></div>
+        <!--<div ng-show="sellEur" ng-include="'templates/plnToEur/index.html'"></div>-->
+        <sell-eur ng-show="sellEur"></sell-eur>
+        <!--<div ng-show="buyEur" ng-include="'templates/eurToPln/index.html'"></div>-->
+        <buy-eur ng-show="buyEur"></buy-eur>
+
+        <!--<div ng-show="sellGbp" ng-include="'templates/plnToGbp/index.html'"></div>-->
+        <sell-gbp ng-show="sellGbp"></sell-gbp>
+        <!--<div ng-show="buyGbp" ng-include="'templates/gbpToPln/index.html'"></div>-->
+        <buy-gbp ng-show="buyGbp"></buy-gbp>
 
     </div>
     <!-- END CURRENCY EXCHANGE SECTION -->
@@ -116,5 +117,11 @@
 <script src="javascript/app.js"></script>
 <script src="javascript/controllers/main.js"></script>
 <script src="javascript/services/main.js"></script>
+<script src="javascript/directives/buy-eur.js"></script>
+<script src="javascript/directives/sell-eur.js"></script>
+<script src="javascript/directives/buy-gbp.js"></script>
+<script src="javascript/directives/sell-gbp.js"></script>
+<script src="javascript/directives/sell-usd.js"></script>
+<script src="javascript/directives/buy-usd.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <div class="row well transaction-box">
     <h4>Wymiana GBP na PLN</h4>
-    <p>Dostepne srodki: {{$storage.wallet.GBP | number:2}} GBP</p>
+    <p>Dostepne srodki: {{wallet.GBP | number:2}} GBP</p>
     <p>Kurs sprzedazy: {{getGbp.rates[0].bid}} zl</p>
     <div class="transaction row" ng-form name="buyToGbp">
         <label for="gbpToPln" class="col-xs-4 col-form-label">Kwota wymiany</label>
@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="col-md-offset-2 col-md-4">
-        <button class="btn btn-primary apply-btn" ng-click="applyBuyGbp(moneyGbp.value); walletGbp = !walletGbp; toggleBuyGbp(); removeClass()"
+        <button class="btn btn-primary apply-btn" ng-click="applyBuyGbp(moneyGbp.value); toggleBuyGbp(); removeClass()"
                 ng-disabled="buyToGbp.buyGbpValue.$error.max">Zatwierdź
         </button>
     </div>
