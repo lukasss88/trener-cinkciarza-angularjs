@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="treningCinkciarza">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Trener Cinkciarza</title>
+
+    <!-- BOOTSTRAP CORE STYLE CSS -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet"/>
+    <!-- CUSTOM STYLE CSS -->
+    <link href="css/main.css" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <h1>Trener Cinkciarza</h1>
+</div>
+
+<div class="container" ng-controller="MainController">
+
+    <div class="col-md-6" data-ng-class="myClass">
+
+        <!-- ENTER MONEY SECTION -->
+        <div class="form-group row start-value">
+            <label for="start-number-input" class="col-xs-4 col-form-label">Kwota startowa</label>
+            <div class="col-xs-3 col-md-offset-3">
+                <input class="form-control" type="number" id="start-number-input" ng-model="moneyStart">
+
+            </div>
+            <p class="pln">PLN</p>
+            <div class="col-md-4 col-md-offset-4">
+                <button class="btn btn-info apply-btn" ng-click="apply()">Zatwierdź</button>
+            </div>
+        </div>
+        <!-- END ENTER MONEY SECTION -->
+
+        <!-- WALLET SECTION -->
+        <div class="form-group row well currency">
+            <h3>Stan portfela</h3>
+            <span>
+                PLN:
+                {{wallet.PLN | number:2}}
+            </span><br>
+
+            <div ng-show="walletUsd" class="otherCurrency">
+                <div class="col-md-12 currencyType">
+                    USD:
+                    {{wallet.USD | number:2}}
+                </div>
+                <div class="col-md-3 col-md-offset-3">
+                    <button class='btn btn-success btn-buy-usd' ng-click="toggleBuyUsd(); addClass()" ng-disabled="wallet.USD == 0">Kup</button>
+                </div>
+                <div class="col-md-3 ">
+                    <button class="btn btn-primary btn-sell-usd" ng-click="toggleSellUsd(); addClass()" ng-disabled="wallet.PLN == 0">Sprzedaj</button>
+                </div>
+            </div>
+
+            <div ng-show="walletEur" class="otherCurrency">
+                <div class="col-md-12 currencyType">
+                    EUR:
+                    {{wallet.EUR | number:2}}
+                </div>
+                <div class="col-md-3 col-md-offset-3">
+                    <button class='btn btn-success btn-buy-eur' ng-click="toggleBuyEur(); addClass()" ng-disabled="wallet.EUR == 0">Kup</button>
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-primary btn-sell-eur" ng-click="toggleSellEur(); addClass()" ng-disabled="wallet.PLN == 0">Sprzedaj</button>
+                </div>
+            </div>
+
+            <div ng-show="walletGbp" class="otherCurrency">
+                <div class="col-md-12 currencyType">
+                    GBP:
+                    {{wallet.GBP| number:2}}
+                </div>
+                <div class="col-md-3 col-md-offset-3">
+                    <button class='btn btn-success btn-buy-gbp' ng-click="toggleBuyGbp(); addClass()" ng-disabled="wallet.GBP == 0">Kup</button>
+                </div>
+                <div class="col-md-3 ">
+                    <button class="btn btn-primary btn-sell-gbp" ng-click="toggleSellGbp(); addClass()" ng-disabled="wallet.PLN == 0">Sprzedaj</button>
+                </div>
+            </div>
+
+            <div class="col-md-4 col-md-offset-4">
+                <button class="btn btn-danger resetButton" ng-click="reset()">Reset</button>
+            </div>
+
+        </div>
+        <!-- END WALLET SECTION -->
+    </div>
+
+    <!-- CURRENCY EXCHANGE SECTION -->
+    <div class="col-md-6">
+
+
+        <sell-usd ng-show="sellUsd"></sell-usd>
+
+        <buy-usd ng-show="buyUsd"></buy-usd>
+
+
+        <sell-eur ng-show="sellEur"></sell-eur>
+
+        <buy-eur ng-show="buyEur"></buy-eur>
+
+
+        <sell-gbp ng-show="sellGbp"></sell-gbp>
+
+        <buy-gbp ng-show="buyGbp"></buy-gbp>
+
+    </div>
+    <!-- END CURRENCY EXCHANGE SECTION -->
+
+</div>
+
+
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/ngstorage/ngStorage.min.js"></script>
+<script src="javascript/app.js"></script>
+<script src="javascript/controllers/main.js"></script>
+<script src="javascript/services/main.js"></script>
+<script src="javascript/directives/buy-eur.js"></script>
+<script src="javascript/directives/sell-eur.js"></script>
+<script src="javascript/directives/buy-gbp.js"></script>
+<script src="javascript/directives/sell-gbp.js"></script>
+<script src="javascript/directives/sell-usd.js"></script>
+<script src="javascript/directives/buy-usd.js"></script>
+</body>
+</html>

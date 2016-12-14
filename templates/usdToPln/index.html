@@ -1,0 +1,20 @@
+<div class="row well transaction-box" ng-show='buyUsd' ng-hide="">
+    <h4>Wymiana USD na PLN</h4>
+    <p>Dostepne srodki: {{wallet.USD | number:2}} USD</p>
+    <p>Kurs kupna: {{getUsd.rates[0].bid}} zl</p>
+    <div class="transaction row" ng-form name="buyToUsd">
+        <label for="usdToPln" class="col-xs-4 col-form-label">Kwota wymiany</label>
+        <div class="col-xs-3 col-md-offset-3">
+            <input class="form-control" type="number" id="usdToPln" ng-max="{{wallet.USD}}" ng-model="moneyUsd.value" name="buyUsdValue">
+            <span class="error" ng-show="buyToUsd.buyUsdValue.$error.max">Too much!</span>
+        </div>
+    </div>
+    <div class="col-md-4 col-md-offset-2">
+        <button class="btn btn-primary apply-btn" ng-click="applyBuyUsd(moneyUsd.value); toggleBuyUsd(); removeClass()"
+                ng-disabled="buyToUsd.buyUsdValue.$error.max">Zatwierdź
+        </button>
+    </div>
+    <div class=" col-md-4">
+        <button class="btn btn-default cancel-btn" ng-click="toggleBuyUsd(); removeClass()">Anuluj</button>
+    </div>
+</div>
