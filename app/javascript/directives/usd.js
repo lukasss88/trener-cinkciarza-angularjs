@@ -5,7 +5,7 @@
             .directive('actionUsd', function ()
             {
                 return {
-                    restrict: 'E', templateUrl: 'templates/plnToUsd/test.html', controller: function ($scope, $localStorage)
+                    restrict: 'E', templateUrl: 'templates/test.html', controller: function ($scope, $localStorage)
                     {
 
                         $scope.currencyBox = false;
@@ -137,7 +137,6 @@
                             $scope.message = 'Wymiana GBP na PLN';
                             $scope.currencyValue = $scope.getGbp.rates[0].bid;
                             $scope.currencyType = 'GBP';
-
                         };
 
 

@@ -10,11 +10,11 @@
         </div>
     </div>
     <div class="col-md-4 col-md-offset-2">
-        <button class="btn btn-primary apply-btn" ng-click="applyCurrency(money.value); toggleBox(); removeClass()"
+        <button class="btn btn-primary apply-btn" ng-click="applyCurrency(money.value); toggleBox(); addOpacity = !addOpacity"
                 ng-disabled="actionToUsd.usdValue.$error.max">Zatwierdź
         </button>
     </div>
     <div class=" col-md-4">
-        <button class="btn btn-default cancel-btn" ng-click="toggleBox(); removeClass()">Anuluj</button>
+        <button class="btn btn-default cancel-btn" ng-click="toggleBox(); addOpacity = !addOpacity">Anuluj</button>
     </div>
 </div>

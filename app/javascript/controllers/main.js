@@ -31,9 +31,7 @@
                     $localStorage.$reset();
                     $scope.wallet = {};
                     setStartingValues();
-
                 };
-
 
                 $scope.apply = function ()
                 {
@@ -57,18 +55,5 @@
                     $scope.getGbp = data;
                 });
 
-
-                /*=======================================
-                 ADD OPACITY TO WALLET
-                 ==================================================*/
-
-                //change to data-ng-class
-                $scope.myClass = {expose:false};
-                $scope.addClass = function() {
-                    $scope.myClass.expose = true;
-                };
-                $scope.removeClass = function() {
-                    $scope.myClass.expose = false;
-                };
             });
 })();
