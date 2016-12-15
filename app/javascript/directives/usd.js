@@ -35,6 +35,7 @@
                         $scope.sellUsd = function(type) {
 
                             $scope.wallet[type] = $scope.wallet.PLN;
+
                             $scope.applyCurrency = function (currencySellUsd)
                             {
                                 currencySellUsd = $scope.getUsd.rates[0].ask;
