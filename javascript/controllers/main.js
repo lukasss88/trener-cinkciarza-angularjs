@@ -4,11 +4,9 @@
     angular.module('treningCinkciarza')
             .controller('MainController', function ($scope, $localStorage, CurrenciesService)
             {
-                $scope.moneyStart = {value: null};
-
                 $scope.wallet = {};
 
-                $scope.moneyStart = 0;
+                $scope.moneyStart = null;
 
                 function setStartingValues()
                 {
@@ -31,14 +29,13 @@
                     $localStorage.$reset();
                     $scope.wallet = {};
                     setStartingValues();
-
                 };
 
                 $scope.apply = function ()
                 {
                     $scope.reset();
                     updateCurrency('PLN', $scope.moneyStart);
-                    $scope.moneyStart = 0;
+                    $scope.moneyStart = null;
                 };
 
                 CurrenciesService.getUsd().then(function (data)
@@ -56,16 +53,5 @@
                     $scope.getGbp = data;
                 });
 
-
-                /*=======================================
-                 ADD OPACITY TO WALLET
-                 ==================================================*/
-                $scope.myClass = {expose:false};
-                $scope.addClass = function() {
-                    $scope.myClass.expose = true;
-                };
-                $scope.removeClass = function() {
-                    $scope.myClass.expose = false;
-                };
             });
 })();

@@ -1,0 +1,21 @@
+<div class="row well transaction-box">
+    <h4>{{message}}</h4>
+    <p>Dostepne srodki: {{wallet[type] | number:2}} {{ currencyType}}</p>
+    <p>Kurs sprzedazy: {{currencyValue}} zl</p>
+    <div class="transaction row" ng-form name="actionToCurrency">
+        <label for="plnToUsd" class="col-xs-4 col-form-label">Kwota wymiany</label>
+        <div class="col-xs-4 col-md-offset-3">
+            <input class="form-control" type="number" id="plnToUsd" max="{{wallet[type]}}" min="0.1" ng-model="money.value" name="currencyValue" required>
+            <span class="error" ng-show="actionToCurrency.currencyValue.$error.max">Too much!</span>
+            <span class="error" ng-show="actionToCurrency.currencyValue.$error.min">Not enough!</span>
+        </div>
+    </div>
+    <div class="col-md-4 col-md-offset-2">
+        <button class="btn btn-primary apply-btn" ng-click="applyCurrency(money.value); toggleBox(); addOpacity = !addOpacity"
+                ng-disabled="actionToCurrency.currencyValue.$error.max || actionToCurrency.currencyValue.$error.min; actionToCurrency.$invalid">Zatwierdź
+        </button>
+    </div>
+    <div class=" col-md-4">
+        <button class="btn btn-default cancel-btn" ng-click="toggleBox(); addOpacity = !addOpacity">Anuluj</button>
+    </div>
+</div>
