@@ -14,7 +14,7 @@
 <div class="container">
     <h1>Trener Cinkciarza</h1>
 </div>
-0
+
 <div class="container" ng-controller="MainController">
 
     <div class="col-md-6" data-ng-class="{ 'expose' : addOpacity }">
@@ -22,13 +22,15 @@
         <!-- ENTER MONEY SECTION -->
         <div class="form-group row start-value" name="divStartingValue" ng-form>
             <label for="start-number-input" class="col-xs-4 col-form-label">Kwota startowa</label>
-            <div class="col-xs-3 col-md-offset-3" >
-                <input class="form-control" type="number" id="start-number-input" ng-model="moneyStart" name="inputStartingValue" min="0">
-                <span class="error" ng-show="divStartingValue.inputStartingValue.$error.min">Not enough!</span>
+            <div class="col-xs-3 col-md-offset-3">
+                <input class="form-control" type="number" id="start-number-input" ng-model="moneyStart" name="inputStartingValue" min="0.1" required>
+                <span class="error" ng-show="divStartingValue.inputStartingValue.$error.min" >Not enough!</span>
             </div>
             <p class="pln">PLN</p>
-            <div class="col-md-4 col-md-offset-4">
-                <button class="btn btn-info apply-btn" ng-click="apply()" ng-disabled="divStartingValue.inputStartingValue.$error.min">Zatwierdź</button>
+            <div class="col-md-4 col-md-offset-4" >
+                <button class="btn btn-info apply-btn" ng-click="apply()"
+                        ng-disabled="divStartingValue.inputStartingValue.$error.min; divStartingValue.$invalid">Zatwierdź
+                </button>
             </div>
         </div>
         <!-- END ENTER MONEY SECTION -->
@@ -47,10 +49,10 @@
                     {{wallet.USD | number:2}}
                 </div>
                 <div class="col-md-3 col-md-offset-3">
-                    <button class='btn btn-success btn-buy-usd' ng-click="toggleBox(); buyUsd(); addOpacity = !addOpacity" ng-disabled="wallet.USD == 0">Kup</button>
+                    <button class='btn btn-success btn-buy-usd' ng-click="buyUsd(); addOpacity = !addOpacity" ng-disabled="wallet.USD == 0">Kup</button>
                 </div>
                 <div class="col-md-3 ">
-                    <button class="btn btn-primary btn-sell-usd" ng-click="toggleBox(); sellUsd(); addOpacity = !addOpacity" ng-disabled="wallet.PLN == 0">Sprzedaj</button>
+                    <button class="btn btn-primary btn-sell-usd" ng-click="sellUsd(); addOpacity = !addOpacity" ng-disabled="wallet.PLN == 0">Sprzedaj</button>
                 </div>
             </div>
 
@@ -60,10 +62,10 @@
                     {{wallet.EUR | number:2}}
                 </div>
                 <div class="col-md-3 col-md-offset-3">
-                    <button class='btn btn-success btn-buy-eur' ng-click="toggleBox(); buyEur(); addOpacity = !addOpacity" ng-disabled="wallet.EUR == 0">Kup</button>
+                    <button class='btn btn-success btn-buy-eur' ng-click="buyEur(); addOpacity = !addOpacity" ng-disabled="wallet.EUR == 0">Kup</button>
                 </div>
                 <div class="col-md-3">
-                    <button class="btn btn-primary btn-sell-eur" ng-click="toggleBox(); sellEur(); addOpacity = !addOpacity" ng-disabled="wallet.PLN == 0">Sprzedaj</button>
+                    <button class="btn btn-primary btn-sell-eur" ng-click="sellEur(); addOpacity = !addOpacity" ng-disabled="wallet.PLN == 0">Sprzedaj</button>
                 </div>
             </div>
 
@@ -73,10 +75,10 @@
                     {{wallet.GBP| number:2}}
                 </div>
                 <div class="col-md-3 col-md-offset-3">
-                    <button class='btn btn-success btn-buy-gbp' ng-click="toggleBox(); buyGbp(); addOpacity = !addOpacity" ng-disabled="wallet.GBP == 0">Kup</button>
+                    <button class='btn btn-success btn-buy-gbp' ng-click="buyGbp(); addOpacity = !addOpacity" ng-disabled="wallet.GBP == 0">Kup</button>
                 </div>
                 <div class="col-md-3 ">
-                    <button class="btn btn-primary btn-sell-gbp" ng-click="toggleBox(); sellGbp(); addOpacity = !addOpacity" ng-disabled="wallet.PLN == 0">Sprzedaj</button>
+                    <button class="btn btn-primary btn-sell-gbp" ng-click="sellGbp(); addOpacity = !addOpacity" ng-disabled="wallet.PLN == 0">Sprzedaj</button>
                 </div>
             </div>
 
@@ -91,19 +93,18 @@
     <!-- CURRENCY EXCHANGE SECTION -->
     <div class="col-md-6">
 
-        <action-usd ng-show="currencyBox"></action-usd>
+        <exchange-box ng-show="currencyBox"></exchange-box>
 
     </div>
     <!-- END CURRENCY EXCHANGE SECTION -->
 
 </div>
 
-
 <script src="bower_components/angular/angular.min.js"></script>
 <script src="bower_components/ngstorage/ngStorage.min.js"></script>
 <script src="javascript/app.js"></script>
 <script src="javascript/controllers/main.js"></script>
 <script src="javascript/services/main.js"></script>
-<script src="javascript/directives/usd.js"></script>
+<script src="javascript/directives/exchange-box.js"></script>
 </body>
 </html>

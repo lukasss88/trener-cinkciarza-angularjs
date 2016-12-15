@@ -2,12 +2,11 @@
 {
     'use strict';
     angular.module('treningCinkciarza')
-            .directive('actionUsd', function ()
+            .directive('exchangeBox', function ()
             {
                 return {
                     restrict: 'E', templateUrl: 'templates/test.html', controller: function ($scope, $localStorage)
                     {
-
                         $scope.currencyBox = false;
 
                         $scope.walletUsd = true;
@@ -19,7 +18,8 @@
                         $scope.walletGbp = true;
                         $scope.gbp = 'gbp';
 
-                        $scope.toggleBox = function(){
+                        $scope.toggleBox = function ()
+                        {
                             $scope.currencyBox = !$scope.currencyBox;
                         };
 
@@ -32,9 +32,11 @@
 
                         $scope.money = {value: null};
 
-                        $scope.sellUsd = function(type) {
-
+                        $scope.sellUsd = function (type)
+                        {
                             $scope.wallet[type] = $scope.wallet.PLN;
+
+                            $scope.currencyBox = !$scope.currencyBox;
 
                             $scope.applyCurrency = function (currencySellUsd)
                             {
@@ -50,27 +52,31 @@
                             $scope.currencyType = 'PLN';
                         };
 
-                        $scope.buyUsd = function(type) {
-
+                        $scope.buyUsd = function (type)
+                        {
                             $scope.wallet[type] = $scope.wallet.USD;
+
+                            $scope.currencyBox = !$scope.currencyBox;
 
                             $scope.applyCurrency = function (currencyBuyUsd)
                             {
-                                    currencyBuyUsd = $scope.getUsd.rates[0].bid;
-                                    $scope.wallet.USD -= $scope.money.value;
-                                    $scope.wallet.PLN += $scope.money.value * currencyBuyUsd;
-                                    updateCurrency('USD', $scope.wallet.USD);
-                                    updateCurrency('PLN', $scope.wallet.PLN);
+                                currencyBuyUsd = $scope.getUsd.rates[0].bid;
+                                $scope.wallet.USD -= $scope.money.value;
+                                $scope.wallet.PLN += $scope.money.value * currencyBuyUsd;
+                                updateCurrency('USD', $scope.wallet.USD);
+                                updateCurrency('PLN', $scope.wallet.PLN);
                             };
 
                             $scope.message = 'Wymiana USD na PLN';
-                            $scope.currencyValue= $scope.getUsd.rates[0].bid;
+                            $scope.currencyValue = $scope.getUsd.rates[0].bid;
                             $scope.currencyType = 'USD';
                         };
 
-                        $scope.buyEur = function(type) {
-
+                        $scope.buyEur = function (type)
+                        {
                             $scope.wallet[type] = $scope.wallet.EUR;
+
+                            $scope.currencyBox = !$scope.currencyBox;
 
                             $scope.applyCurrency = function (currencyBuyEur)
                             {
@@ -82,13 +88,15 @@
                             };
 
                             $scope.message = 'Wymiana EURO na PLN';
-                            $scope.currencyValue= $scope.getEur.rates[0].bid;
+                            $scope.currencyValue = $scope.getEur.rates[0].bid;
                             $scope.currencyType = 'EUR';
                         };
 
-                        $scope.sellEur = function(type) {
-
+                        $scope.sellEur = function (type)
+                        {
                             $scope.wallet[type] = $scope.wallet.PLN;
+
+                            $scope.currencyBox = !$scope.currencyBox;
 
                             $scope.applyCurrency = function (currencySellEur)
                             {
@@ -104,9 +112,11 @@
                             $scope.currencyType = 'PLN';
                         };
 
-                        $scope.sellGbp = function(type) {
-
+                        $scope.sellGbp = function (type)
+                        {
                             $scope.wallet[type] = $scope.wallet.PLN;
+
+                            $scope.currencyBox = !$scope.currencyBox;
 
                             $scope.applyCurrency = function (currencySellGbp)
                             {
@@ -122,11 +132,13 @@
                             $scope.currencyType = 'PLN';
                         };
 
-                        $scope.buyGbp = function(type) {
-
+                        $scope.buyGbp = function (type)
+                        {
                             $scope.wallet[type] = $scope.wallet.GBP;
 
-                            $scope.applyCurrency = function(currencyBuyGbp)
+                            $scope.currencyBox = !$scope.currencyBox;
+
+                            $scope.applyCurrency = function (currencyBuyGbp)
                             {
                                 currencyBuyGbp = $scope.getGbp.rates[0].bid;
                                 $scope.wallet.GBP -= $scope.money.value;
@@ -139,7 +151,6 @@
                             $scope.currencyValue = $scope.getGbp.rates[0].bid;
                             $scope.currencyType = 'GBP';
                         };
-
 
                     }
                 };

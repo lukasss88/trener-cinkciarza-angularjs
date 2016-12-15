@@ -4,11 +4,9 @@
     angular.module('treningCinkciarza')
             .controller('MainController', function ($scope, $localStorage, CurrenciesService)
             {
-                $scope.moneyStart = {value: null};
-
                 $scope.wallet = {};
 
-                $scope.moneyStart = 0;
+                $scope.moneyStart = null;
 
                 function setStartingValues()
                 {
@@ -37,7 +35,7 @@
                 {
                     $scope.reset();
                     updateCurrency('PLN', $scope.moneyStart);
-                    $scope.moneyStart = 0;
+                    $scope.moneyStart = null;
                 };
 
                 CurrenciesService.getUsd().then(function (data)
