@@ -5,6 +5,7 @@
             .directive('buyUsd', function ()
             {
                 return {
+
                     restrict: 'E', templateUrl: 'templates/usdToPln/index.html', controller: function ($scope, $localStorage)
                     {
 

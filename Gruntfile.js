@@ -4,6 +4,7 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-gh-pages');
 
     grunt.initConfig({
         watch: {
@@ -32,6 +33,12 @@ module.exports = function (grunt) {
                     }
                 }
             }
+        },
+        'gh-pages': {
+            options: {
+                base: 'app'
+            },
+            src: ['**']
         }
     });
 
