@@ -10,18 +10,20 @@
             <span class="error" ng-show="actionToCurrency.currencyValue.$error.min">Not enough!</span>
         </div>
         <div class="predictedAmount">
-        <label for="predictedValue" class="col-xs-4 col-form-label">Otrzymasz:</label>
-        <div class="col-xs-4 col-md-offset-3">
-            <span id="predictedValue">{{ btnBuy ? (money.value / currencyValue | number:2) : (money.value * currencyValue | number:2)}}{{currencyReceive}}</span>
-        </div>
+            <label for="predictedValue" class="col-xs-4 col-form-label">Otrzymasz:</label>
+            <div class="col-xs-4 col-md-offset-3">
+                <span id="predictedValue">{{ btnBuy ? (money.value / currencyValue | number:2) : (money.value * currencyValue | number:2)}}{{currencyReceive}}</span>
+            </div>
         </div>
     </div>
-    <div class="col-md-4 col-md-offset-2">
-        <button class="btn btn-primary apply-btn" ng-click="applyCurrency(money.value); toggleBox(); addOpacity = !addOpacity"
-                ng-disabled="actionToCurrency.currencyValue.$error.max || actionToCurrency.currencyValue.$error.min; actionToCurrency.$invalid">Zatwierdź
-        </button>
-    </div>
-    <div class=" col-md-4">
-        <button class="btn btn-default cancel-btn" ng-click="toggleBox(); addOpacity = !addOpacity">Anuluj</button>
+    <div class="action-buttons">
+        <div class="col-md-4 col-md-offset-2">
+            <button class="btn btn-primary apply-btn" ng-click="applyCurrency(money.value); toggleBox(); addOpacity = !addOpacity"
+                    ng-disabled="actionToCurrency.currencyValue.$error.max || actionToCurrency.currencyValue.$error.min; actionToCurrency.$invalid">Zatwierdź
+            </button>
+        </div>
+        <div class=" col-md-4">
+            <button class="btn btn-default cancel-btn" ng-click="toggleBox(); addOpacity = !addOpacity">Anuluj</button>
+        </div>
     </div>
 </div>

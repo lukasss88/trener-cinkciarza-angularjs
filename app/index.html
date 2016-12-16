@@ -24,10 +24,10 @@
             <label for="start-number-input" class="col-xs-4 col-form-label">Kwota startowa</label>
             <div class="col-xs-3 col-md-offset-3">
                 <input class="form-control" type="number" id="start-number-input" ng-model="moneyStart" name="inputStartingValue" min="0.1" required>
-                <span class="error" ng-show="divStartingValue.inputStartingValue.$error.min" >Not enough!</span>
+                <span class="error" ng-show="divStartingValue.inputStartingValue.$error.min">Not enough!</span>
             </div>
             <p class="pln">PLN</p>
-            <div class="col-md-4 col-md-offset-4" >
+            <div class="col-md-4 col-md-offset-4">
                 <button class="btn btn-info apply-btn" ng-click="apply()"
                         ng-disabled="divStartingValue.inputStartingValue.$error.min; divStartingValue.$invalid">Zatwierdź
                 </button>
@@ -41,47 +41,68 @@
             <span>
                 PLN:
                 {{wallet.PLN | number:2}}zl
-            </span><br>
+            </span>
+            <span></span>
+            <br>
 
-            <div class="otherCurrency">
-                <div class="col-md-12 currencyType">
-                    USD:
-                    {{wallet.USD | number:2}}$
+            <div class="otherCurrency ">
+                <div class="row currencyType">
+                    <div class="row wallet-status">
+                        <div class="col-md-offset-1 col-md-4">
+                            USD:
+                            {{wallet.USD | number:2}}$
+                        </div>
+                    </div>
+                    <div class="col-md-offset-3 col-md-4">{{getUsd.rates[0].ask}}zł</div>
+                    <div class="col-md-4">{{getUsd.rates[0].bid}}zł</div>
                 </div>
-                <div class="col-md-3 col-md-offset-3">
-                    <!-- WSTAW KURSY NAD PRZYCISKAMI -->
+                <div class="col-md-4 col-md-offset-2">
+
                     <button class='btn btn-success' ng-click="sellUsd()" ng-disabled="wallet.PLN == 0">Kup</button>
                 </div>
-                <div class="col-md-3 ">
+                <div class="col-md-4 ">
                     <button class="btn btn-primary" ng-click="buyUsd()" ng-disabled="wallet.USD == 0">Sprzedaj</button>
                 </div>
             </div>
 
             <div class="otherCurrency">
-                <div class="col-md-12 currencyType">
-                    EUR:
-                    {{wallet.EUR | number:2}}€
+                <div class="row currencyType">
+                    <div class="row wallet-status">
+                        <div class="col-md-offset-1 col-md-4">
+                            EUR:
+                            {{wallet.EUR | number:2}}€
+                        </div>
+                    </div>
+                    <div class="col-md-offset-3 col-md-4">{{getEur.rates[0].ask}}zł</div>
+                    <div class="col-md-4">{{getEur.rates[0].bid}}zł</div>
                 </div>
-                <div class="col-md-3 col-md-offset-3">
+                <div class="col-md-4 col-md-offset-2">
                     <button class='btn btn-success' ng-click="sellEur()" ng-disabled="wallet.PLN == 0">Kup</button>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <button class="btn btn-primary" ng-click="buyEur()" ng-disabled="wallet.EUR == 0">Sprzedaj</button>
                 </div>
             </div>
 
             <div class="otherCurrency">
-                <div class="col-md-12 currencyType">
-                    GBP:
-                    {{wallet.GBP| number:2}}£
+                <div class="row currencyType">
+                    <div class="row wallet-status">
+                        <div class="col-md-offset-1 col-md-4">
+                            GBP:
+                            {{wallet.GBP| number:2}}£
+                        </div>
+                    </div>
+                    <div class="col-md-offset-3 col-md-4">{{getGbp.rates[0].ask}}zł</div>
+                    <div class="col-md-4">{{getGbp.rates[0].bid}}zł</div>
                 </div>
-                <div class="col-md-3 col-md-offset-3">
+                <div class="col-md-4 col-md-offset-2">
                     <button class='btn btn-success' ng-click="sellGbp()" ng-disabled="wallet.PLN == 0">Kup</button>
                 </div>
-                <div class="col-md-3 ">
+                <div class="col-md-4">
                     <button class="btn btn-primary" ng-click="buyGbp()" ng-disabled="wallet.GBP == 0">Sprzedaj</button>
                 </div>
             </div>
+
 
             <div class="col-md-4 col-md-offset-4">
                 <button class="btn btn-danger resetButton" ng-click="reset()">Reset</button>

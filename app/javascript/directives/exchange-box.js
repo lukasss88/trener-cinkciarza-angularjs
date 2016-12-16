@@ -159,6 +159,7 @@
                             $scope.btnBuy = false;
                         };
 
+
                     }
                 };
             });
