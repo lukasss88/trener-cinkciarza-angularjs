@@ -40,45 +40,46 @@
             <h3>Stan portfela</h3>
             <span>
                 PLN:
-                {{wallet.PLN | number:2}}
+                {{wallet.PLN | number:2}}zl
             </span><br>
 
-            <div ng-show="walletUsd" class="otherCurrency">
+            <div class="otherCurrency">
                 <div class="col-md-12 currencyType">
                     USD:
-                    {{wallet.USD | number:2}}
+                    {{wallet.USD | number:2}}$
                 </div>
                 <div class="col-md-3 col-md-offset-3">
-                    <button class='btn btn-success btn-buy-usd' ng-click="buyUsd(); addOpacity = !addOpacity" ng-disabled="wallet.USD == 0">Kup</button>
+                    <!-- WSTAW KURSY NAD PRZYCISKAMI -->
+                    <button class='btn btn-success' ng-click="sellUsd()" ng-disabled="wallet.PLN == 0">Kup</button>
                 </div>
                 <div class="col-md-3 ">
-                    <button class="btn btn-primary btn-sell-usd" ng-click="sellUsd(); addOpacity = !addOpacity" ng-disabled="wallet.PLN == 0">Sprzedaj</button>
+                    <button class="btn btn-primary" ng-click="buyUsd()" ng-disabled="wallet.USD == 0">Sprzedaj</button>
                 </div>
             </div>
 
-            <div ng-show="walletEur" class="otherCurrency">
+            <div class="otherCurrency">
                 <div class="col-md-12 currencyType">
                     EUR:
-                    {{wallet.EUR | number:2}}
+                    {{wallet.EUR | number:2}}€
                 </div>
                 <div class="col-md-3 col-md-offset-3">
-                    <button class='btn btn-success btn-buy-eur' ng-click="buyEur(); addOpacity = !addOpacity" ng-disabled="wallet.EUR == 0">Kup</button>
+                    <button class='btn btn-success' ng-click="sellEur()" ng-disabled="wallet.PLN == 0">Kup</button>
                 </div>
                 <div class="col-md-3">
-                    <button class="btn btn-primary btn-sell-eur" ng-click="sellEur(); addOpacity = !addOpacity" ng-disabled="wallet.PLN == 0">Sprzedaj</button>
+                    <button class="btn btn-primary" ng-click="buyEur()" ng-disabled="wallet.EUR == 0">Sprzedaj</button>
                 </div>
             </div>
 
-            <div ng-show="walletGbp" class="otherCurrency">
+            <div class="otherCurrency">
                 <div class="col-md-12 currencyType">
                     GBP:
-                    {{wallet.GBP| number:2}}
+                    {{wallet.GBP| number:2}}£
                 </div>
                 <div class="col-md-3 col-md-offset-3">
-                    <button class='btn btn-success btn-buy-gbp' ng-click="buyGbp(); addOpacity = !addOpacity" ng-disabled="wallet.GBP == 0">Kup</button>
+                    <button class='btn btn-success' ng-click="sellGbp()" ng-disabled="wallet.PLN == 0">Kup</button>
                 </div>
                 <div class="col-md-3 ">
-                    <button class="btn btn-primary btn-sell-gbp" ng-click="sellGbp(); addOpacity = !addOpacity" ng-disabled="wallet.PLN == 0">Sprzedaj</button>
+                    <button class="btn btn-primary" ng-click="buyGbp()" ng-disabled="wallet.GBP == 0">Sprzedaj</button>
                 </div>
             </div>
 

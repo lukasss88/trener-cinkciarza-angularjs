@@ -23,6 +23,10 @@ h1 {
     font-size: 20px;
 }
 
+span {
+    font-size: 20px;
+}
+
 /*=======================================
     WALLET STYLES
 ==================================================*/
@@ -72,7 +76,7 @@ input {
     margin-left: 20px;
 }
 
-.transaction-box h4 {
+.transaction-box h3 {
     text-align: center;
     padding-bottom: 30px;
 }
@@ -80,5 +84,9 @@ input {
     width: 100%;
     margin-top: 20px;
 }
-
-
+p {
+    font-size: 18px;
+}
+.predictedAmount {
+    margin-top: 55px;
+}
