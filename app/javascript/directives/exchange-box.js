@@ -30,8 +30,8 @@
                             $scope.applyCurrency = function (currencySellUsd)
                             {
                                 currencySellUsd = $scope.getUsd.rates[0].ask;
-                                $scope.wallet.USD += $scope.money.value / currencySellUsd;
-                                $scope.wallet.PLN -= $scope.money.value;
+                                $scope.wallet.USD += parseFloat(($scope.money.value / currencySellUsd).toFixed(2));
+                                $scope.wallet.PLN -= parseFloat(($scope.money.value).toFixed(2));
                                 updateCurrency('USD', $scope.wallet.USD);
                                 updateCurrency('PLN', $scope.wallet.PLN);
                             };
@@ -53,8 +53,8 @@
                             $scope.applyCurrency = function (currencyBuyUsd)
                             {
                                 currencyBuyUsd = $scope.getUsd.rates[0].bid;
-                                $scope.wallet.USD -= $scope.money.value;
-                                $scope.wallet.PLN += $scope.money.value * currencyBuyUsd;
+                                $scope.wallet.USD -= parseFloat(($scope.money.value).toFixed(2));
+                                $scope.wallet.PLN += parseFloat(($scope.money.value * currencyBuyUsd).toFixed(2));
                                 updateCurrency('USD', $scope.wallet.USD);
                                 updateCurrency('PLN', $scope.wallet.PLN);
                             };
@@ -76,8 +76,8 @@
                             $scope.applyCurrency = function (currencyBuyEur)
                             {
                                 currencyBuyEur = $scope.getEur.rates[0].bid;
-                                $scope.wallet.EUR -= $scope.money.value;
-                                $scope.wallet.PLN += $scope.money.value * currencyBuyEur;
+                                $scope.wallet.EUR -= parseFloat(($scope.money.value).toFixed(2));
+                                $scope.wallet.PLN += parseFloat(($scope.money.value * currencyBuyEur).toFixed(2));
                                 updateCurrency('EUR', $scope.wallet.EUR);
                                 updateCurrency('PLN', $scope.wallet.PLN);
                             };
@@ -99,8 +99,8 @@
                             $scope.applyCurrency = function (currencySellEur)
                             {
                                 currencySellEur = $scope.getEur.rates[0].ask;
-                                $scope.wallet.EUR += $scope.money.value / currencySellEur;
-                                $scope.wallet.PLN -= $scope.money.value;
+                                $scope.wallet.EUR += parseFloat(($scope.money.value / currencySellEur).toFixed(2));
+                                $scope.wallet.PLN -= parseFloat(($scope.money.value).toFixed(2));
                                 updateCurrency('EUR', $scope.wallet.EUR);
                                 updateCurrency('PLN', $scope.wallet.PLN);
                             };
@@ -122,8 +122,8 @@
                             $scope.applyCurrency = function (currencySellGbp)
                             {
                                 currencySellGbp = $scope.getGbp.rates[0].ask;
-                                $scope.wallet.GBP += $scope.money.value / currencySellGbp;
-                                $scope.wallet.PLN -= $scope.money.value;
+                                $scope.wallet.GBP += parseFloat(($scope.money.value / currencySellGbp).toFixed(2));
+                                $scope.wallet.PLN -= parseFloat(($scope.money.value).toFixed(2));
                                 updateCurrency('GBP', $scope.wallet.GBP);
                                 updateCurrency('PLN', $scope.wallet.PLN);
                             };
@@ -145,8 +145,8 @@
                             $scope.applyCurrency = function (currencyBuyGbp)
                             {
                                 currencyBuyGbp = $scope.getGbp.rates[0].bid;
-                                $scope.wallet.GBP -= $scope.money.value;
-                                $scope.wallet.PLN += $scope.money.value * currencyBuyGbp;
+                                $scope.wallet.GBP -= parseFloat(($scope.money.value).toFixed(2));
+                                $scope.wallet.PLN += parseFloat(($scope.money.value * currencyBuyGbp).toFixed(2));
                                 updateCurrency('GBP', $scope.wallet.GBP);
                                 updateCurrency('PLN', $scope.wallet.PLN);
                             };

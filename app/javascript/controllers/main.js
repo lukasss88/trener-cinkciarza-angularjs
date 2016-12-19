@@ -29,6 +29,7 @@
                     $localStorage.$reset();
                     $scope.wallet = {};
                     setStartingValues();
+
                 };
 
                 $scope.apply = function ()
@@ -54,8 +55,18 @@
                 });
 
 
+                $scope.items = ['USD', 'EUR', 'GBP'];
+                $scope.selection = $scope.items[0];
 
 
+                $scope.checkWallet = function(type) {
+                    if($scope.wallet[type] <= 0) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                };
 
 
             });
