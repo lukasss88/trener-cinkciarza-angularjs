@@ -46,22 +46,22 @@
                 <p ng-hide="wallet.EUR == 0">EUR: {{wallet.EUR | number:2}}€</p>
                 <p ng-hide="wallet.GBP == 0">GBP: {{wallet.GBP | number:2}}£</p>
 
-                <!--<div ng-repeat="(key, value) in wallet">-->
-                    <!--<h4 ng-show="value > 0 ? true : false"><span >{{key}}</span>: {{value | number:2}} </h4>-->
-                <!--</div>-->
-
             </div>
             <div class="well">
                 <h3>Wymiana walut</h3>
-                <label for="selection-currency">Wybierz walutę</label>
-                <select ng-model="currencies" id="selection-currency" ng-options="item for item in items" class="form-control"></select>
 
-
+                <div class="form-grop row">
+                    <div class="col-md-4">
+                        <label for="selection-currency">Wybierz walutę:</label>
+                    </div>
+                    <div class="col-md-4">
+                        <select ng-model="currencies" id="selection-currency" ng-options="item for item in items" class="form-control"></select>
+                    </div>
+                </div>
                 <div ng-switch-default></div>
 
-
-                <div class="otherCurrency" ng-switch-when="USD">
-                    <div class="row currencyType">
+                <div class="other-currency" ng-switch-when="USD">
+                    <div class="row currency-type">
                         <div class="row wallet-status">
                             <div class="col-md-offset-1 col-md-4">
                                 USD:
@@ -80,8 +80,8 @@
                     </div>
                 </div>
 
-                <div class="otherCurrency" ng-switch-when="EUR">
-                    <div class="row currencyType">
+                <div class="other-currency" ng-switch-when="EUR">
+                    <div class="row currency-type">
                         <div class="row wallet-status">
                             <div class="col-md-offset-1 col-md-4">
                                 EUR:
@@ -99,8 +99,8 @@
                     </div>
                 </div>
 
-                <div class="otherCurrency" ng-switch-when="GBP">
-                    <div class="row currencyType">
+                <div class="other-currency" ng-switch-when="GBP">
+                    <div class="row currency-type">
                         <div class="row wallet-status">
                             <div class="col-md-offset-1 col-md-4">
                                 GBP:
@@ -120,7 +120,7 @@
 
 
                 <div class="col-md-4 col-md-offset-4">
-                    <button class="btn btn-danger resetButton" ng-click="reset()">Reset</button>
+                    <button class="btn btn-danger reset-button" ng-click="reset()">Reset</button>
                 </div>
             </div>
         </div>

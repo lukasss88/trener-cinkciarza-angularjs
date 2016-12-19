@@ -35,28 +35,27 @@ label {
     WALLET STYLES
 ==================================================*/
 .currency span {
-
     font-size: 20px;
 }
 .pln {
     text-align: right;
 }
 
-.currencyType {
+.currency-type {
     font-size: 20px;
     padding: 10px;
 }
-.otherCurrency {
+.other-currency {
     padding-bottom: 75px;
     border: 1px solid #0f0f0f;
     height: 127px;
     margin-top: 20px;
 }
-.otherCurrency button {
+.other-currency button {
     width: 100%;
     margin-left: 8px;
 }
-.resetButton {
+.reset-button {
     width: 100%;
     margin-top:30px;
 }
@@ -94,9 +93,9 @@ input {
     margin-top: 20px;
 }
 p {
-    font-size: 18px;
+    font-size: 20px;
 }
-.predictedAmount {
+.predicted-amount {
     margin-top: 55px;
 }
 .action-buttons {
