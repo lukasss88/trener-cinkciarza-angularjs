@@ -5,7 +5,7 @@
             .controller('MainController', function ($scope, $localStorage, CurrenciesService)
             {
                 $scope.wallet = {};
-
+                $scope.currencyBox = false;
                 $scope.moneyStart = null;
 
                 function setStartingValues()
@@ -29,6 +29,7 @@
                     $localStorage.$reset();
                     $scope.wallet = {};
                     setStartingValues();
+
                 };
 
                 $scope.apply = function ()
@@ -52,6 +53,21 @@
                 {
                     $scope.getGbp = data;
                 });
+
+
+                $scope.items = ['USD', 'EUR', 'GBP'];
+                $scope.selection = $scope.items[0];
+
+
+                $scope.checkWallet = function(type) {
+                    if($scope.wallet[type] <= 0) {
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                };
+
 
             });
 })();
