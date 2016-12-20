@@ -29,7 +29,6 @@
                     $localStorage.$reset();
                     $scope.wallet = {};
                     setStartingValues();
-
                 };
 
                 $scope.apply = function ()

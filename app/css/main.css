@@ -13,11 +13,12 @@ h1 {
 }
 .apply-btn {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 .error {
-    font-size: 20px;
+    font-size: 15px;
+    position:absolute
 }
 
 span {
@@ -101,3 +102,4 @@ p {
 .action-buttons {
     margin-top: 20px;
 }
+
