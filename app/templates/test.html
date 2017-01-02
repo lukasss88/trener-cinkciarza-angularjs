@@ -4,25 +4,25 @@
     <p>Kurs: {{exchangeRate}} zl</p>
     <div class="transaction row" ng-form name="actionToCurrency">
         <label for="plnToUsd" class="col-xs-4 col-form-label">Kwota wymiany</label>
-        <div class="col-xs-4 col-md-offset-3">
+        <div class="col-xs-4 col-xs-offset-3">
             <input class="form-control" type="number" id="plnToUsd" max="{{wallet[type]}}" min="0.1" ng-model="money.value" name="currencyValue" required>
             <span class="error" ng-show="actionToCurrency.currencyValue.$error.max">Too much!</span>
             <span class="error" ng-show="actionToCurrency.currencyValue.$error.min">Not enough!</span>
         </div>
         <div class="predicted-amount">
             <label for="predicted-value" class="col-xs-4 col-form-label">Otrzymasz:</label>
-            <div class="col-xs-4 col-md-offset-3" ng-hide="money.value == 0 || money.value < 0">
+            <div class="col-xs-4 col-xs-offset-3" ng-hide="money.value == 0 || money.value < 0">
                 <span ng-hide="money.value == null" id="predicted-value">{{ btnBuy ? (money.value / exchangeRate | number:2) : (money.value * exchangeRate | number:2)}}{{currencyReceive}}</span>
             </div>
         </div>
     </div>
     <div class="action-buttons">
-        <div class="col-md-4 col-md-offset-2">
+        <div class="col-xs-4 col-xs-offset-2">
             <button class="btn btn-primary apply-btn" ng-click="applyCurrency(money.value); toggleBox(); addOpacity = !addOpacity"
                     ng-disabled="actionToCurrency.currencyValue.$error.max || actionToCurrency.currencyValue.$error.min; actionToCurrency.$invalid">Zatwierdź
             </button>
         </div>
-        <div class=" col-md-4">
+        <div class=" col-xs-4">
             <button class="btn btn-default cancel-btn" ng-click="toggleBox(); addOpacity = !addOpacity">Anuluj</button>
         </div>
     </div>

@@ -7,6 +7,7 @@
                 $scope.wallet = {};
                 $scope.currencyBox = false;
                 $scope.moneyStart = null;
+                // $scope.currencies = null;
 
                 function setStartingValues()
                 {
@@ -38,24 +39,34 @@
                     $scope.moneyStart = null;
                 };
 
-                CurrenciesService.getUsd().then(function (data)
+                CurrenciesService.USD().then(function (data)
                 {
-                    $scope.getUsd = data;
+                    $scope.USD = data;
                 });
 
-                CurrenciesService.getEur().then(function (data)
+                CurrenciesService.EUR().then(function (data)
                 {
-                    $scope.getEur = data;
+                    $scope.EUR = data;
                 });
 
-                CurrenciesService.getGbp().then(function (data)
+                CurrenciesService.GBP().then(function (data)
                 {
-                    $scope.getGbp = data;
+                    $scope.GBP = data;
                 });
 
 
                 $scope.items = ['USD', 'EUR', 'GBP'];
-                $scope.selection = $scope.items[0];
+                // $scope.selection = $scope.items[0];
+
+                console.log($scope.items);
+
+                $scope.changeCurrency = function() {
+                    console.log($scope.item);
+                };
+
+                /*=======================================
+                 SELL BUTTON SCRIPTS
+                 ==================================================*/
 
 
             });

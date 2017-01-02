@@ -26,7 +26,7 @@
 
                             $scope.applyCurrency = function (exchangeRate)
                             {
-                                exchangeRate = $scope.getUsd.rates[0].ask;
+                                exchangeRate = $scope.USD.rates[0].ask;
                                 $scope.wallet.USD += parseFloat(($scope.money.value / exchangeRate).toFixed(2));
                                 $scope.wallet.PLN -= parseFloat(($scope.money.value).toFixed(2));
                                 updateCurrency('USD', $scope.wallet.USD);
@@ -36,7 +36,7 @@
                             $scope.wallet[type] = $scope.wallet.PLN;
                             $scope.currencyBox = !$scope.currencyBox;
                             $scope.message = 'Wymiana PLN na USD';
-                            $scope.exchangeRate = $scope.getUsd.rates[0].ask;
+                            $scope.exchangeRate = $scope.USD.rates[0].ask;
                             $scope.currencyType = 'zł';
                             $scope.currencyReceive = '$';
                             $scope.addOpacity = !$scope.addOpacity;
@@ -48,7 +48,7 @@
 
                             $scope.applyCurrency = function (exchangeRate)
                             {
-                                exchangeRate = $scope.getUsd.rates[0].bid;
+                                exchangeRate = $scope.USD.rates[0].bid;
                                 $scope.wallet.USD -= parseFloat(($scope.money.value).toFixed(2));
                                 $scope.wallet.PLN += parseFloat(($scope.money.value * exchangeRate).toFixed(2));
                                 updateCurrency('USD', $scope.wallet.USD);
@@ -58,7 +58,7 @@
                             $scope.wallet[type] = $scope.wallet.USD;
                             $scope.currencyBox = !$scope.currencyBox;
                             $scope.message = 'Wymiana USD na PLN';
-                            $scope.exchangeRate = $scope.getUsd.rates[0].bid;
+                            $scope.exchangeRate = $scope.USD.rates[0].bid;
                             $scope.currencyType = '$';
                             $scope.currencyReceive = 'zł';
                             $scope.addOpacity = !$scope.addOpacity;
@@ -70,7 +70,7 @@
 
                             $scope.applyCurrency = function (exchangeRate)
                             {
-                                exchangeRate = $scope.getEur.rates[0].bid;
+                                exchangeRate = $scope.EUR.rates[0].bid;
                                 $scope.wallet.EUR -= parseFloat(($scope.money.value).toFixed(2));
                                 $scope.wallet.PLN += parseFloat(($scope.money.value * exchangeRate).toFixed(2));
                                 updateCurrency('EUR', $scope.wallet.EUR);
@@ -80,7 +80,7 @@
                             $scope.wallet[type] = $scope.wallet.EUR;
                             $scope.currencyBox = !$scope.currencyBox;
                             $scope.message = 'Wymiana EURO na PLN';
-                            $scope.exchangeRate = $scope.getEur.rates[0].bid;
+                            $scope.exchangeRate = $scope.EUR.rates[0].bid;
                             $scope.currencyType = '€';
                             $scope.currencyReceive = 'zł';
                             $scope.addOpacity = !$scope.addOpacity;
@@ -92,7 +92,7 @@
 
                             $scope.applyCurrency = function (exchangeRate)
                             {
-                                exchangeRate = $scope.getEur.rates[0].ask;
+                                exchangeRate = $scope.EUR.rates[0].ask;
                                 $scope.wallet.EUR += parseFloat(($scope.money.value / exchangeRate).toFixed(2));
                                 $scope.wallet.PLN -= parseFloat(($scope.money.value).toFixed(2));
                                 updateCurrency('EUR', $scope.wallet.EUR);
@@ -102,7 +102,7 @@
                             $scope.wallet[type] = $scope.wallet.PLN;
                             $scope.currencyBox = !$scope.currencyBox;
                             $scope.message = 'Wymiana PLN na EURO';
-                            $scope.exchangeRate = $scope.getEur.rates[0].ask;
+                            $scope.exchangeRate = $scope.EUR.rates[0].ask;
                             $scope.currencyType = 'zł';
                             $scope.currencyReceive = '€';
                             $scope.addOpacity = !$scope.addOpacity;
@@ -114,7 +114,7 @@
 
                             $scope.applyCurrency = function (exchangeRate)
                             {
-                                exchangeRate = $scope.getGbp.rates[0].ask;
+                                exchangeRate = $scope.GBP.rates[0].ask;
                                 $scope.wallet.GBP += parseFloat(($scope.money.value / exchangeRate).toFixed(2));
                                 $scope.wallet.PLN -= parseFloat(($scope.money.value).toFixed(2));
                                 updateCurrency('GBP', $scope.wallet.GBP);
@@ -124,7 +124,7 @@
                             $scope.wallet[type] = $scope.wallet.PLN;
                             $scope.currencyBox = !$scope.currencyBox;
                             $scope.message = 'Wymiana PLN na GBP';
-                            $scope.exchangeRate = $scope.getGbp.rates[0].ask;
+                            $scope.exchangeRate = $scope.GBP.rates[0].ask;
                             $scope.currencyType = 'zł';
                             $scope.currencyReceive = '£';
                             $scope.addOpacity = !$scope.addOpacity;
@@ -136,7 +136,7 @@
 
                             $scope.applyCurrency = function (exchangeRate)
                             {
-                                exchangeRate = $scope.getGbp.rates[0].bid;
+                                exchangeRate = $scope.GBP.rates[0].bid;
                                 $scope.wallet.GBP -= parseFloat(($scope.money.value).toFixed(2));
                                 $scope.wallet.PLN += parseFloat(($scope.money.value * exchangeRate).toFixed(2));
                                 updateCurrency('GBP', $scope.wallet.GBP);
@@ -146,14 +146,57 @@
                             $scope.wallet[type] = $scope.wallet.GBP;
                             $scope.currencyBox = !$scope.currencyBox;
                             $scope.message = 'Wymiana GBP na PLN';
-                            $scope.exchangeRate = $scope.getGbp.rates[0].bid;
+                            $scope.exchangeRate = $scope.GBP.rates[0].bid;
                             $scope.currencyType = '£';
                             $scope.currencyReceive = 'zł';
                             $scope.addOpacity = !$scope.addOpacity;
                             $scope.btnBuy = false;
                         };
 
+                        $scope.selectCurrency = $scope.items[0];
 
+                        $scope.buyCurrency = function(type, selectCurrency) {
+
+                            selectCurrency = $scope.item;
+                            $scope.wallet[type] = $scope.wallet[selectCurrency];
+                            $scope.currencyBox = !$scope.currencyBox;
+                            $scope.message = 'Wymiana ' + selectCurrency + ' na PLN';
+                            $scope.exchangeRate = $scope[selectCurrency].rates[0].bid;
+                            $scope.addOpacity = !$scope.addOpacity;
+                            $scope.btnBuy = false;
+                            console.log($scope.item);
+
+                            $scope.applyCurrency = function (exchangeRate)
+                            {
+                                exchangeRate = $scope[selectCurrency].rates[0].bid;
+                                $scope.wallet[selectCurrency]-= parseFloat(($scope.money.value).toFixed(2));
+                                $scope.wallet.PLN += parseFloat(($scope.money.value * exchangeRate).toFixed(2));
+                                updateCurrency($scope.item, $scope.wallet[selectCurrency]);
+                                updateCurrency('PLN', $scope.wallet.PLN);
+                            };
+                        };
+
+                        $scope.sellCurrency = function (type, selectCurrency)
+                        {
+                            selectCurrency = $scope.item;
+                            $scope.wallet[type] = $scope.wallet.PLN;
+                            $scope.currencyBox = !$scope.currencyBox;
+                            $scope.message = 'Wymiana PLN na ' + selectCurrency;
+                            $scope.exchangeRate = $scope[selectCurrency].rates[0].ask;
+                            $scope.addOpacity = !$scope.addOpacity;
+                            $scope.btnBuy = true;
+
+                            $scope.applyCurrency = function (exchangeRate)
+                            {
+                                exchangeRate = $scope[selectCurrency].rates[0].ask;
+                                $scope.wallet[selectCurrency] += parseFloat(($scope.money.value / exchangeRate).toFixed(2));
+                                $scope.wallet.PLN -= parseFloat(($scope.money.value).toFixed(2));
+                                updateCurrency($scope.item, $scope.wallet.GBP);
+                                updateCurrency('PLN', $scope.wallet.PLN);
+                            };
+
+
+                        };
                     }
                 };
             });
