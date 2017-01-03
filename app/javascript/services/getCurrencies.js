@@ -1,7 +1,7 @@
 (function ()
 {
     'use strict';
-    angular.module('treningCinkciarza')
+    angular.module('cinkciarzTraining')
             .factory('CurrenciesService', function ($http)
             {
                 return {

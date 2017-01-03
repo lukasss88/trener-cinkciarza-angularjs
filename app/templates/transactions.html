@@ -18,12 +18,12 @@
     </div>
     <div class="action-buttons">
         <div class="col-xs-4 col-xs-offset-2">
-            <button class="btn btn-primary apply-btn" ng-click="applyCurrency(money.value); toggleBox(); addOpacity = !addOpacity"
+            <button class="btn btn-primary apply-btn" ng-click="applyCurrency(money.value); toggleBox()"
                     ng-disabled="actionToCurrency.currencyValue.$error.max || actionToCurrency.currencyValue.$error.min; actionToCurrency.$invalid">Zatwierdź
             </button>
         </div>
         <div class=" col-xs-4">
-            <button class="btn btn-default cancel-btn" ng-click="toggleBox(); addOpacity = !addOpacity">Anuluj</button>
+            <button class="btn btn-default cancel-btn" ng-click="toggleBox()">Anuluj</button>
         </div>
     </div>
 </div>
