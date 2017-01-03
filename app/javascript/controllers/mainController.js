@@ -53,13 +53,11 @@
                     $scope.GBP = data;
                 });
 
-                $scope.items = ['USD', 'EUR', 'GBP'];
+                $scope.currencies = ['USD', 'EUR', 'GBP'];
 
                 $scope.currencyIcons = { USD:'$', EUR:'€', GBP:'£'};
 
-                $scope.changeCurrency = function() {
-                    console.log($scope.item);
-                };
+
 
             });
 })();
