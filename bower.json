@@ -1,0 +1,16 @@
+{
+  "name": "trener-cinkciarza-angular",
+  "homepage": "https://github.com/lukasss88/trener-cinkciarza-angularjs",
+  "authors": [
+    "lukas88 <lukasz.szymanski@labnoratory.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "dependencies": {
+    "ngstorage": "0.3.11",
+    "angular":"1.5.9",
+    "bootstrap":"3.3.7",
+    "jquery":"3.1.1"
+  }
+}
