@@ -1,0 +1,21 @@
+<div class="cotainer" ng-controller="TableOfExchangesController">
+    <div class="row">
+        <h1>Tabela kursów</h1>
+    </div>
+    <div class="row well">
+        <div class="col-md-4 col-md-offset-4">
+            <table class="table table-bordered">
+                <tr><td>Waluta</td><td>Kurs sprzedaży</td><td>Kurs kupna</td></tr>
+                <tr ng-repeat="currency in arrayCurrency">
+                    <td>{{currency.code}}</td>
+                    <td>{{currency.ask}}</td>
+                    <td>{{currency.bid}}</td>
+                </tr>
+            </table>
+
+            <div class="col-md-offset-4 col-md-4">
+            <a href="#/"><button class="btn btn-danger back-btn">Wróć</button></a>
+            </div>
+        </div>
+    </div>
+</div>
