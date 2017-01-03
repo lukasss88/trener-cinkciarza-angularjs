@@ -12,21 +12,26 @@
                                 {
                                     return response.data;
                                 });
-                    },
-                    EUR: function ()
+                    }, EUR: function ()
                     {
                         return $http.get('https://api.nbp.pl/api/exchangerates/rates/c/eur/today/?format=json')
                                 .then(function (respone)
                                 {
                                     return respone.data;
                                 });
-                    },
-                    GBP: function ()
+                    }, GBP: function ()
                     {
-                        return $http.get('httpsg://api.nbp.pl/api/exchangerates/rates/c/gbp/today/?format=json')
+                        return $http.get('https://api.nbp.pl/api/exchangerates/rates/c/gbp/today/?format=json')
                                 .then(function (respone)
                                 {
                                     return respone.data;
+                                });
+                    }, allCurrencies: function ()
+                    {
+                        return $http.get('https://api.nbp.pl/api/exchangerates/tables/c/?format=json')
+                                .then(function (response)
+                                {
+                                    return response.data;
                                 });
                     }
                 };
