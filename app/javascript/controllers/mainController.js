@@ -1,13 +1,12 @@
 (function ()
 {
     'use strict';
-    angular.module('treningCinkciarza')
+    angular.module('cinkciarzTraining')
             .controller('MainController', function ($scope, $localStorage, CurrenciesService)
             {
                 $scope.wallet = {};
                 $scope.currencyBox = false;
                 $scope.moneyStart = null;
-                // $scope.currencies = null;
 
                 function setStartingValues()
                 {
@@ -54,19 +53,10 @@
                     $scope.GBP = data;
                 });
 
+                $scope.currencies = ['USD', 'EUR', 'GBP'];
 
-                $scope.items = ['USD', 'EUR', 'GBP'];
-                // $scope.selection = $scope.items[0];
+                $scope.currencyIcons = { USD:'$', EUR:'€', GBP:'£'};
 
-                console.log($scope.items);
-
-                $scope.changeCurrency = function() {
-                    console.log($scope.item);
-                };
-
-                /*=======================================
-                 SELL BUTTON SCRIPTS
-                 ==================================================*/
 
 
             });
