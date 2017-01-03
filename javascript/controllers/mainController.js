@@ -1,7 +1,7 @@
 (function ()
 {
     'use strict';
-    angular.module('treningCinkciarza')
+    angular.module('cinkciarzTraining')
             .controller('MainController', function ($scope, $localStorage, CurrenciesService)
             {
                 $scope.wallet = {};
@@ -29,7 +29,6 @@
                     $localStorage.$reset();
                     $scope.wallet = {};
                     setStartingValues();
-
                 };
 
                 $scope.apply = function ()
@@ -39,25 +38,28 @@
                     $scope.moneyStart = null;
                 };
 
-                CurrenciesService.getUsd().then(function (data)
+                CurrenciesService.USD().then(function (data)
                 {
-                    $scope.getUsd = data;
+                    $scope.USD = data;
                 });
 
-                CurrenciesService.getEur().then(function (data)
+                CurrenciesService.EUR().then(function (data)
                 {
-                    $scope.getEur = data;
+                    $scope.EUR = data;
                 });
 
-                CurrenciesService.getGbp().then(function (data)
+                CurrenciesService.GBP().then(function (data)
                 {
-                    $scope.getGbp = data;
+                    $scope.GBP = data;
                 });
-
 
                 $scope.items = ['USD', 'EUR', 'GBP'];
-                $scope.selection = $scope.items[0];
 
+                $scope.currencyIcons = { USD:'$', EUR:'€', GBP:'£'};
+
+                $scope.changeCurrency = function() {
+                    console.log($scope.item);
+                };
 
             });
 })();

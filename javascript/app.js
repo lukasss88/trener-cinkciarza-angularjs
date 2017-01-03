@@ -1,5 +1,5 @@
 (function()
 {
     'use strict';
-    angular.module('treningCinkciarza', ['ngStorage']);
+    angular.module('cinkciarzTraining', ['ngStorage']);
 })();

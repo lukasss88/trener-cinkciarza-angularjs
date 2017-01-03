@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="treningCinkciarza">
+<html lang="en" ng-app="cinkciarzTraining">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -21,7 +21,7 @@
 
         <!-- ENTER MONEY SECTION -->
         <div class="form-group row start-value" name="divStartingValue" ng-form>
-            <label for="start-number-input" class="col-xs-4 col-form-label">Kwota startowa</label>
+            <label for="start-number-input" class="col-xs-4 col-form-label">Wprowadź środki:</label>
             <div class="col-xs-3 col-md-offset-3">
                 <input class="form-control" type="number" id="start-number-input" ng-model="moneyStart" name="inputStartingValue" min="0.1" required>
                 <span class="error" ng-show="divStartingValue.inputStartingValue.$error.min">Not enough!</span>
@@ -36,11 +36,11 @@
         <!-- END ENTER MONEY SECTION -->
 
         <!-- WALLET SECTION -->
-        <div class="form-group row currency" ng-switch="currencies">
+        <div class="form-group row currency" ng-switch="item">
             <div class="well">
                 <h3>Stan portfela</h3>
 
-                <p>PLN: {{wallet.PLN | number:2}}zl</p>
+                <p>PLN: {{wallet.PLN | number:2}}zł</p>
 
                 <p ng-hide="wallet.USD == 0">USD: {{wallet.USD | number:2}}$</p>
                 <p ng-hide="wallet.EUR == 0">EUR: {{wallet.EUR | number:2}}€</p>
@@ -55,69 +55,68 @@
                         <label for="selection-currency">Wybierz walutę:</label>
                     </div>
                     <div class="col-md-4">
-                        <select ng-model="currencies" id="selection-currency" ng-options="item for item in items" class="form-control"></select>
+                        <select ng-model="item" id="selection-currency" ng-options="item for item in items" ng-change="changeCurrency()"
+                                class="form-control"></select>
                     </div>
                 </div>
-                <div ng-switch-default></div>
+
 
                 <div class="other-currency" ng-switch-when="USD">
                     <div class="row currency-type">
                         <div class="row wallet-status">
-                            <div class="col-md-offset-1 col-md-4">
+                            <div class="col-md-offset-1 col-md-4 col-xs-offset-1 col-xs-4 mobile-class">
                                 USD:
                                 {{wallet.USD | number:2}}$
                             </div>
                         </div>
-                        <div class="col-md-offset-3 col-md-4">{{getUsd.rates[0].ask}}zł</div>
-                        <div class="col-md-4">{{getUsd.rates[0].bid}}zł</div>
+                        <div class="col-md-offset-3 col-md-4 col-xs-4 col-xs-offset-3">{{USD.rates[0].ask}}zł</div>
+                        <div class="col-md-4 col-xs-4">{{USD.rates[0].bid}}zł</div>
                     </div>
-                    <div class="col-md-4 col-md-offset-2">
-
-                        <button class='btn btn-success' ng-click="sellUsd()" ng-disabled="wallet.PLN == 0">Kup</button>
+                    <div class="col-md-4 col-md-offset-2 col-xs-4 col-xs-offset-2">
+                        <button class='btn btn-success' ng-click="sellCurrency()" ng-disabled="wallet.PLN == 0">Kup</button>
                     </div>
-                    <div class="col-md-4 ">
-                        <button class="btn btn-primary" ng-click="buyUsd()" ng-disabled="wallet.USD == 0">Sprzedaj</button>
+                    <div class="col-md-4 col-xs-4">
+                        <button class="btn btn-primary" ng-click="buyCurrency()" ng-disabled="wallet.USD == 0">Sprzedaj</button>
                     </div>
                 </div>
 
                 <div class="other-currency" ng-switch-when="EUR">
                     <div class="row currency-type">
                         <div class="row wallet-status">
-                            <div class="col-md-offset-1 col-md-4">
+                            <div class="col-md-offset-1 col-md-4 col-xs-offset-1 col-xs-4 mobile-class">
                                 EUR:
                                 {{wallet.EUR | number:2}}€
                             </div>
                         </div>
-                        <div class="col-md-offset-3 col-md-4">{{getEur.rates[0].ask}}zł</div>
-                        <div class="col-md-4">{{getEur.rates[0].bid}}zł</div>
+                        <div class="col-md-offset-3 col-md-4 col-xs-4 col-xs-offset-3">{{EUR.rates[0].ask}}zł</div>
+                        <div class="col-md-4 col-xs-4">{{EUR.rates[0].bid}}zł</div>
                     </div>
-                    <div class="col-md-4 col-md-offset-2">
-                        <button class='btn btn-success' ng-click="sellEur()" ng-disabled="wallet.PLN == 0">Kup</button>
+                    <div class="col-md-4 col-md-offset-2 col-xs-4 col-xs-offset-2">
+                        <button class='btn btn-success' ng-click="sellCurrency()" ng-disabled="wallet.PLN == 0">Kup</button>
                     </div>
-                    <div class="col-md-4">
-                        <button class="btn btn-primary" ng-click="buyEur()" ng-disabled="wallet.EUR == 0">Sprzedaj</button>
+                    <div class="col-md-4  col-xs-4">
+                        <button class="btn btn-primary" ng-click="buyCurrency()" ng-disabled="wallet.EUR == 0">Sprzedaj</button>
                     </div>
                 </div>
 
                 <div class="other-currency" ng-switch-when="GBP">
                     <div class="row currency-type">
                         <div class="row wallet-status">
-                            <div class="col-md-offset-1 col-md-4">
+                            <div class="col-md-offset-1 col-md-4 col-xs-offset-1 col-xs-4 mobile-class">
                                 GBP:
                                 {{wallet.GBP| number:2}}£
                             </div>
                         </div>
-                        <div class="col-md-offset-3 col-md-4">{{getGbp.rates[0].ask}}zł</div>
-                        <div class="col-md-4">{{getGbp.rates[0].bid}}zł</div>
+                        <div class="col-md-offset-3 col-md-4 col-xs-4 col-xs-offset-3">{{GBP.rates[0].ask}}zł</div>
+                        <div class="col-md-4 col-xs-4">{{GBP.rates[0].bid}}zł</div>
                     </div>
-                    <div class="col-md-4 col-md-offset-2">
-                        <button class='btn btn-success' ng-click="sellGbp()" ng-disabled="wallet.PLN == 0">Kup</button>
+                    <div class="col-md-4 col-md-offset-2 col-xs-4 col-xs-offset-2">
+                        <button class='btn btn-success' ng-click="sellCurrency()" ng-disabled="wallet.PLN == 0">Kup</button>
                     </div>
-                    <div class="col-md-4">
-                        <button class="btn btn-primary" ng-click="buyGbp()" ng-disabled="wallet.GBP == 0">Sprzedaj</button>
+                    <div class="col-md-4 col-xs-4">
+                        <button class="btn btn-primary" ng-click="buyCurrency()" ng-disabled="wallet.GBP == 0">Sprzedaj</button>
                     </div>
                 </div>
-
 
                 <div class="col-md-4 col-md-offset-4">
                     <button class="btn btn-danger reset-button" ng-click="reset()">Reset</button>
@@ -128,7 +127,7 @@
     </div>
 
     <!-- CURRENCY EXCHANGE SECTION -->
-    <div class="col-md-6">
+    <div class="col-md-6 col-xs-12">
 
         <exchange-box ng-show="currencyBox"></exchange-box>
 
@@ -140,8 +139,8 @@
 <script src="bower_components/angular/angular.min.js"></script>
 <script src="bower_components/ngstorage/ngStorage.min.js"></script>
 <script src="javascript/app.js"></script>
-<script src="javascript/controllers/main.js"></script>
-<script src="javascript/services/main.js"></script>
+<script src="javascript/controllers/mainController.js"></script>
+<script src="javascript/services/getCurrencies.js"></script>
 <script src="javascript/directives/exchange-box.js"></script>
 </body>
 </html>
