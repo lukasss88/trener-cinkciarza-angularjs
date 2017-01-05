@@ -8,7 +8,7 @@
                     templateUrl: 'templates/main.html', controller: 'MainController'
                 })
                         .when('/tableOfExchanges', {
-                            templateUrl: 'templates/tableOfExchanges.html', controller: 'TableOfExchangesController'
+                            templateUrl: 'templates/tableOfExchanges.html', controller: 'TableOfExchangesController as tableCtrl'
                         })
                         .otherwise({redirectTo: '/'});
             });

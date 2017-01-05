@@ -57,7 +57,5 @@
 
                 $scope.currencyIcons = { USD:'$', EUR:'€', GBP:'£'};
 
-
-
             });
 })();

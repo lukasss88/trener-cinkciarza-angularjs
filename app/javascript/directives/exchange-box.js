@@ -24,8 +24,8 @@
 
                         $scope.selectCurrency = $scope.currencies[0];
 
-                        $scope.buyCurrency = function(type, selectCurrency) {
-
+                        $scope.buyCurrency = function(type, selectCurrency)
+                        {
                             selectCurrency = $scope.currency;
                             $scope.wallet[type] = $scope.wallet[selectCurrency];
                             $scope.currencyBox = !$scope.currencyBox;
@@ -66,7 +66,6 @@
                                 updateCurrency($scope.currency, $scope.wallet[selectCurrency]);
                                 updateCurrency('PLN', $scope.wallet.PLN);
                             };
-
                         };
                     }
                 };
