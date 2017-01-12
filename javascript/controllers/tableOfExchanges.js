@@ -2,11 +2,13 @@
 {
     'use strict';
     angular.module('cinkciarzTraining')
-            .controller('TableOfExchangesController', function ($scope, CurrenciesService)
+            .controller('TableOfExchangesController', function ( CurrenciesService)
             {
+                var vm = this;
+
                 CurrenciesService.allCurrencies().then(function (data)
                 {
-                    $scope.arrayCurrency = data[0].rates;
+                    vm.arrayCurrency = data[0].rates;
                 });
             });
 })();
