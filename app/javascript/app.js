@@ -12,8 +12,8 @@
                             templateUrl: 'templates/tableOfExchanges.html', controller: 'TableOfExchangesController as tableCtrl'
                         })
                         .when('/exchangeBox', {
-                            templateUrl: 'templates/exchangeBox.html', controller: 'MainController',
-                            controllerAs: 'mainCtrl'
+                            templateUrl: 'templates/exchangeBox.html', controller: 'ExchangeBoxController',
+                            controllerAs: 'exchangeCtrl'
                         })
                         .otherwise({redirectTo: '/'});
             });

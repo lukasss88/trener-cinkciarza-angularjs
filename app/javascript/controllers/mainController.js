@@ -66,6 +66,7 @@
                 ctrl.currency = SharedData.currency;
                 ctrl.applyCurrency = SharedData.applyCurrency;
 
+
                 ctrl.buyCurrency = function(type, selectCurrency)
                 {
                     selectCurrency = ctrl.currency;
@@ -89,10 +90,8 @@
                 {
                     selectCurrency = ctrl.currency;
                     ctrl.wallet[type] = SharedData.wallet.PLN;
-
                     SharedData.message = 'Wymiana PLN na ' + selectCurrency;
                     SharedData.exchangeRate = ctrl[selectCurrency].rates[0].ask;
-
                     SharedData.btnBuy = true;
                     SharedData.currencyType = 'zł';
                     SharedData.currencyReceive = ctrl.currencyIcons[ctrl.currency];

@@ -4,6 +4,8 @@
     angular.module('cinkciarzTraining')
             .factory('SharedData', function ()
             {
+                
+                
                 return {
 
                     wallet: {},
@@ -20,6 +22,8 @@
                     {
                         value: null
                     }
+
+
                 };
             });
 })();
