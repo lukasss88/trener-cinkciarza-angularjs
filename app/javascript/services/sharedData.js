@@ -4,10 +4,8 @@
     angular.module('cinkciarzTraining')
             .factory('SharedData', function ()
             {
-                
-                
-                return {
 
+                return {
                     wallet: {},
                     moneyStart: null,
                     currencies:
