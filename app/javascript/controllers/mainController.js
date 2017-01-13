@@ -7,7 +7,7 @@
                 var ctrl = this;
 
                 ctrl.wallet = SharedData.wallet;
-                ctrl.moneyStart = SharedData.moneyStart;
+                ctrl.moneyStart = 10000;
 
                 SharedData.setStartingValues = ctrl.setStartingValues;
                 SharedData.setStartingValues = function(){
@@ -15,6 +15,12 @@
                     SharedData.wallet.GBP = $localStorage.GBP || 0;
                     SharedData.wallet.USD = $localStorage.USD || 0;
                     SharedData.wallet.EUR = $localStorage.EUR || 0;
+                    // SharedData.wallet = {
+                    //     PLN : $localStorage.PLN || 0,
+                    //     GBP : $localStorage.GBP || 0,
+                    //     USD : $localStorage.USD || 0,
+                    //     EUR : $localStorage.EUR || 0
+                    // };
                 };
 
                 SharedData.updateCurrency = ctrl.updateCurrency;
@@ -67,40 +73,38 @@
                 ctrl.applyCurrency = SharedData.applyCurrency;
 
 
-                ctrl.buyCurrency = function(type, selectCurrency)
+                ctrl.buyCurrency = function(type)
                 {
-                    selectCurrency = ctrl.currency;
-                    ctrl.wallet[type] = SharedData.wallet[selectCurrency];
-                    SharedData.message = 'Wymiana ' + selectCurrency + ' na PLN';
-                    SharedData.exchangeRate = ctrl[selectCurrency].rates[0].bid;
+                    ctrl.wallet[type] = SharedData.wallet[ctrl.currency];
+                    SharedData.message = 'Wymiana ' + ctrl.currency + ' na PLN';
+                    SharedData.exchangeRate = ctrl[ctrl.currency].rates[0].bid;
                     SharedData.btnBuy = false;
                     SharedData.currencyReceive = 'zł';
                     SharedData.currencyType = ctrl.currencyIcons[ctrl.currency];
                     SharedData.applyCurrency = function (exchangeRate)
                     {
-                        exchangeRate = ctrl[selectCurrency].rates[0].bid;
-                        SharedData.wallet[selectCurrency]-= parseFloat((ctrl.money.value).toFixed(2));
+                        exchangeRate = ctrl[ctrl.currency].rates[0].bid;
+                        SharedData.wallet[ctrl.currency]-= parseFloat((ctrl.money.value).toFixed(2));
                         SharedData.wallet.PLN += parseFloat((ctrl.money.value * exchangeRate).toFixed(2));
-                        SharedData.updateCurrency(ctrl.currency, SharedData.wallet[selectCurrency]);
+                        SharedData.updateCurrency(ctrl.currency, SharedData.wallet[ctrl.currency]);
                         SharedData.updateCurrency('PLN', SharedData.wallet.PLN);
                     };
                 };
 
-                ctrl.sellCurrency = function (type, selectCurrency)
+                ctrl.sellCurrency = function (type)
                 {
-                    selectCurrency = ctrl.currency;
                     ctrl.wallet[type] = SharedData.wallet.PLN;
-                    SharedData.message = 'Wymiana PLN na ' + selectCurrency;
-                    SharedData.exchangeRate = ctrl[selectCurrency].rates[0].ask;
+                    SharedData.message = 'Wymiana PLN na ' + ctrl.currency;
+                    SharedData.exchangeRate = ctrl[ctrl.currency].rates[0].ask;
                     SharedData.btnBuy = true;
                     SharedData.currencyType = 'zł';
                     SharedData.currencyReceive = ctrl.currencyIcons[ctrl.currency];
                     SharedData.applyCurrency = function (exchangeRate)
                     {
-                        exchangeRate = ctrl[selectCurrency].rates[0].ask;
-                        SharedData.wallet[selectCurrency] += parseFloat((SharedData.money.value / exchangeRate).toFixed(2));
+                        exchangeRate = ctrl[ctrl.currency].rates[0].ask;
+                        SharedData.wallet[ctrl.currency] += parseFloat((SharedData.money.value / exchangeRate).toFixed(2));
                         SharedData.wallet.PLN -= parseFloat((SharedData.money.value).toFixed(2));
-                        SharedData.updateCurrency(ctrl.currency, SharedData.wallet[selectCurrency]);
+                        SharedData.updateCurrency(ctrl.currency, SharedData.wallet[ctrl.currency]);
                         SharedData.updateCurrency('PLN', SharedData.wallet.PLN);
                     };
                 };
