@@ -5,6 +5,7 @@
             .factory('SharedData', function ()
             {
 
+
                 return {
                     wallet: {},
                     moneyStart: null,

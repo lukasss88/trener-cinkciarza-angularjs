@@ -16,5 +16,7 @@
                 ctrl.currencyReceive = SharedData.currencyReceive;
                 ctrl.currency = SharedData.currency;
                 ctrl.applyCurrency = SharedData.applyCurrency;
+
+
             });
 })();

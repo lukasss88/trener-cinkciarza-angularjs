@@ -44,6 +44,7 @@
                     // SharedData.reset();
                     SharedData.updateCurrency('PLN', ctrl.moneyStart);
                     ctrl.moneyStart = null;
+                    console.log();
                 };
 
                 CurrenciesService.USD().then(function (data)
@@ -71,7 +72,6 @@
                 ctrl.currencyReceive = SharedData.currencyReceive;
                 ctrl.currency = SharedData.currency;
                 ctrl.applyCurrency = SharedData.applyCurrency;
-
 
                 ctrl.buyCurrency = function(type)
                 {

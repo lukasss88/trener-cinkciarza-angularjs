@@ -29,7 +29,7 @@
                 <p>PLN: {{mainCtrl.wallet.PLN | number:2}}zł</p>
 
                 <div ng-repeat="item in mainCtrl.currencies">
-                    <p ng-hide="mainCtrl.wallet[item] == 0">{{item}}: {{mainCtrl.wallet[item] | number:2}}{{mainCtrl.currencyIcons[item]}}</p>
+                    <p ng-hide="mainCtrl.wallet[item] == 0 || mainCtrl.wallet[item] == null">{{item}}: {{mainCtrl.wallet[item] | number:2}}{{mainCtrl.currencyIcons[item]}}</p>
                 </div>
 
             </div>
