@@ -12,14 +12,13 @@
                 ctrl.currencyIcons = SharedData.currencyIcons;
                 ctrl.money = SharedData.money;
 
-                SharedData.setStartingValues = ctrl.setStartingValues;
-                SharedData.setStartingValues = function(){
+                ctrl.setStartingValues = function(){
                     SharedData.wallet.PLN = $localStorage.PLN || 0;
                     SharedData.wallet.GBP = $localStorage.GBP || 0;
                     SharedData.wallet.USD = $localStorage.USD || 0;
                     SharedData.wallet.EUR = $localStorage.EUR || 0;
                 };
-                SharedData.setStartingValues();
+                ctrl.setStartingValues();
 
                 SharedData.updateCurrency = ctrl.updateCurrency;
                 SharedData.updateCurrency = function(type,value) {
@@ -27,11 +26,10 @@
                     $localStorage[type] = value;
                 };
 
-                SharedData.reset = ctrl.reset;
                 ctrl.reset = function ()
                 {
                     $localStorage.$reset();
-                    SharedData.setStartingValues();
+                    ctrl.setStartingValues();
                 };
 
                 ctrl.apply = function ()
@@ -54,7 +52,6 @@
                 CurrenciesService.GBP().then(function (data)
                 {
                     ctrl.GBP = data;
-                    console.log(ctrl.GBP.rates[0].bid);
                 });
 
                 ctrl.buyCurrency = function(type)
