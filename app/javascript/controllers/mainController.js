@@ -10,9 +10,9 @@
                 ctrl.moneyStart = 10000;
                 ctrl.currencies = SharedData.currencies;
                 ctrl.currencyIcons = SharedData.currencyIcons;
-                ctrl.money = SharedData.money;
 
-                ctrl.setStartingValues = function(){
+                ctrl.setStartingValues = function ()
+                {
                     SharedData.wallet.PLN = $localStorage.PLN || 0;
                     SharedData.wallet.GBP = $localStorage.GBP || 0;
                     SharedData.wallet.USD = $localStorage.USD || 0;
@@ -21,7 +21,8 @@
                 ctrl.setStartingValues();
 
                 SharedData.updateCurrency = ctrl.updateCurrency;
-                SharedData.updateCurrency = function(type,value) {
+                SharedData.updateCurrency = function (type, value)
+                {
                     ctrl.wallet[type] = value;
                     $localStorage[type] = value;
                 };
@@ -39,22 +40,15 @@
                     ctrl.moneyStart = null;
                 };
 
-                CurrenciesService.USD().then(function (data)
-                {
-                    ctrl.USD = data;
+                angular.forEach(SharedData.currencies, function(value){
+
+                    CurrenciesService.getCurrency(value).then(function (data)
+                        {
+                            ctrl[value] = data;
+                        });
                 });
 
-                CurrenciesService.EUR().then(function (data)
-                {
-                    ctrl.EUR = data;
-                });
-
-                CurrenciesService.GBP().then(function (data)
-                {
-                    ctrl.GBP = data;
-                });
-
-                ctrl.buyCurrency = function(type)
+                ctrl.buyCurrency = function (type)
                 {
                     SharedData.wallet[type] = SharedData.wallet[ctrl.currency];
                     SharedData.exchangeRate = ctrl[ctrl.currency].rates[0].bid;

@@ -15,10 +15,6 @@
                             templateUrl: 'templates/exchangeBox.html', controller: 'ExchangeBoxController',
                             controllerAs: 'exchangeCtrl'
                         })
-                        .when('/exchangeBox/:action/:currency', {
-                            templateUrl: 'templates/exchangeBox.html', controller: 'ExchangeBoxController',
-                            controllerAs: 'exchangeCtrl'
-                        })
                         .otherwise({redirectTo: '/'});
             });
 })();

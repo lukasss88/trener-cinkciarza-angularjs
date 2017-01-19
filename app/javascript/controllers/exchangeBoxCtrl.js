@@ -11,7 +11,7 @@
                 ctrl.money = SharedData.money;
                 ctrl.exchangeRate = SharedData.exchangeRate;
 
-                if($routeParams.action === 'buy') {
+                if ($routeParams.action === 'buy') {
 
                     ctrl.message = 'Wymiana PLN na ' + ctrl.currencyId;
                     ctrl.btnBuy = true;
@@ -26,7 +26,7 @@
                         SharedData.updateCurrency('PLN', SharedData.wallet.PLN);
                     };
                 }
-                if($routeParams.action === 'sell') {
+                if ($routeParams.action === 'sell') {
 
                     ctrl.message = 'Wymiana ' + ctrl.currencyId + ' na PLN';
                     ctrl.btnBuy = false;
@@ -35,7 +35,7 @@
 
                     ctrl.applyCurrency = function ()
                     {
-                        SharedData.wallet[ctrl.currencyId]-= parseFloat((SharedData.money.value).toFixed(2));
+                        SharedData.wallet[ctrl.currencyId] -= parseFloat((SharedData.money.value).toFixed(2));
                         SharedData.wallet.PLN += parseFloat((SharedData.money.value * SharedData.exchangeRate).toFixed(2));
                         SharedData.updateCurrency(ctrl.currencyId, SharedData.wallet[ctrl.currencyId]);
                         SharedData.updateCurrency('PLN', SharedData.wallet.PLN);
