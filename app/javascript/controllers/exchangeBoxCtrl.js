@@ -1,22 +1,47 @@
-(function(){
+(function ()
+{
     'use strict';
     angular.module('cinkciarzTraining')
-            .controller('ExchangeBoxController', function ($localStorage, CurrenciesService, SharedData)
+            .controller('ExchangeBoxController', function ($localStorage, CurrenciesService, SharedData, $routeParams)
             {
-               var ctrl = this;
+                var ctrl = this;
+
+                ctrl.currencyId = $routeParams.currency;
+
                 ctrl.wallet = SharedData.wallet;
-                ctrl.moneyStart = SharedData.moneyStart;
-                ctrl.currencies = SharedData.currencies;
-                ctrl.currencyIcons = SharedData.currencyIcons;
+                SharedData.wallet.PLN = ctrl.wallet.PLN;
                 ctrl.money = SharedData.money;
-                ctrl.message = SharedData.message;
                 ctrl.exchangeRate = SharedData.exchangeRate;
-                ctrl.btnBuy = SharedData.btnBuy;
-                ctrl.currencyType = SharedData.currencyType;
-                ctrl.currencyReceive = SharedData.currencyReceive;
-                ctrl.currency = SharedData.currency;
-                ctrl.applyCurrency = SharedData.applyCurrency;
 
+                if($routeParams.action === 'buy') {
 
+                    ctrl.message = 'Wymiana PLN na ' + ctrl.currencyId;
+                    ctrl.btnBuy = true;
+                    ctrl.currencyReceive = SharedData.currencyIcons[ctrl.currencyId];
+                    ctrl.currencyType = 'zł';
+
+                    ctrl.applyCurrency = function ()
+                    {
+                        SharedData.wallet[ctrl.currencyId] += parseFloat((SharedData.money.value / SharedData.exchangeRate).toFixed(2));
+                        SharedData.wallet.PLN -= parseFloat((SharedData.money.value).toFixed(2));
+                        SharedData.updateCurrency(ctrl.currencyId, SharedData.wallet[ctrl.currencyId]);
+                        SharedData.updateCurrency('PLN', SharedData.wallet.PLN);
+                    };
+                }
+                if($routeParams.action === 'sell') {
+
+                    ctrl.message = 'Wymiana ' + ctrl.currencyId + ' na PLN';
+                    ctrl.btnBuy = false;
+                    ctrl.currencyReceive = 'zł';
+                    ctrl.currencyType = SharedData.currencyIcons[ctrl.currencyId];
+
+                    ctrl.applyCurrency = function ()
+                    {
+                        SharedData.wallet[ctrl.currencyId]-= parseFloat((SharedData.money.value).toFixed(2));
+                        SharedData.wallet.PLN += parseFloat((SharedData.money.value * SharedData.exchangeRate).toFixed(2));
+                        SharedData.updateCurrency(ctrl.currencyId, SharedData.wallet[ctrl.currencyId]);
+                        SharedData.updateCurrency('PLN', SharedData.wallet.PLN);
+                    };
+                }
             });
 })();

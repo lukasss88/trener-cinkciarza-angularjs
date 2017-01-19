@@ -11,7 +11,11 @@
                         .when('/tableOfExchanges', {
                             templateUrl: 'templates/tableOfExchanges.html', controller: 'TableOfExchangesController as tableCtrl'
                         })
-                        .when('/exchangeBox', {
+                        .when('/exchangeBox/:action/:currency', {
+                            templateUrl: 'templates/exchangeBox.html', controller: 'ExchangeBoxController',
+                            controllerAs: 'exchangeCtrl'
+                        })
+                        .when('/exchangeBox/:action/:currency', {
                             templateUrl: 'templates/exchangeBox.html', controller: 'ExchangeBoxController',
                             controllerAs: 'exchangeCtrl'
                         })
