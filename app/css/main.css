@@ -1,30 +1,72 @@
 /*=======================================
     GENERAL STYLES
 ==================================================*/
+body {
+    background: linear-gradient(45deg, #92baac 45px, transparent 45px) 64px 64px,
+    linear-gradient(45deg, #92baac 45px, transparent 45px, transparent 91px, #e1ebbd 91px, #e1ebbd 135px, transparent 135px),
+    linear-gradient(-45deg, #92baac 23px, transparent 23px, transparent 68px, #92baac 68px, #92baac 113px, transparent 113px, transparent 158px, #92baac 158px);
+    background-color: #e1ebbd;
+    background-size: 128px 128px;
+}
+
+.color-white, .color-white:hover, .color-white:active, .color-white:focus {
+    color: white;
+}
+
+.color-orange, .color-orange:hover, .color-orange:active .color-orange:focus, .color-orange:hover:disabled, .color-orange:active:disabled {
+    background-color: #F95B0A;
+}
+
+.color-black, .color-black:hover, .color-black:active, .color-black:focus {
+    background-color: #333538
+}
+
+.border-none {
+    border: none;
+}
+
 h1, h2 {
     text-align: center;
     margin-bottom: 40px;
 }
+
 .expose {
     opacity: 0.5;
     z-index: -1000;
 }
+
 .apply-btn {
     width: 100%;
     margin-top: 25px;
 }
+
 .error {
     font-size: 16px;
-    position:absolute
+    position: absolute
 }
+
 span {
     font-size: 20px;
 }
+
 label {
     font-size: 17px;
 }
+
 .start-value {
     margin-top: 40px;
+}
+
+.main-title {
+    margin-bottom: 85px;
+    margin-top: 60px;
+    font-weight: bold;
+    font-size: 55px;
+}
+
+.main-box {
+    /*opacity: 0.95;*/
+    margin-top: 35px;
 }
 
 /*=======================================
@@ -33,34 +75,42 @@ label {
 .currency span {
     font-size: 20px;
 }
+
 .pln {
     text-align: right;
+    margin-right: 35px;
 }
 
 .currency-type {
     font-size: 20px;
     padding: 10px;
 }
+
 .other-currency {
     padding-bottom: 75px;
     border: 1px solid #0f0f0f;
     height: 127px;
     margin-top: 20px;
 }
+
 .other-currency button {
     width: 100%;
     margin-left: 8px;
 }
+
 .reset-button {
     width: 100%;
-    margin-top:30px;
+    margin-top: 30px;;
 }
+
 .wallet-status {
     margin-bottom: 4px;
 }
+
 .hide-wallet {
-    display:none;
+    display: none;
 }
+
 /*=======================================
     TRANSACTION STYLES
 ==================================================*/
@@ -77,72 +127,83 @@ input {
 }
 
 .transaction-box {
-    z-index: 500;
+    z-index: 500;;
 }
 
 .transaction-box h3 {
     text-align: center;
     padding-bottom: 30px;
 }
+
 .transaction-box button {
     width: 100%;
     margin-top: 20px;
 }
+
 p {
     font-size: 20px;
 }
+
 .predicted-amount {
     margin-top: 55px;
 }
+
 .action-buttons {
     margin-top: 20px;
 }
+
 /*=======================================
     TABLE OF CURRENCIES EXCHANGES STYLES
 ==================================================*/
 td {
     width: 30%;
     font-size: 18px;
-    text-align:center;
+    text-align: center;
 }
+
 .back-btn {
-    width: 100%;
+    width: 100%;;
 }
+
 .btn-table-exchanges {
     width: 100%;
     margin-top: 15px;
 }
+
 /*=======================================
     MOBILE DEVICES STYLES
 ==================================================*/
-
 @media (max-width: 450px) {
     .other-currency button {
         margin-left: 0px;
     }
+
     .mobile-class {
         width: 100%;
         font-size: 15px;
     }
+
     .col-xs-4 {
         width: 47.33%;
         font-size: 15px;
     }
+
     .col-xs-offset-3 {
         margin-left: 5%;
         font-size: 15px;
     }
+
     .col-xs-offset-2 {
         margin-left: 2.666667%;
     }
+
     .other-currency {
         font-size: 14px;
     }
-
 }
+
 @media (max-width: 992px) {
     .transaction-box {
         margin-left: 0px;
     }
 }
-

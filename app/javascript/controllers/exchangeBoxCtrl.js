@@ -11,7 +11,7 @@
                 ctrl.money = SharedData.money;
                 ctrl.exchangeRate = SharedData.exchangeRate;
 
-                if ($routeParams.action === 'buy') {
+                if ('buy' === $routeParams.action) {
 
                     ctrl.message = 'Wymiana PLN na ' + ctrl.currencyId;
                     ctrl.btnBuy = true;
@@ -26,7 +26,7 @@
                         SharedData.updateCurrency('PLN', SharedData.wallet.PLN);
                     };
                 }
-                if ($routeParams.action === 'sell') {
+                if ('sell' === $routeParams.action) {
 
                     ctrl.message = 'Wymiana ' + ctrl.currencyId + ' na PLN';
                     ctrl.btnBuy = false;
