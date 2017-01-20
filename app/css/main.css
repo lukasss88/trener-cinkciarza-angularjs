@@ -1,8 +1,7 @@
 /*=======================================
     GENERAL STYLES
 ==================================================*/
-
-h1 {
+h1, h2 {
     text-align: center;
     margin-bottom: 40px;
 }
@@ -78,7 +77,7 @@ input {
 }
 
 .transaction-box {
-    margin-left: 20px;
+    z-index: 500;
 }
 
 .transaction-box h3 {
@@ -98,7 +97,21 @@ p {
 .action-buttons {
     margin-top: 20px;
 }
-
+/*=======================================
+    TABLE OF CURRENCIES EXCHANGES STYLES
+==================================================*/
+td {
+    width: 30%;
+    font-size: 18px;
+    text-align:center;
+}
+.back-btn {
+    width: 100%;
+}
+.btn-table-exchanges {
+    width: 100%;
+    margin-top: 15px;
+}
 /*=======================================
     MOBILE DEVICES STYLES
 ==================================================*/
@@ -132,18 +145,4 @@ p {
         margin-left: 0px;
     }
 }
-/*=======================================
-    TABLE OF CURRENCIES EXCHANGES STYLES
-==================================================*/
-td {
-    width: 30%;
-    font-size: 18px;
-    text-align:center;
-}
-.back-btn {
-    width: 100%;
-}
-.btn-table-exchanges {
-    width: 100%;
-    margin-top: 15px;
-}
+

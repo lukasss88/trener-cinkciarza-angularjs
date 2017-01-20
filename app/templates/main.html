@@ -1,6 +1,6 @@
-<div class="container" >
+<div class="container">
 
-    <div class="col-md-6" data-ng-class="{ 'expose' : addOpacity }">
+    <div class="col-md-offset-3 col-md-6">
 
         <!-- ENTER MONEY SECTION -->
         <div class="form-group row start-value" name="divStartingValue" ng-form>
@@ -14,7 +14,9 @@
                 <button class="btn btn-info apply-btn" ng-click="mainCtrl.apply()"
                         ng-disabled="divStartingValue.inputStartingValue.$error.min; divStartingValue.$invalid">Zatwierdź
                 </button>
-                <a  href="#/tableOfExchanges"><button class="btn-warning btn btn-table-exchanges">Info</button></a>
+                <a href="#/tableOfExchanges">
+                    <button class="btn-warning btn btn-table-exchanges">Info</button>
+                </a>
             </div>
         </div>
         <!-- END ENTER MONEY SECTION -->
@@ -26,9 +28,9 @@
 
                 <p>PLN: {{mainCtrl.wallet.PLN | number:2}}zł</p>
 
-                <p ng-hide="mainCtrl.wallet.USD == 0">USD: {{mainCtrl.wallet.USD | number:2}}$</p>
-                <p ng-hide="mainCtrl.wallet.EUR == 0">EUR: {{mainCtrl.wallet.EUR | number:2}}€</p>
-                <p ng-hide="mainCtrl.wallet.GBP == 0">GBP: {{mainCtrl.wallet.GBP | number:2}}£</p>
+                <div ng-repeat="item in mainCtrl.currencies">
+                    <p ng-hide="mainCtrl.wallet[item] == 0 || mainCtrl.wallet[item] == null">{{item}}: {{mainCtrl.wallet[item] | number:2}}{{mainCtrl.currencyIcons[item]}}</p>
+                </div>
 
             </div>
             <div class="well">
@@ -44,60 +46,22 @@
                     </div>
                 </div>
 
-                <div class="other-currency" ng-switch-when="USD">
+                <div class="other-currency" ng-show="mainCtrl.currency">
                     <div class="row currency-type">
                         <div class="row wallet-status">
                             <div class="col-md-offset-1 col-md-4 col-xs-offset-1 col-xs-4 mobile-class">
-                                USD:
-                                {{mainCtrl.wallet.USD | number:2}}$
+                                {{mainCtrl.currency}}:
+                                {{mainCtrl.wallet[mainCtrl.currency] | number:2}}{{mainCtrl.currencyIcons[mainCtrl.currency]}}
                             </div>
                         </div>
-                        <div class="col-md-offset-3 col-md-4 col-xs-4 col-xs-offset-3">{{mainCtrl.USD.rates[0].ask}}zł</div>
-                        <div class="col-md-4 col-xs-4">{{mainCtrl.USD.rates[0].bid}}zł</div>
+                        <div class="col-md-offset-3 col-md-4 col-xs-4 col-xs-offset-3">{{mainCtrl[mainCtrl.currency].rates[0].ask}}zł</div>
+                        <div class="col-md-4 col-xs-4">{{mainCtrl[mainCtrl.currency].rates[0].bid}}zł</div>
                     </div>
                     <div class="col-md-4 col-md-offset-2 col-xs-4 col-xs-offset-2">
-                        <button class='btn btn-success' ng-click="mainCtrl.sellCurrency()" ng-disabled="0 == mainCtrl.wallet.PLN">Kup</button>
+                        <a href="#/exchangeBox/buy/{{mainCtrl.currency}}"><button class='btn btn-success buyBtn' ng-click="mainCtrl.sellCurrency()" ng-disabled="0 == mainCtrl.wallet.PLN">Kup</button></a>
                     </div>
                     <div class="col-md-4 col-xs-4">
-                        <button class="btn btn-primary" ng-click="mainCtrl.buyCurrency()" ng-disabled="0 == mainCtrl.wallet.USD">Sprzedaj</button>
-                    </div>
-                </div>
-
-                <div class="other-currency" ng-switch-when="EUR">
-                    <div class="row currency-type">
-                        <div class="row wallet-status">
-                            <div class="col-md-offset-1 col-md-4 col-xs-offset-1 col-xs-4 mobile-class">
-                                EUR:
-                                {{mainCtrl.wallet.EUR | number:2}}€
-                            </div>
-                        </div>
-                        <div class="col-md-offset-3 col-md-4 col-xs-4 col-xs-offset-3">{{mainCtrl.EUR.rates[0].ask}}zł</div>
-                        <div class="col-md-4 col-xs-4">{{mainCtrl.EUR.rates[0].bid}}zł</div>
-                    </div>
-                    <div class="col-md-4 col-md-offset-2 col-xs-4 col-xs-offset-2">
-                        <button class='btn btn-success' ng-click="mainCtrl.sellCurrency()" ng-disabled="0 == mainCtrl.wallet.PLN">Kup</button>
-                    </div>
-                    <div class="col-md-4  col-xs-4">
-                        <button class="btn btn-primary" ng-click="mainCtrl.buyCurrency()" ng-disabled="0 == mainCtrl.wallet.EUR">Sprzedaj</button>
-                    </div>
-                </div>
-
-                <div class="other-currency" ng-switch-when="GBP">
-                    <div class="row currency-type">
-                        <div class="row wallet-status">
-                            <div class="col-md-offset-1 col-md-4 col-xs-offset-1 col-xs-4 mobile-class">
-                                GBP:
-                                {{mainCtrl.wallet.GBP| number:2}}£
-                            </div>
-                        </div>
-                        <div class="col-md-offset-3 col-md-4 col-xs-4 col-xs-offset-3">{{mainCtrl.GBP.rates[0].ask}}zł</div>
-                        <div class="col-md-4 col-xs-4">{{mainCtrl.GBP.rates[0].bid}}zł</div>
-                    </div>
-                    <div class="col-md-4 col-md-offset-2 col-xs-4 col-xs-offset-2">
-                        <button class='btn btn-success' ng-click="mainCtrl.sellCurrency()" ng-disabled="0 == mainCtrl.wallet.PLN">Kup</button>
-                    </div>
-                    <div class="col-md-4 col-xs-4">
-                        <button class="btn btn-primary" ng-click="mainCtrl.buyCurrency()" ng-disabled="0 == mainCtrl.wallet.GBP">Sprzedaj</button>
+                        <a href="#/exchangeBox/sell/{{mainCtrl.currency}}"><button class="btn btn-primary sellBtn" ng-click="mainCtrl.buyCurrency()" ng-disabled="0 == mainCtrl.wallet[mainCtrl.currency]">Sprzedaj</button></a>
                     </div>
                 </div>
 
@@ -108,38 +72,4 @@
         </div>
         <!-- END WALLET SECTION -->
     </div>
-
-    <!-- CURRENCY EXCHANGE SECTION -->
-    <div class="col-md-6 col-xs-12">
-        <div ng-show="mainCtrl.currencyBox" class="row well transaction-box">
-            <h3>{{mainCtrl.message}}</h3>
-            <p>Dostepne srodki: {{mainCtrl.wallet[type] | number:2}} {{ mainCtrl.currencyType}}</p>
-            <p>Kurs: {{mainCtrl.exchangeRate}} zl</p>
-            <div class="transaction row" ng-form name="actionToCurrency">
-                <label for="plnToUsd" class="col-xs-4 col-form-label">Kwota wymiany</label>
-                <div class="col-xs-4 col-xs-offset-3">
-                    <input class="form-control" type="number" id="plnToUsd" max="{{mainCtrl.wallet[type]}}" min="0.1" ng-model="mainCtrl.money.value" name="currencyValue" required>
-                    <span class="error" ng-show="mainCtrl.actionToCurrency.currencyValue.$error.max">Too much!</span>
-                    <span class="error" ng-show="mainCtrl.actionToCurrency.currencyValue.$error.min">Not enough!</span>
-                </div>
-                <div class="predicted-amount">
-                    <label for="predicted-value" class="col-xs-4 col-form-label">Otrzymasz:</label>
-                    <div class="col-xs-4 col-xs-offset-3" ng-hide="mainCtrl.money.value == 0 || mainCtrl.money.value < 0">
-                        <span ng-hide="mainCtrl.money.value == null" id="predicted-value">{{ mainCtrl.btnBuy ? (mainCtrl.money.value / mainCtrl.exchangeRate | number:2) : (mainCtrl.money.value * mainCtrl.exchangeRate | number:2)}}{{mainCtrl.currencyReceive}}</span>
-                    </div>
-                </div>
-            </div>
-            <div class="action-buttons">
-                <div class="col-xs-4 col-xs-offset-2">
-                    <button class="btn btn-primary apply-btn" ng-click="mainCtrl.applyCurrency(money.value); mainCtrl.toggleBox()"
-                            ng-disabled="actionToCurrency.currencyValue.$error.max || actionToCurrency.currencyValue.$error.min; actionToCurrency.$invalid">Zatwierdź
-                    </button>
-                </div>
-                <div class=" col-xs-4">
-                    <button class="btn btn-default cancel-btn" ng-click="mainCtrl.toggleBox()">Anuluj</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- END CURRENCY EXCHANGE SECTION -->
 </div>
