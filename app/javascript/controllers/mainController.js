@@ -7,16 +7,16 @@
                 var ctrl = this;
 
                 ctrl.wallet = SharedData.wallet;
-                ctrl.moneyStart = 10000;
                 ctrl.currencies = SharedData.currencies;
                 ctrl.currencyIcons = SharedData.currencyIcons;
+                ctrl.moneyStart = 10000;
 
                 ctrl.setStartingValues = function ()
                 {
                     SharedData.wallet.PLN = $localStorage.PLN || 0;
-                    SharedData.wallet.GBP = $localStorage.GBP || 0;
-                    SharedData.wallet.USD = $localStorage.USD || 0;
-                    SharedData.wallet.EUR = $localStorage.EUR || 0;
+                    angular.forEach(SharedData.currencies, function(value) {
+                        SharedData.wallet[value] = $localStorage[value] || 0;
+                    });
                 };
                 ctrl.setStartingValues();
 
@@ -41,7 +41,6 @@
                 };
 
                 angular.forEach(SharedData.currencies, function(value){
-
                     CurrenciesService.getCurrency(value).then(function (data)
                         {
                             ctrl[value] = data;
