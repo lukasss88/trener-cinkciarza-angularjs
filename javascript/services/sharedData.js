@@ -5,16 +5,14 @@
             .factory('SharedData', function ()
             {
                 return {
-
                     wallet: {},
-                    moneyStart: null,
                     currencies:
                     [
-                            'USD', 'EUR', 'GBP'
+                            'USD', 'EUR', 'GBP', 'CHF'
                     ],
                     currencyIcons:
                     {
-                        USD:'$', EUR:'€', GBP:'£'
+                        USD:'$', EUR:'€', GBP:'£', CHF: 'CHF'
                     },
                     money:
                     {

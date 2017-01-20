@@ -7,103 +7,56 @@
                 var ctrl = this;
 
                 ctrl.wallet = SharedData.wallet;
-                ctrl.moneyStart = SharedData.moneyStart;
+                ctrl.currencies = SharedData.currencies;
+                ctrl.currencyIcons = SharedData.currencyIcons;
+                ctrl.moneyStart = 10000;
 
-                SharedData.setStartingValues = ctrl.setStartingValues;
-                SharedData.setStartingValues = function(){
+                ctrl.setStartingValues = function ()
+                {
                     SharedData.wallet.PLN = $localStorage.PLN || 0;
-                    SharedData.wallet.GBP = $localStorage.GBP || 0;
-                    SharedData.wallet.USD = $localStorage.USD || 0;
-                    SharedData.wallet.EUR = $localStorage.EUR || 0;
+                    angular.forEach(SharedData.currencies, function(value) {
+                        SharedData.wallet[value] = $localStorage[value] || 0;
+                    });
                 };
+                ctrl.setStartingValues();
 
                 SharedData.updateCurrency = ctrl.updateCurrency;
-                SharedData.updateCurrency = function(type,value) {
+                SharedData.updateCurrency = function (type, value)
+                {
                     ctrl.wallet[type] = value;
                     $localStorage[type] = value;
                 };
 
-                SharedData.setStartingValues();
-
-                SharedData.reset = ctrl.reset;
                 ctrl.reset = function ()
                 {
                     $localStorage.$reset();
-                    SharedData.setStartingValues();
+                    ctrl.setStartingValues();
                 };
 
                 ctrl.apply = function ()
                 {
                     ctrl.reset();
-                    // SharedData.reset();
                     SharedData.updateCurrency('PLN', ctrl.moneyStart);
                     ctrl.moneyStart = null;
                 };
 
-                CurrenciesService.USD().then(function (data)
-                {
-                    ctrl.USD = data;
+                angular.forEach(SharedData.currencies, function(value){
+                    CurrenciesService.getCurrency(value).then(function (data)
+                        {
+                            ctrl[value] = data;
+                        });
                 });
 
-                CurrenciesService.EUR().then(function (data)
+                ctrl.buyCurrency = function (type)
                 {
-                    ctrl.EUR = data;
-                });
-
-                CurrenciesService.GBP().then(function (data)
-                {
-                    ctrl.GBP = data;
-                });
-
-                ctrl.currencies = SharedData.currencies;
-                ctrl.currencyIcons = SharedData.currencyIcons;
-                ctrl.money = SharedData.money;
-                ctrl.message = SharedData.message;
-                ctrl.exchangeRate = SharedData.exchangeRate;
-                ctrl.btnBuy = SharedData.btnBuy;
-                ctrl.currencyType = SharedData.currencyType;
-                ctrl.currencyReceive = SharedData.currencyReceive;
-                ctrl.currency = SharedData.currency;
-                ctrl.applyCurrency = SharedData.applyCurrency;
-
-                ctrl.buyCurrency = function(type, selectCurrency)
-                {
-                    selectCurrency = ctrl.currency;
-                    ctrl.wallet[type] = SharedData.wallet[selectCurrency];
-                    SharedData.message = 'Wymiana ' + selectCurrency + ' na PLN';
-                    SharedData.exchangeRate = ctrl[selectCurrency].rates[0].bid;
-                    SharedData.btnBuy = false;
-                    SharedData.currencyReceive = 'zł';
-                    SharedData.currencyType = ctrl.currencyIcons[ctrl.currency];
-                    SharedData.applyCurrency = function (exchangeRate)
-                    {
-                        exchangeRate = ctrl[selectCurrency].rates[0].bid;
-                        SharedData.wallet[selectCurrency]-= parseFloat((ctrl.money.value).toFixed(2));
-                        SharedData.wallet.PLN += parseFloat((ctrl.money.value * exchangeRate).toFixed(2));
-                        SharedData.updateCurrency(ctrl.currency, SharedData.wallet[selectCurrency]);
-                        SharedData.updateCurrency('PLN', SharedData.wallet.PLN);
-                    };
+                    SharedData.wallet[type] = SharedData.wallet[ctrl.currency];
+                    SharedData.exchangeRate = ctrl[ctrl.currency].rates[0].bid;
                 };
 
-                ctrl.sellCurrency = function (type, selectCurrency)
+                ctrl.sellCurrency = function (type)
                 {
-                    selectCurrency = ctrl.currency;
-                    ctrl.wallet[type] = SharedData.wallet.PLN;
-
-                    SharedData.message = 'Wymiana PLN na ' + selectCurrency;
-                    SharedData.exchangeRate = ctrl[selectCurrency].rates[0].ask;
-
-                    SharedData.btnBuy = true;
-                    SharedData.currencyType = 'zł';
-                    SharedData.currencyReceive = ctrl.currencyIcons[ctrl.currency];
-                    SharedData.applyCurrency = function (exchangeRate)
-                    {
-                        exchangeRate = ctrl[selectCurrency].rates[0].ask;
-                        SharedData.wallet[selectCurrency] += parseFloat((SharedData.money.value / exchangeRate).toFixed(2));
-                        SharedData.wallet.PLN -= parseFloat((SharedData.money.value).toFixed(2));
-                        SharedData.updateCurrency(ctrl.currency, SharedData.wallet[selectCurrency]);
-                        SharedData.updateCurrency('PLN', SharedData.wallet.PLN);
-                    };
+                    SharedData.wallet[type] = SharedData.wallet.PLN;
+                    SharedData.exchangeRate = ctrl[ctrl.currency].rates[0].ask;
                 };
             });
 })();
