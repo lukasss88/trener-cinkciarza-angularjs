@@ -5,6 +5,8 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-gh-pages');
+    grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
 
     grunt.initConfig({
         watch: {
@@ -33,6 +35,36 @@ module.exports = function (grunt) {
                     }
                 }
             }
+
+        },
+        karma: {
+            options: {
+                configFile: 'test/karma.conf.js'
+            },
+            unit: {
+                singleRun: true
+            },
+            dev: {
+                singleRun: false
+            }
+        },
+        jshint: {
+            default: {
+                options: {
+                    jshintrc: true
+                },
+                files: {
+                    src: ['app/**/*.js', 'test/**/*.js', '!app/bower_components/**/*.js']
+                }
+            },
+            verify: {
+                options: {
+                    jshintrc: true,
+                    reporter: 'checkstyle',
+                    reporterOutput: 'target/jshint.xml'
+                },
+                files: {src: ['app/**/*.js', 'test/**/*.js', '!app/bower_components/**/*.js']}
+            }
         },
         'gh-pages': {
             options: {
@@ -45,6 +77,10 @@ module.exports = function (grunt) {
     grunt.registerTask('serve', function () {
         grunt.task.run(['connect:livereload', 'watch']);
     });
+
+    grunt.registerTask('verify', ['jshint:verify', 'karma:unit']);
+
+    grunt.registerTask('test:dev', ['karma:dev']);
 
     grunt.registerTask('default', ['serve']);
 };

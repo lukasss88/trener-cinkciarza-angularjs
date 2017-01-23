@@ -20,7 +20,6 @@
                 };
                 ctrl.setStartingValues();
 
-                SharedData.updateCurrency = ctrl.updateCurrency;
                 SharedData.updateCurrency = function (type, value)
                 {
                     ctrl.wallet[type] = value;
