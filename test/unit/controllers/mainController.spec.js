@@ -6,21 +6,25 @@ fdescribe('MainController', function ()
     var CurrenciesServiceMock;
     var SharedDataMock;
     var storage;
-    var reset;
 
     beforeEach(module('cinkciarzTraining'));
 
     beforeEach(inject(function ($controller, SharedData, CurrenciesService, $localStorage)
     {
-
         CurrenciesServiceMock = CurrenciesService;
         SharedDataMock = SharedData;
         storage = $localStorage;
+
+        spyOn(CurrenciesServiceMock, 'getCurrency').and.callFake(function ()
+        {
+            return successfulPromise('actual currency');
+        });
+
         mainCtrl = $controller('MainController', {CurrenciesService: CurrenciesServiceMock, SharedData: SharedDataMock, $localStorage: storage});
 
-
         spyOn(mainCtrl, 'setStartingValues').and.callThrough();
-        spyOn(mainCtrl, 'reset');
+        spyOn(mainCtrl, 'reset').and.callThrough();
+        spyOn(storage, '$reset');
         spyOn(SharedDataMock, 'updateCurrency').and.callThrough();
 
     }));
@@ -47,12 +51,14 @@ fdescribe('MainController', function ()
         // {
         //     expect(mainCtrl.setStartingValues).toHaveBeenCalled();
         // });
-        // it('Should take currencies propertises from service', function(done) {
-        //     CurrenciesServiceMock.getCurrency('USD').then(function(result) {
-        //         expect(result).toEqual(mainCtrl.USD);
-        //         done();
-        //     });
-        // });
+        it('should ...', function ()
+        {
+            expect(CurrenciesServiceMock.getCurrency.calls.count()).toBe(4);
+        });
+        it('should 2', function ()
+        {
+            expect(mainCtrl.EUR).toBe('actual currency');
+        });
     });
 
     describe('apply', function ()
@@ -130,38 +136,36 @@ fdescribe('MainController', function ()
         });
     });
 
-    // describe('reset', function ()
-    // {
-    //     beforeEach(function ()
-    //     {
-    //         mainCtrl.reset();
-    //     });
-    //     it('should call $localStorage.$reset', function ()
-    //     {
-    //         expect(storage.reset).toHaveBeenCalled();
-    //     });
-    //     it('should call setStartingValues function', function ()
-    //     {
-    //         expect(mainCtrl.setStartingValues).toHaveBeenCalled();
-    //     });
-    // });
+    describe('reset', function ()
+    {
+        beforeEach(function ()
+        {
+            mainCtrl.reset();
+        });
+        it('should call $localStorage.$reset', function ()
+        {
+            expect(storage.$reset).toHaveBeenCalled();
+        });
+        it('should call setStartingValues function', function ()
+        {
+            expect(mainCtrl.setStartingValues).toHaveBeenCalled();
+        });
+    });
 
-    // describe('getCurrency', function ()
+    // describe('sellCurrency', function ()
     // {
-    //     beforeEach(function ()
+    //
+    //     it('should set selected wallet', function ()
     //     {
-    //         CurrenciesServiceMock.getCurrency('USD').then(function(data){
-    //             mainCtrl.USD = data;
+    //         beforeEach(function (type)
+    //         {
+    //             mainCtrl.sellCurrency(type);
     //         });
+    //         expect(SharedDataMock.wallet[type]).toEqual(SharedDataMock.wallet.PLN);
     //     });
-    //     it('should set data from CurrenciesService to USD variable', function ()
-    //     {
-    //         expect(SharedDataMock.wallet[mainCtrl.currency]).toEqual(SharedDataMock.wallet.USD);
-    //     });
-    //     it('should call exchangeRate to selected currency bid value', function ()
-    //     {
-    //         expect(SharedDataMock.exchangeRate).toEqual(mainCtrl[mainCtrl.currency].rates[0].bid);
-    //     });
+    //     // it('should call setStartingValues function', function ()
+    //     // {
+    //     //     expect(mainCtrl.setStartingValues).toHaveBeenCalled();
+    //     // });
     // });
-
 });
