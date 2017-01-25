@@ -4,7 +4,7 @@
   "description": "",
   "main": "Gruntfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "grunt verify --force"
   },
   "repository": {
     "type": "git",
@@ -17,10 +17,24 @@
   },
   "homepage": "https://github.com/lukasss88/trener-cinkciarza-angularjs#readme",
   "devDependencies": {
+    "connect-modrewrite": "0.9.0",
     "grunt": "1.0.1",
+    "grunt-cli": "0.1.13",
     "grunt-contrib-connect": "1.0.2",
+    "grunt-contrib-jshint": "0.11.3",
     "grunt-contrib-watch": "1.0.0",
     "grunt-gh-pages": "2.0.0",
+    "grunt-karma": "0.10.1",
+    "jasmine-core": "2.1.0",
+    "karma": "0.12.24",
+    "karma-chrome-launcher": "2.0.0",
+    "karma-cli": "0.0.4",
+    "karma-coverage": "1.1.1",
+    "karma-jasmine": "0.3.8",
+    "karma-ng-html2js-preprocessor": "0.1.2",
+    "karma-phantomjs-launcher": "1.0.2",
+    "karma-spec-reporter": "0.0.26",
+    "load-grunt-tasks": "3.0.0",
     "serve-static": "1.11.1"
   }
 }

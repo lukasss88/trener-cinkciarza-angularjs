@@ -43,3 +43,22 @@
                 }
             });
 })();
+// describe('initialization', function ()
+// {
+//     it('should set wallet', function ()
+//     {
+//         expect(mainCtrl.wallet).toEqual(SharedDataMock.wallet);
+//     });
+//     it('should set currencies table', function ()
+//     {
+//         expect(mainCtrl.currencies).toEqual(SharedDataMock.currencies);
+//     });
+//     it('should set currencies icons', function ()
+//     {
+//         expect(mainCtrl.currencyIcons).toEqual(SharedDataMock.currencyIcons);
+//     });
+//     it('should set value of moneyStart', function ()
+//     {
+//         expect(mainCtrl.moneyStart).toBe(10000);
+//     });
+// });
