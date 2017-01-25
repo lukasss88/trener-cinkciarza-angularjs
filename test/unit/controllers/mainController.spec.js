@@ -1,4 +1,4 @@
-fdescribe('MainController', function ()
+describe('MainController', function ()
 {
     'use strict';
 
@@ -15,6 +15,7 @@ fdescribe('MainController', function ()
         SharedDataMock = SharedData;
         storage = $localStorage;
 
+
         spyOn(CurrenciesServiceMock, 'getCurrency').and.callFake(function ()
         {
             return successfulPromise('actual currency');
@@ -26,7 +27,6 @@ fdescribe('MainController', function ()
         spyOn(mainCtrl, 'reset').and.callThrough();
         spyOn(storage, '$reset');
         spyOn(SharedDataMock, 'updateCurrency').and.callThrough();
-
     }));
 
     describe('initialization', function ()
@@ -51,11 +51,11 @@ fdescribe('MainController', function ()
         // {
         //     expect(mainCtrl.setStartingValues).toHaveBeenCalled();
         // });
-        it('should ...', function ()
+        it('should calls getCurrency function 4 times', function ()
         {
             expect(CurrenciesServiceMock.getCurrency.calls.count()).toBe(4);
         });
-        it('should 2', function ()
+        it('should', function ()
         {
             expect(mainCtrl.EUR).toBe('actual currency');
         });
@@ -66,7 +66,6 @@ fdescribe('MainController', function ()
         beforeEach(function ()
         {
             mainCtrl.apply();
-            // SharedDataMock.updateCurrency('PLN', 200);
         });
         it('should call reset', function ()
         {
@@ -155,17 +154,17 @@ fdescribe('MainController', function ()
     // describe('sellCurrency', function ()
     // {
     //
+    //     beforeEach(function ()
+    //     {
+    //         mainCtrl.sellCurrency('PLN');
+    //     });
     //     it('should set selected wallet', function ()
     //     {
-    //         beforeEach(function (type)
-    //         {
-    //             mainCtrl.sellCurrency(type);
-    //         });
-    //         expect(SharedDataMock.wallet[type]).toEqual(SharedDataMock.wallet.PLN);
+    //         expect(SharedDataMock.wallet.PLN).toEqual(SharedDataMock.wallet.PLN);
     //     });
-    //     // it('should call setStartingValues function', function ()
-    //     // {
-    //     //     expect(mainCtrl.setStartingValues).toHaveBeenCalled();
-    //     // });
+    //     it('should call setStartingValues function', function ()
+    //     {
+    //         SharedDataMock.exchangeRate = mainCtrl.USD.rates[0].ask;
+    //     });
     // });
 });
