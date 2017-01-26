@@ -1,4 +1,4 @@
-describe('TableOfExchangesController', function ()
+fdescribe('TableOfExchangesController', function ()
 {
     'use strict';
 
@@ -13,7 +13,7 @@ describe('TableOfExchangesController', function ()
 
         spyOn(CurrenciesServiceMock, 'allCurrencies').and.callFake(function ()
         {
-            return successfulPromise('actual table of currency');
+            return successfulPromise([{rates:'actual table of currency'}]);
         });
 
         tableCtrl = $controller('TableOfExchangesController', {CurrenciesService: CurrenciesServiceMock});
