@@ -1,4 +1,4 @@
-describe('ExchangeBoxController', function ()
+fdescribe('ExchangeBoxController', function ()
 {
     'use strict';
 
@@ -13,7 +13,7 @@ describe('ExchangeBoxController', function ()
         SharedDataMock = SharedData;
         routeParams = $routeParams;
         routeParams.action = 'buy';
-        exCtrl = $controller('MainController');
+        $controller('MainController');
         SharedDataMock.money.value = 100;
 
         spyOn(SharedDataMock, 'updateCurrency').and.callThrough();
