@@ -40,7 +40,6 @@
         "angular": false,
         "inject": true,
         "spyOn": true,
-        "successfulPromise": true,
-        "fdescribe": true
+        "successfulPromise": true
     }
 }

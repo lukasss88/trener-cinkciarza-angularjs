@@ -9,7 +9,6 @@
                 CurrenciesService.allCurrencies().then(function (data)
                 {
                     vm.arrayCurrency = data[0].rates;
-                    console.log('123');
                 });
             });
 })();
