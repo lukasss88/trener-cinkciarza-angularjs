@@ -1,4 +1,4 @@
-fdescribe('TableOfExchangesController', function ()
+describe('TableOfExchangesController', function ()
 {
     'use strict';
 
