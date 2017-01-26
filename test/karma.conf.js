@@ -24,6 +24,7 @@ module.exports = function (config)
             'app/javascript/app.js',
             'app/javascript/controllers/*.js',
             'app/javascript/services/*.js',
+            'test/testHelper.js',
             // 'app/!(bower_components)/**/*.js',
             'test/unit/**/*.spec.js'
         ],
@@ -61,7 +62,7 @@ module.exports = function (config)
 
         // Continuous Integration mode
         // if true, it capture browsers, run tests and exit
-        singleRun: false,
+        singleRun: true,
 
         colors: true,
 

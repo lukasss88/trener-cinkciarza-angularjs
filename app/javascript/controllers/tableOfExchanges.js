@@ -2,7 +2,7 @@
 {
     'use strict';
     angular.module('cinkciarzTraining')
-            .controller('TableOfExchangesController', function ( CurrenciesService)
+            .controller('TableOfExchangesController', function (CurrenciesService)
             {
                 var vm = this;
 

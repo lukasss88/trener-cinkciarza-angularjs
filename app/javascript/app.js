@@ -9,7 +9,8 @@
                     controllerAs: 'mainCtrl'
                 })
                         .when('/tableOfExchanges', {
-                            templateUrl: 'templates/tableOfExchanges.html', controller: 'TableOfExchangesController as tableCtrl'
+                            templateUrl: 'templates/tableOfExchanges.html', controller: 'TableOfExchangesController',
+                            controllerAs: 'tableCtrl'
                         })
                         .when('/exchangeBox/:action/:currency', {
                             templateUrl: 'templates/exchangeBox.html', controller: 'ExchangeBoxController',

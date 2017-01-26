@@ -1,4 +1,4 @@
-fdescribe('MainController', function ()
+describe('MainController', function ()
 {
     'use strict';
 
@@ -6,23 +6,27 @@ fdescribe('MainController', function ()
     var CurrenciesServiceMock;
     var SharedDataMock;
     var storage;
-    var reset;
 
     beforeEach(module('cinkciarzTraining'));
 
     beforeEach(inject(function ($controller, SharedData, CurrenciesService, $localStorage)
     {
-
         CurrenciesServiceMock = CurrenciesService;
         SharedDataMock = SharedData;
         storage = $localStorage;
+
+
+        spyOn(CurrenciesServiceMock, 'getCurrency').and.callFake(function ()
+        {
+            return successfulPromise('actual currency');
+        });
+
         mainCtrl = $controller('MainController', {CurrenciesService: CurrenciesServiceMock, SharedData: SharedDataMock, $localStorage: storage});
 
-
         spyOn(mainCtrl, 'setStartingValues').and.callThrough();
-        spyOn(mainCtrl, 'reset');
+        spyOn(mainCtrl, 'reset').and.callThrough();
+        spyOn(storage, '$reset');
         spyOn(SharedDataMock, 'updateCurrency').and.callThrough();
-
     }));
 
     describe('initialization', function ()
@@ -47,12 +51,14 @@ fdescribe('MainController', function ()
         // {
         //     expect(mainCtrl.setStartingValues).toHaveBeenCalled();
         // });
-        // it('Should take currencies propertises from service', function(done) {
-        //     CurrenciesServiceMock.getCurrency('USD').then(function(result) {
-        //         expect(result).toEqual(mainCtrl.USD);
-        //         done();
-        //     });
-        // });
+        it('should calls getCurrency function 4 times', function ()
+        {
+            expect(CurrenciesServiceMock.getCurrency.calls.count()).toBe(4);
+        });
+        it('should', function ()
+        {
+            expect(mainCtrl.EUR).toBe('actual currency');
+        });
     });
 
     describe('apply', function ()
@@ -60,7 +66,6 @@ fdescribe('MainController', function ()
         beforeEach(function ()
         {
             mainCtrl.apply();
-            // SharedDataMock.updateCurrency('PLN', 200);
         });
         it('should call reset', function ()
         {
@@ -130,38 +135,36 @@ fdescribe('MainController', function ()
         });
     });
 
-    // describe('reset', function ()
+    describe('reset', function ()
+    {
+        beforeEach(function ()
+        {
+            mainCtrl.reset();
+        });
+        it('should call $localStorage.$reset', function ()
+        {
+            expect(storage.$reset).toHaveBeenCalled();
+        });
+        it('should call setStartingValues function', function ()
+        {
+            expect(mainCtrl.setStartingValues).toHaveBeenCalled();
+        });
+    });
+
+    // describe('sellCurrency', function ()
     // {
+    //
     //     beforeEach(function ()
     //     {
-    //         mainCtrl.reset();
+    //         mainCtrl.sellCurrency('PLN');
     //     });
-    //     it('should call $localStorage.$reset', function ()
+    //     it('should set selected wallet', function ()
     //     {
-    //         expect(storage.reset).toHaveBeenCalled();
+    //         expect(SharedDataMock.wallet.PLN).toEqual(SharedDataMock.wallet.PLN);
     //     });
     //     it('should call setStartingValues function', function ()
     //     {
-    //         expect(mainCtrl.setStartingValues).toHaveBeenCalled();
+    //         SharedDataMock.exchangeRate = mainCtrl.USD.rates[0].ask;
     //     });
     // });
-
-    // describe('getCurrency', function ()
-    // {
-    //     beforeEach(function ()
-    //     {
-    //         CurrenciesServiceMock.getCurrency('USD').then(function(data){
-    //             mainCtrl.USD = data;
-    //         });
-    //     });
-    //     it('should set data from CurrenciesService to USD variable', function ()
-    //     {
-    //         expect(SharedDataMock.wallet[mainCtrl.currency]).toEqual(SharedDataMock.wallet.USD);
-    //     });
-    //     it('should call exchangeRate to selected currency bid value', function ()
-    //     {
-    //         expect(SharedDataMock.exchangeRate).toEqual(mainCtrl[mainCtrl.currency].rates[0].bid);
-    //     });
-    // });
-
 });
