@@ -162,9 +162,9 @@ describe('MainController', function ()
     //     {
     //         expect(SharedDataMock.wallet.PLN).toEqual(SharedDataMock.wallet.PLN);
     //     });
-    //     it('should call setStartingValues function', function ()
-    //     {
-    //         SharedDataMock.exchangeRate = mainCtrl.USD.rates[0].ask;
-    //     });
+    //     // it('should call setStartingValues function', function ()
+    //     // {
+    //     //     SharedDataMock.exchangeRate = mainCtrl.USD.rates[0].ask;
+    //     // });
     // });
 });

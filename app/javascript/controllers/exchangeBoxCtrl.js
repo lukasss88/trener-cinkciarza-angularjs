@@ -7,7 +7,6 @@
                 var ctrl = this;
                 ctrl.currencyId = $routeParams.currency;
                 ctrl.wallet = SharedData.wallet;
-                SharedData.wallet.PLN = ctrl.wallet.PLN;
                 ctrl.money = SharedData.money;
                 ctrl.exchangeRate = SharedData.exchangeRate;
 

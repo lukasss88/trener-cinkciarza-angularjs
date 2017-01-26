@@ -55,7 +55,7 @@
                 ctrl.sellCurrency = function (type)
                 {
                     SharedData.wallet[type] = SharedData.wallet.PLN;
-                    SharedData.exchangeRate = ctrl[ctrl.currency].rates[0].ask;
+                    // SharedData.exchangeRate = ctrl[ctrl.currency].rates[0].ask;
                 };
             });
 })();

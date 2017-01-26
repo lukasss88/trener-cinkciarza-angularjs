@@ -1,4 +1,4 @@
-fdescribe('app.js', function ()
+describe('app.js', function ()
 {
     'use strict';
 
