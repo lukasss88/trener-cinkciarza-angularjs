@@ -25,9 +25,5 @@ describe('SharedData', function ()
         {
             expect(sharedData.currencyIcons).toEqual({USD:'$', EUR:'€', GBP:'£', CHF: 'CHF'});
         });
-        it('should return money object', function ()
-        {
-            expect(sharedData.money.value).toBeNull();
-        });
     });
 });

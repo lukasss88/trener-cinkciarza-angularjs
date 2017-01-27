@@ -45,17 +45,5 @@
                             ctrl[value] = data;
                         });
                 });
-
-                ctrl.buyCurrency = function (type)
-                {
-                    SharedData.wallet[type] = SharedData.wallet[ctrl.currency];
-                    SharedData.exchangeRate = ctrl[ctrl.currency].rates[0].bid;
-                };
-
-                ctrl.sellCurrency = function (type)
-                {
-                    SharedData.wallet[type] = SharedData.wallet.PLN;
-                    // SharedData.exchangeRate = ctrl[ctrl.currency].rates[0].ask;
-                };
             });
 })();

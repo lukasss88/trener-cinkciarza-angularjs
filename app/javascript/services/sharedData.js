@@ -13,10 +13,6 @@
                     currencyIcons:
                     {
                         USD:'$', EUR:'€', GBP:'£', CHF: 'CHF'
-                    },
-                    money:
-                    {
-                        value: null
                     }
                 };
             });

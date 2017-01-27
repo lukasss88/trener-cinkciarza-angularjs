@@ -2,20 +2,22 @@
     <h2 class="color-white">Wymiana walut</h2>
     <div class="row well transaction-box color-black color-white border-none">
         <h3>{{exchangeCtrl.message}}</h3>
-        <p>Dostepne srodki: {{exchangeCtrl.wallet[type] | number:2}} {{ exchangeCtrl.currencyType}}</p>
-        <p>Kurs: {{exchangeCtrl.exchangeRate}} zł</p>
+        <p>Dostepne srodki: {{exchangeCtrl.action === 'buy' ? exchangeCtrl.wallet.PLN : exchangeCtrl.wallet[exchangeCtrl.currencyId] | number:2}} {{ exchangeCtrl.currencyType}}</p>
+        <p>Kurs: {{exchangeCtrl.action === 'buy' ? exchangeCtrl[exchangeCtrl.currencyId].rates[0].ask : exchangeCtrl[exchangeCtrl.currencyId].rates[0].bid}} zł</p>
         <div class="transaction row" ng-form name="exchangeCtrl.actionToCurrency">
             <label for="plnToUsd" class="col-xs-4 col-form-label">Kwota wymiany</label>
             <div class="col-xs-4 col-xs-offset-3">
-                <input class="form-control" type="number" id="plnToUsd" max="{{exchangeCtrl.wallet[type]}}" min="0.1" ng-model="exchangeCtrl.money.value"
+                <input class="form-control" type="number" id="plnToUsd"
+                       max="{{exchangeCtrl.action === 'buy' ? exchangeCtrl.wallet.PLN : exchangeCtrl.wallet[exchangeCtrl.currencyId]}}" min="0.1" ng-model="exchangeCtrl.money"
                        name="currencyValue" required>
                 <span class="error" ng-show="exchangeCtrl.actionToCurrency.currencyValue.$error.max">Too much!</span>
                 <span class="error" ng-show="exchangeCtrl.actionToCurrency.currencyValue.$error.min">Not enough!</span>
             </div>
             <div class="predicted-amount">
                 <label for="predicted-value" class="col-xs-4 col-form-label">Otrzymasz:</label>
-                <div class="col-xs-4 col-xs-offset-3" ng-hide="exchangeCtrl.money.value == 0 || exchangeCtrl.money.value < 0">
-                    <span ng-hide="exchangeCtrl.money.value == null" id="predicted-value">{{ exchangeCtrl.btnBuy ? (exchangeCtrl.money.value / exchangeCtrl.exchangeRate | number:2) : (exchangeCtrl.money.value * exchangeCtrl.exchangeRate | number:2)}}
+                <div class="col-xs-4 col-xs-offset-3" ng-hide="exchangeCtrl.money == 0 || exchangeCtrl.money.value < 0">
+                    <span ng-hide="exchangeCtrl.money == null" id="predicted-value">
+                        {{ exchangeCtrl.action === 'buy' ? (exchangeCtrl.money / exchangeCtrl[exchangeCtrl.currencyId].rates[0].ask | number:2) : (exchangeCtrl.money * exchangeCtrl[exchangeCtrl.currencyId].rates[0].bid| number:2)}}
                         {{exchangeCtrl.currencyReceive}}</span>
                 </div>
             </div>
@@ -23,7 +25,7 @@
         <div class="action-buttons">
             <div class="col-xs-4 col-xs-offset-2">
                 <a href="#/">
-                    <button class="btn btn-primary apply-btn color-orange border-none" ng-click="exchangeCtrl.applyCurrency(money.value)"
+                    <button class="btn btn-primary apply-btn color-orange border-none" ng-click="exchangeCtrl.applyCurrency(money)"
                             ng-disabled="exchangeCtrl.actionToCurrency.currencyValue.$error.max || exchangeCtrl.actionToCurrency.currencyValue.$error.min; exchangeCtrl.actionToCurrency.$invalid">
                         Zatwierdź
                     </button>

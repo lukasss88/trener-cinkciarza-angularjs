@@ -3,46 +3,43 @@ describe('CurrenciesService', function ()
     'use strict';
 
     var currenciesService;
+    var http;
     var currency;
-    var  authRequestHandler;
 
     beforeEach(module('cinkciarzTraining'));
 
-    beforeEach(inject(function (CurrenciesService, $httpBackend)
+    beforeEach(inject(function (CurrenciesService, $http)
     {
         currenciesService = CurrenciesService;
-
+        http = $http;
         currency = 'USD';
 
-        authRequestHandler = $httpBackend.when('GET', 'service.json')
-                .respond(true);
-
-        spyOn(currenciesService, 'getCurrency').and.callFake(function ()
+        spyOn(http, 'get').and.callFake(function ()
         {
-            return successfulPromise({data: 'actual currency variables'});
+            return successfulPromise({data: 'elo'});
         });
-
-
     }));
 
-    describe('initialization', function()
+    describe('getCurrency', function ()
     {
         beforeEach(function ()
         {
             currenciesService.getCurrency(currency);
         });
-
-        it('should calls getCurrency function one time', function ()
+        it('function getCurrency should return $http get request with url of selected currency', function ()
         {
-            expect(currenciesService.getCurrency.calls.count()).toBe(1);
+            expect(http.get).toHaveBeenCalledWith('https://api.nbp.pl/api/exchangerates/rates/c/USD/today/?format=json');
         });
-        it('should calls getCurrency function with currency as parameter', function ()
+    });
+    describe('allCurrencies', function ()
+    {
+        beforeEach(function ()
         {
-            expect(currenciesService.getCurrency).toHaveBeenCalledWith(currency);
+            currenciesService.allCurrencies();
         });
-        it('should set table of currencies to arrayCurrency variable', function ()
+        it('function allCurrencies should return $http get request with url of selected currency', function ()
         {
-            expect(currenciesService.data).toBe('actual currency variables');
+            expect(http.get).toHaveBeenCalledWith('https://api.nbp.pl/api/exchangerates/tables/c/?format=json');
         });
     });
 });
