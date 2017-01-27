@@ -1,4 +1,4 @@
-fdescribe('ExchangeBoxController', function ()
+describe('ExchangeBoxController', function ()
 {
     'use strict';
 
@@ -15,12 +15,13 @@ fdescribe('ExchangeBoxController', function ()
         CurrenciesServiceMock = CurrenciesService;
         routeParams = $routeParams;
         routeParams.action = 'buy';
+        routeParams.currency = 'USD';
         $controller('MainController');
         // SharedDataMock.money.value = 100;
 
         spyOn(CurrenciesServiceMock, 'getCurrency').and.callFake(function ()
         {
-            return successfulPromise('actual currency');
+            return successfulPromise({rates: [{ask: 4.5, bid: 4.0}]});
         });
 
         spyOn(SharedDataMock, 'updateCurrency').and.callThrough();
@@ -51,7 +52,7 @@ fdescribe('ExchangeBoxController', function ()
             });
             it('should set currency propertises to selected currency', function ()
             {
-                expect(exCtrl.EUR).toBe('actual currency');
+                expect(exCtrl.USD).toEqual({rates: [{ask: 4.5, bid: 4.0}]});
             });
         });
 
@@ -75,38 +76,39 @@ fdescribe('ExchangeBoxController', function ()
                 expect(exCtrl.currencyType).toBe('zł');
             });
 
-            // describe('applyCurrency function', function ()
-            // {
-            //     beforeEach(function ()
-            //     {
-            //         exCtrl.applyCurrency();
-            //     });
-            //     it('should add the result of the division to wallet of selected currency', function ()
-            //     {
-            //
-            //         SharedDataMock.wallet[exCtrl.currencyId] = 10000;
-            //         exCtrl[exCtrl.currencyId].rates[0].ask = 4;
-            //         expect(SharedDataMock.wallet[exCtrl.currencyId] + (SharedDataMock.money.value / exCtrl[exCtrl.currencyId].rates[0].ask)).toEqual(10025);
-            //     });
-            //     it('should substract value of input from wallet PLN', function ()
-            //     {
-            //         SharedDataMock.wallet.PLN = 20000;
-            //         expect(SharedDataMock.wallet.PLN - SharedDataMock.money.value).toEqual(19900);
-            //     });
-            //
-            //     it('should call updateCurrency function two times', function ()
-            //     {
-            //         expect(SharedDataMock.updateCurrency.calls.count()).toBe(2);
-            //     });
-            //     it('should call updateCurrency function with two arguments: foreign currency and wallet of foreign currency', function ()
-            //     {
-            //         expect(SharedDataMock.updateCurrency).toHaveBeenCalledWith(exCtrl.currencyId, SharedDataMock.wallet[exCtrl.currencyId]);
-            //     });
-            //     it('should call updateCurrency function with two arguments: PLN currency and wallet of PLN', function ()
-            //     {
-            //         expect(SharedDataMock.updateCurrency).toHaveBeenCalledWith('PLN', SharedDataMock.wallet.PLN);
-            //     });
-            // });
+            describe('applyCurrency function', function ()
+            {
+                beforeEach(function ()
+                {
+                    SharedDataMock.wallet[exCtrl.currencyId] = 20000;
+                    SharedDataMock.wallet.PLN = 20000;
+                    exCtrl.money = 100;
+                    exCtrl[exCtrl.currencyId].rates[0].ask = 4.5;
+                    exCtrl.applyCurrency();
+                });
+                it('should add the result of the division to wallet of selected currency', function ()
+                {
+                    expect(SharedDataMock.wallet[exCtrl.currencyId]).toEqual(20022.22);
+                });
+                it('should substract value of input from wallet PLN', function ()
+                {
+
+                    expect(SharedDataMock.wallet.PLN).toEqual(19900);
+                });
+
+                it('should call updateCurrency function two times', function ()
+                {
+                    expect(SharedDataMock.updateCurrency.calls.count()).toBe(2);
+                });
+                it('should call updateCurrency function with two arguments: foreign currency and wallet of foreign currency', function ()
+                {
+                    expect(SharedDataMock.updateCurrency).toHaveBeenCalledWith(exCtrl.currencyId, SharedDataMock.wallet[exCtrl.currencyId]);
+                });
+                it('should call updateCurrency function with two arguments: PLN currency and wallet of PLN', function ()
+                {
+                    expect(SharedDataMock.updateCurrency).toHaveBeenCalledWith('PLN', SharedDataMock.wallet.PLN);
+                });
+            });
         });
         describe('when routeParams.action is equal to sell', function ()
         {
@@ -132,37 +134,38 @@ fdescribe('ExchangeBoxController', function ()
                 expect(exCtrl.currencyType).toBe(SharedDataMock.currencyIcons[exCtrl.currencyId]);
             });
 
-            // describe('applyCurrency function', function ()
-            // {
-            //     beforeEach(function ()
-            //     {
-            //         exCtrl.applyCurrency();
-            //     });
-            //     it('should substract value of input from wallet of selected currency', function ()
-            //     {
-            //         SharedDataMock.wallet[exCtrl.currencyId] = 10000;
-            //         expect(SharedDataMock.wallet[exCtrl.currencyId] - SharedDataMock.money.value).toEqual(9900);
-            //     });
-            //     it('should add the result of the multiplication to wallet of PLN', function ()
-            //     {
-            //         SharedDataMock.wallet.PLN = 20000;
-            //         exCtrl[exCtrl.currencyId].rates[0].bid = 4;
-            //         expect(SharedDataMock.wallet.PLN + (SharedDataMock.money.value * exCtrl[exCtrl.currencyId].rates[0].bid)).toEqual(20400);
-            //     });
-            //     it('should call updateCurrency function two times', function ()
-            //     {
-            //         expect(SharedDataMock.updateCurrency.calls.count()).toBe(2);
-            //     });
-            //     it('should call updateCurrency function with two arguments: foreign currency and wallet of foreign currency', function ()
-            //     {
-            //         expect(SharedDataMock.updateCurrency).toHaveBeenCalledWith(exCtrl.currencyId, SharedDataMock.wallet[exCtrl.currencyId]);
-            //     });
-            //     it('should call updateCurrency function with two arguments: PLN currency and wallet of PLN', function ()
-            //     {
-            //         expect(SharedDataMock.updateCurrency).toHaveBeenCalledWith('PLN', SharedDataMock.wallet.PLN);
-            //     });
-            // });
+            describe('applyCurrency function', function ()
+            {
+                beforeEach(function ()
+                {
+                    SharedDataMock.wallet[exCtrl.currencyId] = 20000;
+                    SharedDataMock.wallet.PLN = 20000;
+                    exCtrl.money = 100;
+                    exCtrl[exCtrl.currencyId].rates[0].bid = 4.0;
+                    exCtrl.applyCurrency();
+                });
+                it('should substract value of input from wallet of selected currency', function ()
+                {
+
+                    expect(SharedDataMock.wallet[exCtrl.currencyId]).toEqual(19900);
+                });
+                it('should add the result of the multiplication to wallet of PLN', function ()
+                {
+                    expect(SharedDataMock.wallet.PLN).toEqual(20400);
+                });
+                it('should call updateCurrency function two times', function ()
+                {
+                    expect(SharedDataMock.updateCurrency.calls.count()).toBe(2);
+                });
+                it('should call updateCurrency function with two arguments: foreign currency and wallet of foreign currency', function ()
+                {
+                    expect(SharedDataMock.updateCurrency).toHaveBeenCalledWith(exCtrl.currencyId, SharedDataMock.wallet[exCtrl.currencyId]);
+                });
+                it('should call updateCurrency function with two arguments: PLN currency and wallet of PLN', function ()
+                {
+                    expect(SharedDataMock.updateCurrency).toHaveBeenCalledWith('PLN', SharedDataMock.wallet.PLN);
+                });
+            });
         });
     });
-
 });

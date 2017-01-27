@@ -25,8 +25,8 @@
 
                     ctrl.applyCurrency = function ()
                     {
-                        SharedData.wallet[ctrl.currencyId] += parseFloat((ctrl.money.value / ctrl[ctrl.currencyId].rates[0].ask).toFixed(2));
-                        SharedData.wallet.PLN -= parseFloat((ctrl.money.value).toFixed(2));
+                        SharedData.wallet[ctrl.currencyId] += parseFloat((ctrl.money / ctrl[ctrl.currencyId].rates[0].ask).toFixed(2));
+                        SharedData.wallet.PLN -= parseFloat((ctrl.money).toFixed(2));
                         SharedData.updateCurrency(ctrl.currencyId, SharedData.wallet[ctrl.currencyId]);
                         SharedData.updateCurrency('PLN', SharedData.wallet.PLN);
                     };
@@ -40,8 +40,8 @@
 
                     ctrl.applyCurrency = function ()
                     {
-                        SharedData.wallet[ctrl.currencyId] -= parseFloat((ctrl.money.value).toFixed(2));
-                        SharedData.wallet.PLN += parseFloat((ctrl.money.value * ctrl[ctrl.currencyId].rates[0].bid).toFixed(2));
+                        SharedData.wallet[ctrl.currencyId] -= parseFloat((ctrl.money).toFixed(2));
+                        SharedData.wallet.PLN += parseFloat((ctrl.money * ctrl[ctrl.currencyId].rates[0].bid).toFixed(2));
                         SharedData.updateCurrency(ctrl.currencyId, SharedData.wallet[ctrl.currencyId]);
                         SharedData.updateCurrency('PLN', SharedData.wallet.PLN);
                     };
