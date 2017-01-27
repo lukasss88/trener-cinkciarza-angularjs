@@ -54,14 +54,14 @@
                 </div>
                 <div class="col-md-4 col-md-offset-2 col-xs-4 col-xs-offset-2">
                     <a href="#/exchangeBox/buy/{{mainCtrl.currency}}">
-                        <button class='btn btn-success border-none color-orange' ng-click="mainCtrl.sellCurrency()" ng-disabled="0 == mainCtrl.wallet.PLN">
+                        <button class='btn btn-success border-none color-orange' ng-disabled="0 == mainCtrl.wallet.PLN">
                             Kup
                         </button>
                     </a>
                 </div>
                 <div class="col-md-4 col-xs-4">
                     <a href="#/exchangeBox/sell/{{mainCtrl.currency}}">
-                        <button class="btn btn-primary color-orange border-none color-orange" ng-click="mainCtrl.buyCurrency()"
+                        <button class="btn btn-primary color-orange border-none color-orange"
                                 ng-disabled="0 == mainCtrl.wallet[mainCtrl.currency]">Sprzedaj
                         </button>
                     </a>
@@ -74,4 +74,3 @@
     </div>
     <!-- END WALLET SECTION -->
 </div>
-

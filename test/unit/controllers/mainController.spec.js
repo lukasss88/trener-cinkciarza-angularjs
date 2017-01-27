@@ -15,7 +15,6 @@ describe('MainController', function ()
         SharedDataMock = SharedData;
         storage = $localStorage;
 
-
         spyOn(CurrenciesServiceMock, 'getCurrency').and.callFake(function ()
         {
             return successfulPromise('actual currency');
@@ -47,15 +46,11 @@ describe('MainController', function ()
         {
             expect(mainCtrl.moneyStart).toBe(10000);
         });
-        // it('should call setStartingValues', function ()
-        // {
-        //     expect(mainCtrl.setStartingValues).toHaveBeenCalled();
-        // });
         it('should calls getCurrency function 4 times', function ()
         {
             expect(CurrenciesServiceMock.getCurrency.calls.count()).toBe(4);
         });
-        it('should', function ()
+        it('should set currency propertises to selected currency', function ()
         {
             expect(mainCtrl.EUR).toBe('actual currency');
         });
@@ -150,21 +145,4 @@ describe('MainController', function ()
             expect(mainCtrl.setStartingValues).toHaveBeenCalled();
         });
     });
-
-    // describe('sellCurrency', function ()
-    // {
-    //
-    //     beforeEach(function ()
-    //     {
-    //         mainCtrl.sellCurrency('PLN');
-    //     });
-    //     it('should set selected wallet', function ()
-    //     {
-    //         expect(SharedDataMock.wallet.PLN).toEqual(SharedDataMock.wallet.PLN);
-    //     });
-    //     // it('should call setStartingValues function', function ()
-    //     // {
-    //     //     SharedDataMock.exchangeRate = mainCtrl.USD.rates[0].ask;
-    //     // });
-    // });
 });
