@@ -4,7 +4,7 @@
     </div>
     <div class="row well color-black color-white border-none">
         <div class="">
-            <table class="table table-bordered">
+            <table id="table-currency" class="table table-bordered">
                 <tr><td>Waluta</td><td>Kurs sprzedaży</td><td>Kurs kupna</td></tr>
                 <tr ng-repeat="currency in tableCtrl.arrayCurrency">
                     <td>{{currency.code}}</td>
@@ -14,7 +14,7 @@
             </table>
 
             <div class="col-md-offset-4 col-md-4">
-            <a href="#/"><button class="btn btn-danger back-btn color-orange">Wróć</button></a>
+            <a href="#/"><button id="back-btn" class="btn btn-danger back-btn color-orange">Wróć</button></a>
             </div>
         </div>
     </div>
