@@ -9,11 +9,11 @@
             </div>
             <p class="pln color-white">PLN</p>
             <div class="col-md-4 col-md-offset-4">
-                <button class="btn btn-info apply-btn color-orange border-none" ng-click="mainCtrl.apply()"
+                <button id="apply-btn" class="btn btn-info apply-btn color-orange border-none" ng-click="mainCtrl.apply()"
                         ng-disabled="divStartingValue.inputStartingValue.$error.min; divStartingValue.$invalid">Zatwierdź
                 </button>
                 <a href="#/tableOfExchanges">
-                    <button class="btn-warning btn btn-table-exchanges color-orange border-none">Info</button>
+                    <button id="info-btn" class="btn-warning btn btn-table-exchanges color-orange border-none">Info</button>
                 </a>
             </div>
         </div>
@@ -24,8 +24,8 @@
     <div class="form-group row currency" ng-switch="mainCtrl.currency">
         <div class="well color-black color-white border-none">
             <h3>Stan portfela</h3>
-            <p>PLN: {{mainCtrl.wallet.PLN | number:2}}zł</p>
-            <div ng-repeat="item in mainCtrl.currencies">
+            <p id="wallet-PLN">PLN: {{mainCtrl.wallet.PLN | number:2}}zł</p>
+            <div id="wallets" ng-repeat="item in mainCtrl.currencies">
                 <p ng-hide="mainCtrl.wallet[item] == 0 || mainCtrl.wallet[item] == null">{{item}}: {{mainCtrl.wallet[item] |
                     number:2}}{{mainCtrl.currencyIcons[item]}}</p>
             </div>
@@ -37,11 +37,11 @@
                     <label for="selection-currency">Wybierz walutę:</label>
                 </div>
                 <div class="col-md-4">
-                    <select ng-model="mainCtrl.currency" id="selection-currency" ng-options="currency for currency in mainCtrl.currencies"
+                    <select name="mainCtrl.currency" ng-model="mainCtrl.currency" id="selection-currency" ng-options="currency for currency in mainCtrl.currencies"
                             class="form-control"></select>
                 </div>
             </div>
-            <div class="other-currency" ng-show="mainCtrl.currency">
+            <div class="other-currency" ng-show="mainCtrl.currency" id="currency-box">
                 <div class="row currency-type color-white">
                     <div class="row wallet-status">
                         <div class="col-md-offset-1 col-md-4 col-xs-offset-1 col-xs-4 mobile-class">
@@ -54,21 +54,21 @@
                 </div>
                 <div class="col-md-4 col-md-offset-2 col-xs-4 col-xs-offset-2">
                     <a href="#/exchangeBox/buy/{{mainCtrl.currency}}">
-                        <button class='btn btn-success border-none color-orange' ng-disabled="0 == mainCtrl.wallet.PLN">
+                        <button id="buyBtn" class='btn btn-success border-none color-orange' ng-disabled="0 == mainCtrl.wallet.PLN">
                             Kup
                         </button>
                     </a>
                 </div>
                 <div class="col-md-4 col-xs-4">
                     <a href="#/exchangeBox/sell/{{mainCtrl.currency}}">
-                        <button class="btn btn-primary color-orange border-none color-orange"
+                        <button id="sellBtn" class="btn btn-primary color-orange border-none color-orange"
                                 ng-disabled="0 == mainCtrl.wallet[mainCtrl.currency]">Sprzedaj
                         </button>
                     </a>
                 </div>
             </div>
             <div class="col-md-4 col-md-offset-4">
-                <button class="btn btn-danger reset-button color-black" ng-click="mainCtrl.reset()">Reset</button>
+                <button id="reset-btn" class="btn btn-danger reset-button color-black" ng-click="mainCtrl.reset()">Reset</button>
             </div>
         </div>
     </div>

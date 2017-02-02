@@ -25,7 +25,7 @@
         <div class="action-buttons">
             <div class="col-xs-4 col-xs-offset-2">
                 <a href="#/">
-                    <button class="btn btn-primary apply-btn color-orange border-none" ng-click="exchangeCtrl.applyCurrency(money)"
+                    <button id="accept-value" class="btn btn-primary apply-btn color-orange border-none" ng-click="exchangeCtrl.applyCurrency(money)"
                             ng-disabled="exchangeCtrl.actionToCurrency.currencyValue.$error.max || exchangeCtrl.actionToCurrency.currencyValue.$error.min; exchangeCtrl.actionToCurrency.$invalid">
                         Zatwierdź
                     </button>
@@ -33,7 +33,7 @@
             </div>
             <div class="col-xs-4">
                 <a href="#/">
-                    <button class="btn btn-default color-orange color-white border-none">Anuluj</button>
+                    <button id="cancel-btn" class="btn btn-default color-orange color-white border-none">Anuluj</button>
                 </a>
             </div>
         </div>
