@@ -34,13 +34,18 @@ var fragments = function (text)
             selectedUSD: element.bind(null, by.css('select option:nth-child(2)')),
             currencyBox: element.bind(null, by.css('#currency-box')),
             buyBtn: element.bind(null, by.css('#buyBtn')),
+            buyBtnDisabled: element.bind(null, by.css('#buyBtn[disabled]')),
             inputValue: element.bind(null, by.css('#plnToUsd')),
             acceptValue: element.bind(null, by.css('#accept-value')),
+            acceptValueDisabled: element.bind(null, by.css('#accept-value[disabled]')),
             walletUSD: element.bind(null, by.css('#wallets p:nth-child(1)')),
             infoBtn: element.bind(null, by.css('#info-btn')),
             tableCurrency: element.bind(null, by.css('#table-currency')),
             backBtn: element.bind(null, by.css('#back-btn')),
-            sellBtn: element.bind(null, by.css('#sellBtn'))
+            sellBtn: element.bind(null, by.css('#sellBtn')),
+            sellBtnDisabled: element.bind(null, by.css('#sellBtn[disabled]')),
+            resetBtn: element.bind(null, by.css('#reset-btn')),
+            cancelBtn: element.bind(null, by.css('#cancel-btn'))
         }
     };
 
