@@ -117,7 +117,6 @@ describe('MainController', function ()
         beforeEach(function ()
         {
             SharedDataMock.updateCurrency('USD', 500);
-            // SharedDataMock.updateCurrency('PLN', 200);
         });
         it('should set wallet.USD value to 500', function ()
         {

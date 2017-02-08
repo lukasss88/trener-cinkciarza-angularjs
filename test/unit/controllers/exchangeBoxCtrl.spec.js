@@ -92,7 +92,6 @@ describe('ExchangeBoxController', function ()
                 });
                 it('should substract value of input from wallet PLN', function ()
                 {
-
                     expect(SharedDataMock.wallet.PLN).toEqual(19900);
                 });
 

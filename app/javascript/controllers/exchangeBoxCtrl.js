@@ -9,12 +9,7 @@
                 ctrl.wallet = SharedData.wallet;
                 ctrl.action = $routeParams.action;
 
-                angular.forEach(SharedData.currencies, function(value){
-                    CurrenciesService.getCurrency(value).then(function (data)
-                    {
-                        ctrl[value] = data;
-                    });
-                });
+                ctrl.currencyData = CurrenciesService.selectedCurrencies();
 
                 if ('buy' === $routeParams.action) {
 
@@ -23,13 +18,6 @@
                     ctrl.currencyReceive = SharedData.currencyIcons[ctrl.currencyId];
                     ctrl.currencyType = 'zł';
 
-                    ctrl.applyCurrency = function ()
-                    {
-                        SharedData.wallet[ctrl.currencyId] += parseFloat((ctrl.money / ctrl[ctrl.currencyId].rates[0].ask).toFixed(2));
-                        SharedData.wallet.PLN -= parseFloat((ctrl.money).toFixed(2));
-                        SharedData.updateCurrency(ctrl.currencyId, SharedData.wallet[ctrl.currencyId]);
-                        SharedData.updateCurrency('PLN', SharedData.wallet.PLN);
-                    };
                 }
                 if ('sell' === $routeParams.action) {
 
@@ -38,13 +26,23 @@
                     ctrl.currencyReceive = 'zł';
                     ctrl.currencyType = SharedData.currencyIcons[ctrl.currencyId];
 
-                    ctrl.applyCurrency = function ()
-                    {
-                        SharedData.wallet[ctrl.currencyId] -= parseFloat((ctrl.money).toFixed(2));
-                        SharedData.wallet.PLN += parseFloat((ctrl.money * ctrl[ctrl.currencyId].rates[0].bid).toFixed(2));
+                }
+
+                ctrl.applyCurrency = function ()
+                {
+                    if ('buy' === $routeParams.action) {
+                        SharedData.wallet[ctrl.currencyId] += parseFloat((ctrl.money / ctrl.currencyData[ctrl.currencyId].rates[0].ask).toFixed(2));
+                        SharedData.wallet.PLN -= parseFloat((ctrl.money).toFixed(2));
                         SharedData.updateCurrency(ctrl.currencyId, SharedData.wallet[ctrl.currencyId]);
                         SharedData.updateCurrency('PLN', SharedData.wallet.PLN);
-                    };
-                }
+                    }
+
+                    else if ('sell' === $routeParams.action) {
+                        SharedData.wallet[ctrl.currencyId] -= parseFloat((ctrl.money).toFixed(2));
+                        SharedData.wallet.PLN += parseFloat((ctrl.money * ctrl.currencyData[ctrl.currencyId].rates[0].bid).toFixed(2));
+                        SharedData.updateCurrency(ctrl.currencyId, SharedData.wallet[ctrl.currencyId]);
+                        SharedData.updateCurrency('PLN', SharedData.wallet.PLN);
+                    }
+                };
             });
 })();

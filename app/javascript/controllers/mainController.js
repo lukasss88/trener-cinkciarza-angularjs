@@ -20,12 +20,6 @@
                 };
                 ctrl.setStartingValues();
 
-                SharedData.updateCurrency = function (type, value)
-                {
-                    ctrl.wallet[type] = value;
-                    $localStorage[type] = value;
-                };
-
                 ctrl.reset = function ()
                 {
                     $localStorage.$reset();
@@ -39,11 +33,6 @@
                     ctrl.moneyStart = null;
                 };
 
-                angular.forEach(SharedData.currencies, function(value){
-                    CurrenciesService.getCurrency(value).then(function (data)
-                        {
-                            ctrl[value] = data;
-                        });
-                });
+                ctrl.currencyData = CurrenciesService.selectedCurrencies();
             });
 })();
