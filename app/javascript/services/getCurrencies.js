@@ -2,7 +2,7 @@
 {
     'use strict';
     angular.module('cinkciarzTraining')
-            .factory('CurrenciesService', function ($http, SharedData)
+            .factory('CurrenciesService', function ($http, SharedData, $q)
             {
                 function getCurrency(currency)
                 {
@@ -25,20 +25,22 @@
                 function selectedCurrencies()
                 {
                     var selectedCurr = {};
-                    angular.forEach(SharedData.currencies, function(value){
-                        getCurrency(value).then(function (data)
+
+                    var promises = SharedData.currencies.map(function (value)
+                    {
+                        return getCurrency(value).then(function (data)
                         {
                             selectedCurr[value] = data;
                         });
                     });
 
-                    return selectedCurr;
+                    return $q.all(promises).then(function(){
+                        return selectedCurr;
+                    });
                 }
 
                 return {
-                    getCurrency: getCurrency,
-                    allCurrencies: allCurrencies,
-                    selectedCurrencies: selectedCurrencies
+                    getCurrency: getCurrency, allCurrencies: allCurrencies, selectedCurrencies: selectedCurrencies
                 };
             });
 })();

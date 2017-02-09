@@ -33,6 +33,8 @@
                     ctrl.moneyStart = null;
                 };
 
-                ctrl.currencyData = CurrenciesService.selectedCurrencies();
+                CurrenciesService.selectedCurrencies().then(function(result){
+                    ctrl.currencyData = result;
+                });
             });
 })();

@@ -5,13 +5,14 @@
             .factory('SharedData', function ($localStorage)
             {
 
+                var wallet = {};
                 function updateCurrency(type, value){
-                    this.wallet[type] = value;
+                    wallet[type] = value;
                     $localStorage[type] = value;
                 }
 
                 return {
-                    wallet: {},
+                    wallet: wallet,
                     currencies:
                     [
                             'USD', 'EUR', 'GBP', 'CHF'
@@ -20,12 +21,7 @@
                     {
                         USD:'$', EUR:'€', GBP:'£', CHF: 'CHF'
                     },
-                    //
-                    // updateCurrency: function(type, value){
-                    //     this.wallet[type] = value;
-                    //     $localStorage[type] = value;
-                    // },
-                    //
+
                     updateCurrency: updateCurrency
                 };
             });

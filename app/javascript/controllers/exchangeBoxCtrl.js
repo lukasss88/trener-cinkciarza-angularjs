@@ -9,24 +9,61 @@
                 ctrl.wallet = SharedData.wallet;
                 ctrl.action = $routeParams.action;
 
-                ctrl.currencyData = CurrenciesService.selectedCurrencies();
+                CurrenciesService.selectedCurrencies().then(function(result){
+                    ctrl.currencyData = result;
 
-                if ('buy' === $routeParams.action) {
+                    if ('buy' === $routeParams.action) {
 
-                    ctrl.message = 'Wymiana PLN na ' + ctrl.currencyId;
-                    ctrl.btnBuy = true;
-                    ctrl.currencyReceive = SharedData.currencyIcons[ctrl.currencyId];
-                    ctrl.currencyType = 'zł';
+                        ctrl.availableFunds = ctrl.wallet.PLN;
+                        ctrl.exchangeRate = ctrl.currencyData[ctrl.currencyId].rates[0].ask;
+                        console.log(ctrl.money);
 
-                }
-                if ('sell' === $routeParams.action) {
+                        ctrl.message = 'Wymiana PLN na ' + ctrl.currencyId;
+                        ctrl.btnBuy = true;
+                        ctrl.currencyReceive = SharedData.currencyIcons[ctrl.currencyId];
+                        ctrl.currencyType = 'zł';
+                    }
+                    else if ('sell' === $routeParams.action) {
 
-                    ctrl.message = 'Wymiana ' + ctrl.currencyId + ' na PLN';
-                    ctrl.btnBuy = false;
-                    ctrl.currencyReceive = 'zł';
-                    ctrl.currencyType = SharedData.currencyIcons[ctrl.currencyId];
+                        ctrl.availableFunds = ctrl.wallet[ctrl.currencyId];
+                        ctrl.exchangeRate = ctrl.currencyData[ctrl.currencyId].rates[0].bid;
+                        ctrl.message = 'Wymiana ' + ctrl.currencyId + ' na PLN';
+                        ctrl.btnBuy = false;
+                        ctrl.currencyReceive = 'zł';
+                        ctrl.currencyType = SharedData.currencyIcons[ctrl.currencyId];
+                    }
 
-                }
+                    ctrl.predictVal = function(){
+
+                        if('buy' === $routeParams.action){
+                            ctrl.predictedValue = parseFloat((ctrl.money / ctrl.currencyData[ctrl.currencyId].rates[0].ask).toFixed(2));
+                        }
+
+                        else if('sell' === $routeParams.action){
+                            ctrl.predictedValue = parseFloat((ctrl.money / ctrl.currencyData[ctrl.currencyId].rates[0].bid).toFixed(2));
+                        }
+                    };
+
+                });
+
+                // if ('buy' === $routeParams.action) {
+                //
+                //     ctrl.availableFunds = ctrl.wallet.PLN;
+                //     // ctrl.exchangeRate = ctrl.currencyData[ctrl.currencyId].rates[0].ask;
+                //     ctrl.message = 'Wymiana PLN na ' + ctrl.currencyId;
+                //     ctrl.btnBuy = true;
+                //     ctrl.currencyReceive = SharedData.currencyIcons[ctrl.currencyId];
+                //     ctrl.currencyType = 'zł';
+                // }
+                // if ('sell' === $routeParams.action) {
+                //
+                //     ctrl.availableFunds = ctrl.wallet[ctrl.currencyId];
+                //     // ctrl.exchangeRate = ctrl.currencyData[ctrl.currencyId].rates[0].bid;
+                //     ctrl.message = 'Wymiana ' + ctrl.currencyId + ' na PLN';
+                //     ctrl.btnBuy = false;
+                //     ctrl.currencyReceive = 'zł';
+                //     ctrl.currencyType = SharedData.currencyIcons[ctrl.currencyId];
+                // }
 
                 ctrl.applyCurrency = function ()
                 {
