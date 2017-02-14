@@ -11,25 +11,18 @@
                 ctrl.currencyIcons = SharedData.currencyIcons;
                 ctrl.moneyStart = 10000;
 
-                ctrl.setStartingValues = function ()
-                {
+                function setStartingValues() {
                     SharedData.wallet.PLN = $localStorage.PLN || 0;
                     angular.forEach(SharedData.currencies, function(value) {
                         SharedData.wallet[value] = $localStorage[value] || 0;
                     });
-                };
-                ctrl.setStartingValues();
-
-                SharedData.updateCurrency = function (type, value)
-                {
-                    ctrl.wallet[type] = value;
-                    $localStorage[type] = value;
-                };
+                }
+                setStartingValues();
 
                 ctrl.reset = function ()
                 {
                     $localStorage.$reset();
-                    ctrl.setStartingValues();
+                    setStartingValues();
                 };
 
                 ctrl.apply = function ()
@@ -39,11 +32,8 @@
                     ctrl.moneyStart = null;
                 };
 
-                angular.forEach(SharedData.currencies, function(value){
-                    CurrenciesService.getCurrency(value).then(function (data)
-                        {
-                            ctrl[value] = data;
-                        });
+                CurrenciesService.selectedCurrencies().then(function(result){
+                    ctrl.currencyData = result;
                 });
             });
 })();

@@ -15,14 +15,13 @@ describe('MainController', function ()
         SharedDataMock = SharedData;
         storage = $localStorage;
 
-        spyOn(CurrenciesServiceMock, 'getCurrency').and.callFake(function ()
+        spyOn(CurrenciesServiceMock, 'selectedCurrencies').and.callFake(function ()
         {
             return successfulPromise('actual currency');
         });
 
         mainCtrl = $controller('MainController', {CurrenciesService: CurrenciesServiceMock, SharedData: SharedDataMock, $localStorage: storage});
 
-        spyOn(mainCtrl, 'setStartingValues').and.callThrough();
         spyOn(mainCtrl, 'reset').and.callThrough();
         spyOn(storage, '$reset');
         spyOn(SharedDataMock, 'updateCurrency').and.callThrough();
@@ -46,13 +45,9 @@ describe('MainController', function ()
         {
             expect(mainCtrl.moneyStart).toBe(10000);
         });
-        it('should calls getCurrency function 4 times', function ()
-        {
-            expect(CurrenciesServiceMock.getCurrency.calls.count()).toBe(4);
-        });
         it('should set currency propertises to selected currency', function ()
         {
-            expect(mainCtrl.EUR).toBe('actual currency');
+            expect(mainCtrl.currencyData).toBe('actual currency');
         });
     });
 
@@ -85,11 +80,12 @@ describe('MainController', function ()
         describe('if $localStorage is not undefined', function ()
         {
 
-            beforeEach(function ()
+            beforeEach(inject(function ($controller)
             {
                 storage.PLN = 20;
-                mainCtrl.setStartingValues();
-            });
+                mainCtrl = $controller('MainController', {CurrenciesService: CurrenciesServiceMock, SharedData: SharedDataMock, $localStorage: storage});
+
+            }));
 
             it('should set value of wallet.PLN to 20', function ()
             {
@@ -99,34 +95,17 @@ describe('MainController', function ()
 
         describe('if $localStorage is undefined', function ()
         {
-            beforeEach(function ()
+            beforeEach(inject(function ($controller)
             {
                 storage.PLN = undefined;
-                mainCtrl.setStartingValues();
-            });
+                mainCtrl = $controller('MainController', {CurrenciesService: CurrenciesServiceMock, SharedData: SharedDataMock, $localStorage: storage});
+
+            }));
 
             it('should set value of wallet.PLN to 0', function ()
             {
                 expect(SharedDataMock.wallet.PLN).toEqual(0);
             });
-        });
-    });
-
-    describe('updateCurrency', function ()
-    {
-        beforeEach(function ()
-        {
-            SharedDataMock.updateCurrency('USD', 500);
-            // SharedDataMock.updateCurrency('PLN', 200);
-        });
-        it('should set wallet.USD value to 500', function ()
-        {
-            expect(mainCtrl.wallet.USD).toBe(500);
-
-        });
-        it('should send wallet.USD value to $localStorage', function ()
-        {
-            storage.USD = 500;
         });
     });
 
@@ -139,10 +118,6 @@ describe('MainController', function ()
         it('should call $localStorage.$reset', function ()
         {
             expect(storage.$reset).toHaveBeenCalled();
-        });
-        it('should call setStartingValues function', function ()
-        {
-            expect(mainCtrl.setStartingValues).toHaveBeenCalled();
         });
     });
 });

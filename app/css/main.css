@@ -9,15 +9,15 @@ body {
     background-size: 128px 128px;
 }
 
-.color-white, .color-white:hover, .color-white:active, .color-white:focus {
+.color-white, .color-white:hover, .color-white:active, .color-white:focus, .color-white:active:focus {
     color: white;
 }
 
-.color-orange, .color-orange:hover, .color-orange:active .color-orange:focus, .color-orange:hover:disabled, .color-orange:active:disabled {
+.color-orange, .color-orange:hover, .color-orange:active .color-orange:focus, .color-orange:hover:disabled, .color-orange:active:disabled,.color-orange:active:focus {
     background-color: #F95B0A;
 }
 
-.color-black, .color-black:hover, .color-black:active, .color-black:focus {
+.color-black, .color-black:hover, .color-black:active, .color-black:focus, .color-black:active:focus {
     background-color: #333538
 }
 
@@ -29,6 +29,7 @@ h1, h2 {
     text-align: center;
     margin-bottom: 40px;
 }
+
 
 .expose {
     opacity: 0.5;
@@ -77,8 +78,9 @@ label {
 }
 
 .pln {
-    text-align: right;
-    margin-right: 35px;
+    position: absolute;
+    left: 150px;
+    top: 3px;
 }
 
 .currency-type {
@@ -119,7 +121,7 @@ label {
 }
 
 input {
-    width: 130px !important;
+
 }
 
 .currency h3 {
@@ -176,6 +178,11 @@ td {
 @media (max-width: 450px) {
     .other-currency button {
         margin-left: 0px;
+        /*width: 80px;*/
+    }
+
+    .main-title {
+        font-size: 50px;
     }
 
     .mobile-class {
@@ -183,27 +190,29 @@ td {
         font-size: 15px;
     }
 
-    .col-xs-4 {
-        width: 47.33%;
-        font-size: 15px;
-    }
-
-    .col-xs-offset-3 {
-        margin-left: 5%;
-        font-size: 15px;
-    }
-
-    .col-xs-offset-2 {
-        margin-left: 2.666667%;
-    }
-
-    .other-currency {
+    .other-currency, .exchange-value {
         font-size: 14px;
+    }
+    td {
+        font-size: 16px;
     }
 }
 
 @media (max-width: 992px) {
     .transaction-box {
         margin-left: 0px;
+    }
+    .pln {
+        left: 180px;
+    }
+}
+@media (max-width: 768px) {
+    #start-number-input {
+        width: 70%;
+        margin-left: 15px;
+    }
+    .pln {
+        top: -32px;
+        left: 62%;
     }
 }
