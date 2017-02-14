@@ -11,19 +11,18 @@
                 ctrl.currencyIcons = SharedData.currencyIcons;
                 ctrl.moneyStart = 10000;
 
-                ctrl.setStartingValues = function ()
-                {
+                function setStartingValues() {
                     SharedData.wallet.PLN = $localStorage.PLN || 0;
                     angular.forEach(SharedData.currencies, function(value) {
                         SharedData.wallet[value] = $localStorage[value] || 0;
                     });
-                };
-                ctrl.setStartingValues();
+                }
+                setStartingValues();
 
                 ctrl.reset = function ()
                 {
                     $localStorage.$reset();
-                    ctrl.setStartingValues();
+                    setStartingValues();
                 };
 
                 ctrl.apply = function ()
