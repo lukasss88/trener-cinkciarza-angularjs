@@ -7,7 +7,6 @@
                 var ctrl = this;
                 ctrl.currencyId = $routeParams.currency;
                 ctrl.wallet = SharedData.wallet;
-                ctrl.action = $routeParams.action;
 
                 CurrenciesService.selectedCurrencies().then(function (result)
                 {
@@ -45,7 +44,7 @@
 
                 ctrl.applyCurrency = function ()
                 {
-                    if ('buy' === ctrl.action) {
+                    if ('buy' === $routeParams.action) {
                         SharedData.wallet[ctrl.currencyId] += parseFloat((ctrl.money / ctrl.currencyData[ctrl.currencyId].rates[0].ask).toFixed(2));
                         SharedData.wallet.PLN -= parseFloat((ctrl.money).toFixed(2));
                         SharedData.updateCurrency(ctrl.currencyId, SharedData.wallet[ctrl.currencyId]);
