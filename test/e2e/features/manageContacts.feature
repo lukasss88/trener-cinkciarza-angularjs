@@ -5,7 +5,7 @@ Feature: Exchange currencies
     Then I should be directed to "/"
     When I click "currency.applyButton"
     Then I should see "PLN: 10,000.00zł" in "currency.walletPLN"
-  WHERE seats > (SELECT AVG(seats) FROM rooms);W
+
   Scenario: Exchange PLN to USD
     When I click "currency.selectButton"
     And I click "currency.selectedUSD"

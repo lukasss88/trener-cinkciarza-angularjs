@@ -47,10 +47,6 @@ describe('ExchangeBoxController', function ()
             {
                 expect(exCtrl.wallet).toEqual(SharedDataMock.wallet);
             });
-            it('should set action variable to routeparams variable', function ()
-            {
-                expect(exCtrl.action).toEqual(routeParams.action);
-            });
         });
 
         describe('when routeParams.action is equal to buy', function ()
@@ -138,7 +134,7 @@ describe('ExchangeBoxController', function ()
         {
             beforeEach(function ()
             {
-                exCtrl.action = 'buy';
+                routeParams.action = 'buy';
                 exCtrl.applyCurrency();
             });
             it('should add the result of the division to wallet of selected currency', function ()
