@@ -2,7 +2,7 @@
 {
     'use strict';
     angular.module('cinkciarzTraining')
-            .controller('ExchangeBoxController', function (SharedData, $routeParams, CurrenciesService)
+            .controller('ExchangeBoxController', function (SharedData, $routeParams, CurrenciesService, WalletDAO)
             {
                 var ctrl = this;
                 ctrl.currencyId = $routeParams.currency;
@@ -49,6 +49,7 @@
                         SharedData.wallet.PLN -= parseFloat((ctrl.money).toFixed(2));
                         SharedData.updateCurrency(ctrl.currencyId, SharedData.wallet[ctrl.currencyId]);
                         SharedData.updateCurrency('PLN', SharedData.wallet.PLN);
+                        WalletDAO.save(SharedData.wallet[ctrl.currencyId]);
                     }
 
                     else if ('sell' === $routeParams.action) {
@@ -56,6 +57,7 @@
                         SharedData.wallet.PLN += parseFloat((ctrl.money * ctrl.currencyData[ctrl.currencyId].rates[0].bid).toFixed(2));
                         SharedData.updateCurrency(ctrl.currencyId, SharedData.wallet[ctrl.currencyId]);
                         SharedData.updateCurrency('PLN', SharedData.wallet.PLN);
+                        WalletDAO.save({PLN : SharedData.wallet.PLN });
                     }
                 };
             });

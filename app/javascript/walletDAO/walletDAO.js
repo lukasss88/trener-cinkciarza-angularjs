@@ -12,7 +12,6 @@
                 return api.get().$promise;
             }, save: function (data)
             {
-                console.log(data);
                 return api.save(data).$promise;
             }
         };

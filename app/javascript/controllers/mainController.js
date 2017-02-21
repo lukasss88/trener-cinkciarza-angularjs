@@ -32,7 +32,7 @@
                 {
                     ctrl.reset();
                     SharedData.updateCurrency('PLN', ctrl.moneyStart);
-                    WalletDAO.save($localStorage.PLN);
+                    WalletDAO.save({PLN: $localStorage.PLN});
 
                     ctrl.moneyStart = null;
                 };
