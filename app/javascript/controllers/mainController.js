@@ -2,7 +2,7 @@
 {
     'use strict';
     angular.module('cinkciarzTraining')
-            .controller('MainController', function ($localStorage, CurrenciesService, SharedData)
+            .controller('MainController', function ($localStorage, CurrenciesService, SharedData, WalletDAO)
             {
                 var ctrl = this;
 
@@ -11,12 +11,15 @@
                 ctrl.currencyIcons = SharedData.currencyIcons;
                 ctrl.moneyStart = 10000;
 
-                function setStartingValues() {
+                function setStartingValues()
+                {
                     SharedData.wallet.PLN = $localStorage.PLN || 0;
-                    angular.forEach(SharedData.currencies, function(value) {
+                    angular.forEach(SharedData.currencies, function (value)
+                    {
                         SharedData.wallet[value] = $localStorage[value] || 0;
                     });
                 }
+
                 setStartingValues();
 
                 ctrl.reset = function ()
@@ -29,10 +32,13 @@
                 {
                     ctrl.reset();
                     SharedData.updateCurrency('PLN', ctrl.moneyStart);
+                    WalletDAO.save($localStorage.PLN);
+
                     ctrl.moneyStart = null;
                 };
 
-                CurrenciesService.selectedCurrencies().then(function(result){
+                CurrenciesService.selectedCurrencies().then(function (result)
+                {
                     ctrl.currencyData = result;
                 });
             });

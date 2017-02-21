@@ -1,7 +1,7 @@
 (function ()
 {
     'use strict';
-    angular.module('cinkciarzTraining', ['ngStorage', 'ngRoute'])
+    angular.module('cinkciarzTraining', ['ngStorage', 'ngRoute', 'ngResource'])
             .config(function ($routeProvider)
             {
                 $routeProvider.when('/', {
