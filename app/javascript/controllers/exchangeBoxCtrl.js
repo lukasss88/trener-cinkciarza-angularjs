@@ -1,12 +1,12 @@
 (function ()
 {
     'use strict';
-    angular.module('cinkciarzTraining')
-            .controller('ExchangeBoxController', function (SharedData, $routeParams, CurrenciesService, WalletDAO)
+    function ExchangeBoxController (SharedData, $routeParams, CurrenciesService, WalletDAO)
             {
                 var ctrl = this;
                 ctrl.currencyId = $routeParams.currency;
                 ctrl.wallet = SharedData.wallet;
+                var test;
 
                 CurrenciesService.selectedCurrencies().then(function (result)
                 {
@@ -49,7 +49,14 @@
                         SharedData.wallet.PLN -= parseFloat((ctrl.money).toFixed(2));
                         SharedData.updateCurrency(ctrl.currencyId, SharedData.wallet[ctrl.currencyId]);
                         SharedData.updateCurrency('PLN', SharedData.wallet.PLN);
-                        WalletDAO.save(SharedData.wallet[ctrl.currencyId]);
+
+                        test = {PLN: ctrl.money};
+                        test[ctrl.currencyId] = SharedData.wallet[ctrl.currencyId];
+                        WalletDAO.update(test,'buy').then(function (data)
+                        {
+                            // ctrl.wallet = data.result;
+                            console.log('witam pana');
+                        });
                     }
 
                     else if ('sell' === $routeParams.action) {
@@ -57,8 +64,16 @@
                         SharedData.wallet.PLN += parseFloat((ctrl.money * ctrl.currencyData[ctrl.currencyId].rates[0].bid).toFixed(2));
                         SharedData.updateCurrency(ctrl.currencyId, SharedData.wallet[ctrl.currencyId]);
                         SharedData.updateCurrency('PLN', SharedData.wallet.PLN);
-                        WalletDAO.save({PLN : SharedData.wallet.PLN });
+                        test = {PLN: ctrl.money};
+                        test[ctrl.currencyId] = SharedData.wallet[ctrl.currencyId];
+                        WalletDAO.update(test,'sell').then(function (data)
+                        {
+                            // ctrl.wallet = data.result;
+                            console.log('witam pana');
+                        });
                     }
                 };
-            });
+            }
+
+    angular.module('cinkciarzTraining').controller('ExchangeBoxController', ['SharedData', '$routeParams', 'CurrenciesService', 'WalletDAO', ExchangeBoxController]);
 })();

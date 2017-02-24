@@ -1,28 +1,25 @@
 (function ()
 {
     'use strict';
-    angular.module('cinkciarzTraining')
-            .factory('SharedData', function ($localStorage)
-            {
+    function SharedData($localStorage)
+    {
+        var wallet = {};
 
-                var wallet = {};
-                function updateCurrency(type, value){
-                    wallet[type] = value;
-                    $localStorage[type] = value;
-                }
+        function updateCurrency(type, value)
+        {
+            wallet[type] = value;
+            $localStorage[type] = value;
+        }
 
-                return {
-                    wallet: wallet,
-                    currencies:
-                    [
-                            'USD', 'EUR', 'GBP', 'CHF'
-                    ],
-                    currencyIcons:
-                    {
-                        USD:'$', EUR:'€', GBP:'£', CHF: 'CHF'
-                    },
+        return {
+            wallet: wallet,
+            currencies: ['USD', 'EUR', 'GBP', 'CHF'],
+            currencyIcons: {
+                USD: '$', EUR: '€', GBP: '£', CHF: 'CHF'
+            },
+            updateCurrency: updateCurrency
+        };
+    }
 
-                    updateCurrency: updateCurrency
-                };
-            });
+    angular.module('cinkciarzTraining').factory('SharedData', ['$localStorage', SharedData]);
 })();

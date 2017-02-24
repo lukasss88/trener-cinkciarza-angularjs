@@ -1,45 +1,67 @@
 (function ()
 {
     'use strict';
-    angular.module('cinkciarzTraining')
-            .controller('MainController', function ($localStorage, CurrenciesService, SharedData, WalletDAO)
+    function MainController($localStorage, CurrenciesService, SharedData, WalletDAO)
+    {
+        var ctrl = this;
+
+        ctrl.wallet = SharedData.wallet;
+        ctrl.currencies = SharedData.currencies;
+        ctrl.currencyIcons = SharedData.currencyIcons;
+        ctrl.moneyStart = 10000;
+
+        function setStartingValues()
+        {
+            SharedData.wallet.PLN = $localStorage.PLN || 0;
+            angular.forEach(SharedData.currencies, function (value)
             {
-                var ctrl = this;
-
-                ctrl.wallet = SharedData.wallet;
-                ctrl.currencies = SharedData.currencies;
-                ctrl.currencyIcons = SharedData.currencyIcons;
-                ctrl.moneyStart = 10000;
-
-                function setStartingValues()
-                {
-                    SharedData.wallet.PLN = $localStorage.PLN || 0;
-                    angular.forEach(SharedData.currencies, function (value)
-                    {
-                        SharedData.wallet[value] = $localStorage[value] || 0;
-                    });
-                }
-
-                setStartingValues();
-
-                ctrl.reset = function ()
-                {
-                    $localStorage.$reset();
-                    setStartingValues();
-                };
-
-                ctrl.apply = function ()
-                {
-                    ctrl.reset();
-                    SharedData.updateCurrency('PLN', ctrl.moneyStart);
-                    WalletDAO.save({PLN: $localStorage.PLN});
-
-                    ctrl.moneyStart = null;
-                };
-
-                CurrenciesService.selectedCurrencies().then(function (result)
-                {
-                    ctrl.currencyData = result;
-                });
+                ctrl.wallet[value] = $localStorage[value] || 0;
             });
+
+
+        }
+
+        setStartingValues();
+
+
+        // WalletDAO.query().then(function(data){
+        //     ctrl.wallet = data.result;
+        // });
+
+        ctrl.reset = function ()
+        {
+            $localStorage.$reset();
+            setStartingValues();
+            // WalletDAO.delete();
+            // WalletDAO.query();
+        };
+
+        ctrl.apply = function ()
+        {
+            ctrl.reset();
+            SharedData.updateCurrency('PLN', ctrl.moneyStart);
+            WalletDAO.save({PLN: ctrl.moneyStart}).then(function (data)
+            {
+                ctrl.wallet = data.result;
+            });
+
+            ctrl.moneyStart = null;
+        };
+
+        //TODO MOVE THIS FUNCTION TO SERVICE
+        // ctrl.getWallet = function ()
+        // {
+        //     WalletDAO.query().then(function (data)
+        //     {
+        //         ctrl.wallet = data.result;
+        //     });
+        // };
+
+        CurrenciesService.selectedCurrencies().then(function (result)
+        {
+            ctrl.currencyData = result;
+        });
+    }
+
+    angular.module('cinkciarzTraining').controller('MainController', ['$localStorage', 'CurrenciesService', 'SharedData', 'WalletDAO', MainController]);
 })();

@@ -1,8 +1,7 @@
 (function ()
 {
     'use strict';
-    angular.module('cinkciarzTraining')
-            .factory('CurrenciesService', function ($http, SharedData, $q)
+    function CurrenciesService($http, SharedData, $q)
             {
                 function getCurrency(currency)
                 {
@@ -42,5 +41,6 @@
                 return {
                     getCurrency: getCurrency, allCurrencies: allCurrencies, selectedCurrencies: selectedCurrencies
                 };
-            });
+            }
+    angular.module('cinkciarzTraining').factory('CurrenciesService', ['$http', 'SharedData', '$q', CurrenciesService]);
 })();
