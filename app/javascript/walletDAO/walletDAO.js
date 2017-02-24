@@ -16,9 +16,9 @@
             {
                 return api.save(data).$promise;
             },
-            update: function (data)
+            update: function (data,param)
             {
-                return api.update({a:'buy'},data).$promise;
+                return api.update({a: param},data).$promise;
 
             }, delete: function(){
                 return api.delete().$promise;
