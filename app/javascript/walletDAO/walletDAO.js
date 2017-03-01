@@ -5,7 +5,8 @@
     function WalletDAO($resource)
     {
         var api = $resource('/api/wallet/:a',null,{
-            update: { method:'PUT', isArray: false }
+            update: { method:'PUT', isArray: false },
+            get: {method:'GET', isArray: true}
         });
 
         return {

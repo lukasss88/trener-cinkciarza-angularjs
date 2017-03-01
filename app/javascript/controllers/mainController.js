@@ -6,13 +6,15 @@
         var ctrl = this;
 
         // ctrl.wallet = SharedData.wallet;
+
         ctrl.currencies = SharedData.currencies;
         ctrl.currencyIcons = SharedData.currencyIcons;
         ctrl.moneyStart = 10000;
 
 
         WalletDAO.query().then(function(data){
-            ctrl.wallet = data.result;
+            ctrl.wallet = data;
+            console.log(data[0]);
         });
 
         ctrl.reset = function ()
@@ -25,9 +27,13 @@
         {
             ctrl.reset();
 
-            WalletDAO.save({PLN: ctrl.moneyStart}).then(function (data)
+            WalletDAO.save({PLN: ctrl.moneyStart}).then(function ()
             {
-                ctrl.wallet = data.result;
+
+                WalletDAO.query().then(function(data){
+                    ctrl.wallet.PLN = data[0].currency_value;
+                    console.log(ctrl.wallet.PLN);
+                });
             });
 
             ctrl.moneyStart = null;
