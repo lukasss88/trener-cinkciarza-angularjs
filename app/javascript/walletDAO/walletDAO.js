@@ -6,7 +6,17 @@
     {
         var api = $resource('/api/wallet/:a',null,{
             update: { method:'PUT', isArray: false },
-            get: {method:'GET', isArray: true}
+            get: {method:'GET', isArray: false, transformResponse: function(data){
+                var dataJson = JSON.parse(data);
+                var wallet = {};
+
+                dataJson.map(function(value){
+                    wallet[value.currency_name] = value.currency_value;
+                });
+
+                data = wallet;
+                return data;
+            }}
         });
 
         return {

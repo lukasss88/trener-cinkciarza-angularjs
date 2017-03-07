@@ -7,8 +7,10 @@
         ctrl.currencyId = $routeParams.currency;
 
         WalletDAO.query().then(function(data){
-            ctrl.wallet = data.result;
+            ctrl.wallet = data;
+            console.log(data);
         });
+
 
         CurrenciesService.selectedCurrencies().then(function (result)
         {
