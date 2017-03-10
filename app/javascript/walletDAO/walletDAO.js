@@ -11,7 +11,11 @@
                 var wallet = {};
 
                 dataJson.map(function(value){
-                    wallet[value.currency_name] = value.currency_value;
+                    wallet.PLN = value.PLN;
+                    wallet.USD = value.USD;
+                    wallet.EUR = value.EUR;
+                    wallet.GBP = value.GBP;
+                    wallet.CHF = value.CHF;
                 });
 
                 data = wallet;

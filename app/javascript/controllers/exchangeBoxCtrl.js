@@ -8,9 +8,7 @@
 
         WalletDAO.query().then(function(data){
             ctrl.wallet = data;
-            console.log(data);
         });
-
 
         CurrenciesService.selectedCurrencies().then(function (result)
         {
@@ -46,20 +44,21 @@
 
         ctrl.applyCurrency = function ()
         {
-            var wallet;
 
             if ('buy' === $routeParams.action) {
-                wallet.PLN =ctrl.money;
-                wallet[ctrl.currencyId] = parseFloat((ctrl.money / ctrl.currencyData[ctrl.currencyId].rates[0].ask).toFixed(2));
-                WalletDAO.update(wallet, 'buy');
+
+                ctrl.wallet.PLN =ctrl.money;
+                ctrl.wallet[ctrl.currencyId] = parseFloat((ctrl.money / ctrl.currencyData[ctrl.currencyId].rates[0].ask).toFixed(2));
+
+                WalletDAO.update(ctrl.wallet, 'buy');
             }
 
-            else if ('sell' === $routeParams.action) {
-
-                wallet = {PLN: parseFloat((ctrl.money * ctrl.currencyData[ctrl.currencyId].rates[0].bid).toFixed(2))};
-                wallet[ctrl.currencyId] = ctrl.money;
-                WalletDAO.update(wallet, 'sell');
-            }
+            // else if ('sell' === $routeParams.action) {
+            //
+            //     wallet = {PLN: parseFloat((ctrl.money * ctrl.currencyData[ctrl.currencyId].rates[0].bid).toFixed(2))};
+            //     wallet[ctrl.currencyId] = ctrl.money;
+            //     WalletDAO.update(wallet, 'sell');
+            // }
         };
     }
 
