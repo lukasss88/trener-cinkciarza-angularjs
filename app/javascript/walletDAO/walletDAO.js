@@ -6,21 +6,8 @@
     {
         var api = $resource('/api/wallet/:a',null,{
             update: { method:'PUT', isArray: false },
-            get: {method:'GET', isArray: false, transformResponse: function(data){
-                var dataJson = JSON.parse(data);
-                var wallet = {};
-
-                dataJson.map(function(value){
-                    wallet.PLN = value.PLN;
-                    wallet.USD = value.USD;
-                    wallet.EUR = value.EUR;
-                    wallet.GBP = value.GBP;
-                    wallet.CHF = value.CHF;
-                });
-
-                data = wallet;
-                return data;
-            }}
+            get: {method:'GET', isArray: true},
+            delete: {method: 'DELETE', isArray: true}
         });
 
         return {

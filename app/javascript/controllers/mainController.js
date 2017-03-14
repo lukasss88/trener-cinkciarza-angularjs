@@ -11,13 +11,18 @@
 
         WalletDAO.query().then(function (data)
         {
-            ctrl.wallet = data;
+            ctrl.wallet = data[0];
         });
 
         ctrl.reset = function ()
         {
-            WalletDAO.delete();
-            WalletDAO.query();
+            WalletDAO.delete().then(function ()
+            {
+                WalletDAO.query().then(function (data)
+                {
+                    ctrl.wallet = data[0];
+                });
+            });
         };
 
         ctrl.apply = function ()
@@ -26,10 +31,9 @@
             {
                 WalletDAO.query().then(function (data)
                 {
-                    ctrl.wallet.PLN = data.PLN;
+                    ctrl.wallet.PLN = data[0].PLN;
                 });
             });
-
             ctrl.moneyStart = null;
         };
 

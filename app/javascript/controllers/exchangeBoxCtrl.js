@@ -1,14 +1,20 @@
 (function ()
 {
     'use strict';
-    function ExchangeBoxController(SharedData, $routeParams, CurrenciesService, WalletDAO)
+    function ExchangeBoxController(SharedData, $routeParams, CurrenciesService, WalletDAO, $location)
     {
         var ctrl = this;
         ctrl.currencyId = $routeParams.currency;
 
-        WalletDAO.query().then(function(data){
-            ctrl.wallet = data;
-        });
+        function refreshWallet()
+        {
+            return WalletDAO.query().then(function (data)
+            {
+                ctrl.wallet = data[0];
+            });
+        }
+
+        refreshWallet();
 
         CurrenciesService.selectedCurrencies().then(function (result)
         {
@@ -44,24 +50,26 @@
 
         ctrl.applyCurrency = function ()
         {
+            var wallet = {};
 
             if ('buy' === $routeParams.action) {
-
-                ctrl.wallet.PLN =ctrl.money;
-                ctrl.wallet[ctrl.currencyId] = parseFloat((ctrl.money / ctrl.currencyData[ctrl.currencyId].rates[0].ask).toFixed(2));
-
-                WalletDAO.update(ctrl.wallet, 'buy');
+                wallet.PLN = ctrl.money;
+                wallet[ctrl.currencyId] = parseFloat((ctrl.money / ctrl.currencyData[ctrl.currencyId].rates[0].ask).toFixed(2));
+                WalletDAO.update(wallet, 'buy').then(function ()
+                {
+                    $location.path('/');
+                });
+            } else if ('sell' === $routeParams.action) {
+                wallet = {PLN: parseFloat((ctrl.money * ctrl.currencyData[ctrl.currencyId].rates[0].bid).toFixed(2))};
+                wallet[ctrl.currencyId] = ctrl.money;
+                WalletDAO.update(wallet, 'sell').then(function ()
+                {
+                    $location.path('/');
+                });
             }
-
-            // else if ('sell' === $routeParams.action) {
-            //
-            //     wallet = {PLN: parseFloat((ctrl.money * ctrl.currencyData[ctrl.currencyId].rates[0].bid).toFixed(2))};
-            //     wallet[ctrl.currencyId] = ctrl.money;
-            //     WalletDAO.update(wallet, 'sell');
-            // }
         };
     }
 
     angular.module('cinkciarzTraining').controller('ExchangeBoxController',
-            ['SharedData', '$routeParams', 'CurrenciesService', 'WalletDAO', ExchangeBoxController]);
+            ['SharedData', '$routeParams', 'CurrenciesService', 'WalletDAO', '$location', ExchangeBoxController]);
 })();
