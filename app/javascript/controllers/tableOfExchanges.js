@@ -1,8 +1,7 @@
 (function ()
 {
     'use strict';
-    angular.module('cinkciarzTraining')
-            .controller('TableOfExchangesController', function (CurrenciesService)
+    function TableOfEchangesController(CurrenciesService)
             {
                 var vm = this;
 
@@ -10,5 +9,6 @@
                 {
                     vm.arrayCurrency = data[0].rates;
                 });
-            });
+            }
+    angular.module('cinkciarzTraining').controller('TableOfExchangesController', ['CurrenciesService', TableOfEchangesController]);
 })();
